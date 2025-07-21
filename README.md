@@ -17,7 +17,7 @@ In this one-week pre-course, students will gain a foundation in the tools and te
 
 ## Learning Objectives
 
-y the end of the week, students will:
+By the end of the week, students will:
 
 1. Establish a foundation in R programming principles, with a focus on data manipulation, transformation, visualization, and basic description & inference.
 2. Gain familiarity with common technical tools for workflow, data management, and presentation.
