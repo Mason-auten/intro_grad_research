@@ -8,84 +8,58 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
-How can a poll of a few thousand respondents predict an election outcome? Why do some nations go to war while others reach peaceful settlements? Political scientists rely on quantitative methods to answer these questions and more.
+How can a poll of a few thousand respondents predict who will win an election with hundreds of millions of voters? Why do some nations go to war while others settle conflict without violence? How do race, gender, class, and age interact to shape an individual’s vote choice? Quantitative methods equip researchers with the statistical tools to answer these and other fundamental questions in political science.
 
-This one-week math camp introduces incoming Ph.D. students to the core technical tools and professional norms of computational political science. You'll get hands-on experience with R, GitHub, and Quarto, and begin thinking critically about coding, workflow, and your time as a researcher in training.
+In this one-week pre-course, students will gain a foundation in the tools and techniques of computational social science. Our goal is to set a foundation for students to begin work in the first two courses in the department’s statistics sequence: Brenton Kenkel’s *Mathematical Foundations of Political Analysis* and Nina McMurry’s *Statistics for Political Research I*. Our primary focus will be introducing and familiarizing students with **R**—a free and open-source programming language which has become the standard for computational social scientists. Our secondary focuses will be on technical tools for workflow and presentation, as well as professionalization in the graduate program.
+---
+
+## Learning Objectives
+
+y the end of the week, students will:
+
+1. Establish a foundation in R programming principles, with a focus on data manipulation, transformation, visualization, and basic description & inference.
+2. Gain familiarity with common technical tools for workflow, data management, and presentation.
+3. Develop an understanding of graduate‐level norms and expectations, including Vanderbilt‐specific requirements.
+
+
+## Class Times and Office Hours
+
+Our first session will be held **9:00 AM–12:00 PM** in Commons 349 and focuses on programming in R. The second session runs **1:00 PM–4:00 PM**, covering technical applications (GitHub, LaTeX, Quarto) or professionalization. **No sessions** on Wednesday, August 20 (ISSS & TA training).
 
 ---
 
-## 🎯 Learning Objectives
+## Computing
 
-By the end of the week, students will:
+Political scientists have access to more data and computing power than ever before. The foundation of quantitative social science research is computer programming. This course will teach you to write clean, efficient code, with attention to the theoretical underpinnings of how your code manipulates data.
 
-- Build foundational fluency in **R**, especially for:
-  - Data manipulation, transformation, and visualization
-  - Script-based workflows for replication
-- Learn and apply **technical tools** including:
-  - Git and GitHub
-  - Quarto and LaTeX for presentation and reproducibility
-- Understand **professional expectations** of graduate school:
-  - How to manage time, projects, and relationships
-  - What’s expected of you in year 1 (and how to prepare)
+### Software
+
+We will use **R**, an open‐source statistical language. Download **R** at [cran.r-project.org](https://cran.r-project.org) and **RStudio** (the recommended IDE) at [posit.co/download/rstudio-desktop](https://posit.co/download/rstudio-desktop) (RStudio is the most beginner‐friendly R IDE; feel free to use VS Code or Positron if preferred).
+
+### ChatGPT and Generative AI
+
+ChatGPT and other LLMs are tools—powerful ones, but not a substitute for your own analytical thinking. Use them for grammatical help or to troubleshoot code, but **do not** outsource your reasoning. LLMs can enhance your workflow, but your ability to think clearly about statistics sets you apart.
 
 ---
 
-## 🗓️ Schedule
+## Schedule
 
-**Monday (8/18)**
-
-- **9:00AM–12:00PM: Introduction to Programming**\
-  Organizing projects and scientific research best practices. Downloading R, and understanding packages and working directories, and loading data. Dataframes, objects, and functions in R. Basic measures of dispersion and central tendency.
-- **1:00PM–4:00PM: Norms and Expectations of Graduate Study**\
-  Research as a career. Working with faculty, building mentorship teams inside and outside Vanderbilt, and peer-to-peer mentoring. Time management and setting priorities. “Every talk is a job talk.”
-
-**Tuesday (8/19)**
-
-- **9:00AM–12:00PM: Data Manipulation in R**\
-  Principles of programming, debugging, and using resources. Loading and tidying data. Creating and transforming variables. Filtering, selecting, and summarizing by groups. Merging and saving data.
-- **1:00PM–4:00PM: Technical Skills**\
-  Streamlining your workflow. Git/GitHub basics, GitHub for team management, and structuring repos for replication. Data management practices, note-taking, and note-taking software.
-
-**Wednesday (8/20)**
-
-- **Morning:** International students have ISSS Training.
-- **Afternoon:** All students have TA training.
-
-**Thursday (8/21)**
-
-- **9:00AM–12:00PM: Data Visualization**\
-  Principles and purpose of data visualization. Histograms, box plots, bar charts, scatterplots. Aesthetic options and dimension reduction in ggplot.
-- **1:00PM–4:00PM: Technical Skills II**\
-  Typesetting and presentations: Quarto, LaTeX, LaTeX math notation, bibliography management, YAML front matter, and LaTeX preambles.
-
-**Friday (8/22)**
-
-- **9:00AM–12:00PM: Inference and Description**\
-  Reintroduction to descriptive statistics for dispersion and central tendency. Two-variable descriptive statistics through correlation and difference in means. Working through replication code for a published manuscript.
-- **1:00PM–4:00PM: Graduate Study at Vanderbilt**\
-  Introduction to Vanderbilt-specific norms and expectations. Coursework and service assignments. Milestones of the first two years and preparing for comprehensive exams. Second-year paper and developing research agendas.
-
----
-
-## Setup Instructions
-
-Please install the following before the first session:
-
-1. **R**: [https://cran.r-project.org](https://cran.r-project.org)
-2. **RStudio** (recommended IDE): [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
-3. **Git**: [https://git-scm.com/downloads](https://git-scm.com/downloads)
-4. **Quarto**: [https://quarto.org/docs/get-started/](https://quarto.org/docs/get-started/)
-5. **GitHub account**: [https://github.com/join](https://github.com/join)
-6. **(Optional)**: VS Code or Obsidian if you're interested in alternative workflows
+| Date     | Morning (9:00–12:00)                                                                                                                                                          | Afternoon (1:00–4:00)                                                                                                 |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Mon 8/18 | **Introduction to Programming**: Organizing projects, packages, working directories; loading data; dataframes, objects, functions; measures of dispersion & central tendency. | **Norms & Expectations**: Research career overview; building mentorship; time management; “Every talk is a job talk.” |
+| Tue 8/19 | **Data Manipulation in R**: Debugging; loading & tidying; creating, transforming, filtering, summarizing, merging data.                                                       | **Technical Skills**: Git/GitHub basics; collaborator workflows; note-taking practices.                               |
+| Wed 8/20 | ISSS Training (morning)                                                                                                                                                       | TA Training (afternoon)                                                                                               |
+| Thu 8/21 | **Data Visualization**: ggplot2 basics; histograms, boxplots, bar charts, scatterplots; aesthetics & dimension reduction.                                                     | **Technical Skills II**: Quarto, LaTeX & math notation; bibliography & YAML front matter.                             |
+| Fri 8/22 | **Inference & Description**: Descriptive stats refresher; correlation & mean differences; replication exercise.                                                               | **Graduate Study**: Course milestones; prelim exams; second‐year paper prep; developing research agendas.             |
 
 
 ---
 
-## 📚 Resources
+## Resources
 
-- [Math Camp Syllabus (PDF)](./syllabus.pdf)
+- [Skills Camp Syllabus (PDF)](./syllabus.pdf)
 - [R for Data Science](https://r4ds.hadley.nz/)
 - [Quarto Docs](https://quarto.org/docs/)
 - [Happy Git with R](https://happygitwithr.com/)
@@ -93,17 +67,12 @@ Please install the following before the first session:
 
 ---
 
-## 💡 Notes on AI Tools
-
-ChatGPT and LLMs are powerful assistants—but your brain is the main tool. Use LLMs to help troubleshoot or draft explanations, but do **not** outsource your reasoning. This camp is about building skills that LLMs can *enhance*, not replace.
-
----
-
 ## Acknowledgments
 
-This course was developed by Mason Auten and Patrick Buhr, drawing inspiration from:
+This course was developed by Mason Auten and Patrick Buhr and draws inspiration from:
 
-- Brenton Kenkel’s Stats II Course
-- Jim Bisbee's Stats I Course 
+- Brenton Kenkel’s *Mathematical Foundations of Political Analysis*
+- Nina McMurry’s *Statistics for Political Research I*
+- Jim Bisbee's *Statistics for Political Research I*
 
 
