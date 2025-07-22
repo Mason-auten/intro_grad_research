@@ -1,0 +1,92 @@
+---
+title: "Problem Set 3 Answers"
+author: "YOUR NAME GOES HERE"
+date: 2025-03-19
+format:
+  pdf:
+    fontsize: 12pt
+    highlight-style: tango
+---
+
+
+# Part A: Instrumental variables concepts
+
+## 1. Key components of the analysis
+
+Answer goes here.
+
+## 2. Presence of selection bias
+
+Answer goes here.
+
+## 3. Instrument and its validity
+
+Answer goes here.
+
+## 4. Compliers
+
+Answer goes here.
+
+## 5. Conclusions and evidence
+
+Answer goes here.
+
+# Part B: Instrumental variables in practice
+
+```{r}
+#| message: false
+options(width = 72)
+library("tidyverse")
+library("broom")
+library("AER")
+df_dlo <- read_csv("data_set4_dlo.csv")
+```
+
+## 1. Balance across treatment
+
+```{r}
+# Code goes here
+```
+
+Interpretation goes here.
+
+## 2. Balance across instrument
+
+```{r}
+# Code goes here
+```
+
+Interpretation goes here.
+
+## 3. First stage and reduced form
+
+```{r}
+# Code goes here
+```
+
+Interpretation goes here.
+
+## 4. IV without controls
+
+```{r}
+# Code goes here
+```
+
+Interpretation goes here.
+
+## 5. IV with De La O's controls
+
+```{r}
+# Code goes here
+```
+
+Interpretation goes here.
+
+## 6. IV with your own controls
+
+```{r}
+# Code goes here
+```
+
+Interpretation goes here.
+
