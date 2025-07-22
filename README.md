@@ -56,7 +56,7 @@ ChatGPT and other LLMs are tools—powerful ones, but not a substitute for your 
 
 ## Resources
 
--   [Skills Camp Syllabus (PDF)](./syllabus.pdf)
+-   [Mason's Template for Github Repositories](https://github.com/Mason-auten/general_template)
 -   [R for Data Science](https://r4ds.hadley.nz/)
 -   [Quarto Guides](https://quarto.org/docs/guide/)
 -   [Happy Git with R](https://happygitwithr.com/)
