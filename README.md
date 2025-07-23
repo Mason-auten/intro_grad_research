@@ -45,7 +45,7 @@ ChatGPT and other LLMs are tools—powerful ones, but not a substitute for your 
 ## Schedule
 
 | Date | Morning (9:00–12:00) | Afternoon (1:00–4:00) |
-|-----------------|----------------------------------|----------------------|
+|------------------|---------------------------------|----------------------|
 | Mon 8/18 | **Introduction to Programming**: Organizing projects, packages, working directories; loading data; dataframes, objects, functions; measures of dispersion & central tendency. | **Norms & Expectations**: Research career overview; building mentorship; time management; “Every talk is a job talk.” |
 | Tue 8/19 | **Data Manipulation in R**: Debugging; loading & tidying; creating, transforming, filtering, summarizing, merging data. | **Technical Skills**: Git/GitHub basics; collaborator workflows; note-taking practices. |
 | Wed 8/20 | ISSS Training (morning) | TA Training (afternoon) |
@@ -57,14 +57,17 @@ ChatGPT and other LLMs are tools—powerful ones, but not a substitute for your 
 ## Resources
 
 -   [Mason's Template for Github Repositories](https://github.com/Mason-auten/general_template)
--   [R for Data Science](https://r4ds.hadley.nz/)
+-   [Advanced R for Data Science: Wickham](https://r4ds.hadley.nz/)
 -   [Quarto Guides](https://quarto.org/docs/guide/)
+    -   [Quarto Cell Guides](https://quarto.org/docs/reference/cells/cells-knitr.html)
 -   [Happy Git with R](https://happygitwithr.com/)
 -   [RStudio Cheat Sheets](https://posit.co/resources/cheatsheets/)
 -   [Brenton's Book on Data Analysis](https://bkenkel.com/pdaps/index.html)
 -   [Tidy Verse Guide](https://style.tidyverse.org/index.html)
 -   [Nick Klein's Resources on R](https://nickchk.com/econometrics.html#r-resources)
 -   [Steve Miller's Guide to Merging Data](https://svmiller.com/blog/2021/01/a-tutorial-on-the-join-family-in-r/#myadvice)
+-   [Gosha's Workflow Guide](https://github.com/gerasy1987/workflow_workshop)
+    -   [Additional Links for Setting Up Quarto](https://github.com/gerasy1987/dotfiles)
 
 ------------------------------------------------------------------------
 
