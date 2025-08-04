@@ -85,9 +85,8 @@ ChatGPT and other LLMs are tools—powerful ones, but not a substitute for your 
 
 ## Acknowledgments
 
-This course was developed by Mason Auten and Patrick Buhr and draws inspiration from:
+This course was developed by Mason Auten and Patrick Buhr and draws inspiration from:
 
 -   Brenton Kenkel’s *Mathematical Foundations of Political Analysis*
--   Nina McMurry’s *Statistics for Political Research I*
 -   Jim Bisbee's *Statistics for Political Research I*
 -   Andres Gannon: All skills related instruction.
