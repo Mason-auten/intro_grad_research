@@ -45,7 +45,7 @@ ChatGPT and other LLMs are tools—powerful ones, but not a substitute for your 
 ## Schedule
 
 | Date | Morning (9:00–12:00) | Afternoon (1:00–4:00) |
-|--------------|-----------------------------------|------------------------|
+|-----------------|---------------------------------|----------------------|
 | Mon 8/18 | Introduction to Programming: Organizing projects, packages, working directories; loading data; dataframes, objects, functions, principles of programming. Homework: Make a directory, organize files, and load data. | Norms & Expectations: Research career overview; building mentorship; time management; “Every talk is a job talk.” |
 | Tue 8/19 | Descriptive Statistics: measures of central tendency (mean, median), dispersion (standard deviation), bivariate descriptive statistics (correlation, covariance). Homework: Load data, some manipulation, descriptive | Technical Skills: Git/GitHub basics; collaborator workflows; note-taking practices. |
 | Wed 8/20 | ISSS Training (morning) | TA Training (afternoon) |
