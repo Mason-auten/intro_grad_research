@@ -1,0 +1,905 @@
+---
+title: "Introduction to Programming in R"
+subtitle: "Will This Make a Subtitle?"
+author: "Patrick Buhr and Mason Auten"
+date: "August 11, 2025"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+```
+
+# Getting Started
+
+R is a programming language widely used in statistical analysis. Learning R can come with a steep learning curve, but once you get the hang of it there's a nearly endless number of exciting things you can use it for. Time invested in deepening your R skills will never be time wasted.
+
+Code in R, and any other programming language, is a series of instructions to the computer. Usually, you will begin by either loading or creating objects, for example by importing a dataset you downloaded or defining a new variable. You'll then do various things to or with those objects, for example removing a row from a matrix, running a regression using your dataset, or making a graph. This is done using functions; a huge number of functions are built into R, many more are available through thousands of packages, and you will also write your own functions.
+
+## The R Workspace
+
+When you open RStudio, you will see four different windows:
+
+-   **Console**: where you will enter code, and where the outputs appear. You can type into it directly and press enter to see the result.
+
+-   **R Script**: your script is where you keep a record of your work. As a general rule, you should always write your code here first before executing it in the console. Try to write your code as clean and well-structured as possible. You want yourself and other scholars to understand your code and be able to replicate it at a different point in time.
+
+-   **Environment and History:** The environment tab shows all of the objects that you currently have loaded into your workspace. The history tab shows a list of commands used so far.
+
+-   **Files, plots, packages, help, viewer and presentation:** The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs. The packages tab will list a series of packages or add-ons needed to run certain processes. It shows you which packages you have currently installed and loaded. For additional info on a specific command, refer to the help tab.
+
+If you don't have a file set to open when you first open RStudio, you will likely only see three of these windows when RStudio first launches (Console, Environment and History, and Files, plots, packages, help, and viewer). Once you open a code file, the R Script window will also appear.
+
+## Setting a Working Directory
+
+The first thing you'll want to do when working in R is to set a working directory. This is the folder on your computer that R will default to for saving and loading files (unless told otherwise). In other words, this is where R will look for files you call and is where R will save files you create. You can check where your working directory currently is using `getwd()`
+
+`{r} getwd()}`
+
+To change this, we use the `setwd()` function. Below is the line of code I am using to set my working directory. Yours will be unique to your file organization. If you don't want to memorize the file path to set your working directory, you can search for one. To do this, select Session from the top menu, then Set Working Directory, then Choose Directory. Now you can choose which folder you would like to use as your working directory, which R will update automatically. It is a good idea to copy and paste the command that sets your working directory directly into your R script.
+
+`{r} setwd("C:/Users/patri/OneDrive/Documents/MathCamp")}`
+
+You'll notice that the `setwd()` command contains a specific file path on my personal laptop. This is not ideal for a script that I want a collaborator to be able to use. If the folder is in a shared directory like Dropbox, you can write a more universal command which would work for anyone who had access to this folder.
+
+## Loading Packages
+
+R has a number of functions built in, but you will often find yourself needing a function that is not included in base R. You access these functions by downloading and loading packages. You only need to download packages once. To install a package, use the `install.packages()` command, with the package name in quotation marks. For most of our work today, and most of your work in general, we'll be using the `tidyverse` suite of packages. `tidyverse` is convenient because it allows you to download many commonly used packages at once.
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+```
+
+You only need to install packages once, but will need to load packages from your library every time you use them. Note that you do not need to use quotations when loading packages.
+
+```{r}
+library(tidyverse)
+```
+
+Start every script by first setting your working directory and then loading in all packages that you are going to use.
+
+## Executing Code
+
+Scripts of code have active and inactive lines. Active lines are executable. To execute a section of code, select the entire section, and then press COMMAND+RETURN on a Mac, or CTRL+RETURN on a PC. Pressing these keys without selecting something will execute the line where your cursor is. Alternatively, you can select the portion of code you want to execute and hit "Run" in the top right corner of the code window. You can also execute all of the code in a .R file by pressing the "Source" button.
+
+```{r}
+2+2
+
+```
+
+Notice the features of the output R produces. First we see `[1]`. This indicates that whatever follows is the first element of the output. Sometimes output will have multiple elements, but here there is just one. Then we see the contents of that output: the number 4. If something has gone wrong in executing the code, R will print an error message instead of the output, which you can use to figure out what the problem is.
+
+We can perform other arithmetic operations using R, such as subtraction...
+
+```{r}
+6-2
+```
+
+...division...
+
+```{r}
+60/10
+```
+
+...or multiplication
+
+```{r}
+250*5
+```
+
+Inactive or "commented" lines of code begin with a hashtag (or pound) mark, #, and R will skip over them if you tell it to execute your script. Commenting using the `#` mark is useful for annotating a script file and making notes with collaborators. Once you type a `#` symbol, R will comment out (disregard) all subsequent characters until you hit return and start a new line.
+
+```{r}
+# <- notice that I have included a hashtag
+# R will ignore any text with a proceeding hashtags
+# commenting allows you to explain code and guide the reader
+# my next line of code calculates 3 squared
+3^2
+```
+
+Comments are crucial to writing good code. Keeping clean and annotated script files is important for many reasons. It helps avoid errors, it ensures your work is replicable, and it enables both your colleagues and your future self to understand what the code is doing. Get into the habit of always providing comments explaining your code.
+
+# Objects and Functions
+
+One of the main virtues of R (and a clear advantage over STATA) is its efficient and clear method of storing pieces of information that we generate during data analysis. These storage units are known as 'objects' and they take many forms, or 'classes'. The general format for assigning the value of an object is `NAME <- VALUE`. The `<-` symbols is known as "gets" because of the operation it performs: The object on the left hand side "gets" the value you place on the right hand side. For example, we could have stored the numeric results we just computed as follows:
+
+```{r}
+add.obj <- 4+4 
+multi.obj <- 250*5
+```
+
+Names of R objects are case sensitive and cannot begin with numbers. They can include `.` and/or `_` to separate words. It is good coding practice to name objects with intuitive labels to avoid confusion.
+
+You may notice that the output displayed did not include the numeric results themselves. This is because R computed these operations "quietly" and simply stored them. If we need them, they are there, but they need not clutter up our screen. To access them, we simply execute the names we assigned as follows:
+
+```{r}
+add.obj 
+multi.obj 
+```
+
+If we create a new object that has the same name as an existing object, R overwrites the old with the new:
+
+```{r}
+add.obj 
+add.obj <- 4+8 
+add.obj 
+```
+
+Behind the scenes, R keeps track of all the objects we create, and saves them into your workspace. To display all objects in your environment, use the `ls()` function:
+
+```{r}
+ ls()
+```
+
+You can delete any objects you've created from the workspace using the `rm()` function, or even delete all the objects saved there at once. Be careful using this function! Some objects take a long time to create, but `rm()` will remove them in a blink.
+
+```{r}
+rm(add.obj)
+```
+
+You can also delete all objects that you've created using the `rm(list=ls())` command.
+
+## Object Classes
+
+There are many classes of objects in R, each with their own properties. Knowing the class of an object lets us know the range of things we can do with that object. It's important to keep track of the classes of your objects, since many functions will only take objects of a certain class as their argument or will result in a different output depending on the class of its arguments. We can use the `class()` function to find out which class an object belongs to. For example, let's try it with our `multi.obj` which, as we remember, is the number `1250`.
+
+```{r}
+class(multi.obj)
+```
+
+Our class for `multi.obj` is numeric. Numeric objects are any kind of number. We can do mathematical calculations with objects of this class.
+
+R does most of its work through vectors, which mean the same thing as in matrix algebra: a $n \times 1$ ordered collection of elements. You can create an empty vector with the `vector()` command, or can create your own vectors using the `c()` command, with each element separated by a comma.
+
+```{r}
+ranking <- c(1,2,3,4,5)
+ranking
+class(ranking)
+```
+
+```{r}
+our_school <- "Vanderbilt"
+
+class(our_school)
+```
+
+Our object `our_school` is a character variable, which can be any string of characters, including numbers. There are many functions specifically designed to be used with character data.
+
+We can also create vectors of character variables.
+
+```{r}
+sec_schools <- c(our_school, "University of Florida", "UT Austin", "Georgia", "Texas A&M")
+sec_schools
+class(sec_schools)
+```
+
+Notice that we can add existing objects to other objects. We can check the length of a vector using the `length()` functions
+
+```{r}
+length(ranking)
+
+length(sec_schools)
+```
+
+Vectors are homogeneous: each element must be of the same type. Recall that our object `ranking` was numeric, but `sec_schools` is character. If we mix these two vectors, R will treat the numbers in `ranking` as text.
+
+```{r}
+class(ranking)
+
+class(sec_schools)
+
+mixed_vector <- c(ranking, sec_schools)
+
+mixed_vector
+
+class(mixed_vector)
+```
+
+## Data Frames
+
+For most functions we use to model data (e.g. regression or plotting), R requires that we use a dataframe. In contrast to vectors, dataframes do not have to be homogenous: each column of a dataframe can contain a different type of element, although the elements within each column must be of the same type. For example, in a dataset of survey responses, we may have one column that contains participants' age (numeric) and another with their name (character).
+
+Creating dataframes is straightforward.
+
+```{r}
+sec_rankings <- cbind.data.frame(ranking, sec_schools)
+
+class(sec_rankings)
+
+sec_rankings
+
+```
+
+You can access the elements of a dataframe by calling the specific row and column:
+
+```{r}
+sec_rankings[2,2]
+```
+
+Or, equivalently, by calling the name of the column:
+
+```{r}
+sec_rankings[2,"sec_schools"]
+```
+
+You can access a single column—usually corresponding to a specific variable—using the `$` operator followed by the name of the column:
+
+```{r}
+sec_rankings$sec_schools
+```
+
+## Functions
+
+Functions in R perform analogously to functions in mathematics: they take an input, perform some prespecified operation, and produce an output. There are many functions that come with base R; others will need to be downloaded in supplemental packages. You can also write your own functions to perform specialized tasks.
+
+You always call a function with its name followed by parentheses, and the input we give the function inside the parentheses. For example, if our function was called `function` and our input was called `input`, then we would call our function as `function(input)`. These inputs are called arguments. Some functions have one argument, while others have many. Some arguments are required, while others are optional. Often, arguments have to be of a particular class. The help file for a function will tell us the arguments that a function takes. You can access a function's help file by placing a `?` in front of the function name with empty parentheses, which will bring up the help file in the help tab.
+
+```{r, eval=FALSE}
+?function()
+```
+
+To get you familiar with using functions, we're going to run through some examples together. These are all functions you'll end up using again and again, and you'll and you soon have them all memorized. Take some time to play around with these, perhaps looking up their help file or changing the inputs to see what happens. 
+
+### Mathematical Operators
+
+We've already looked at R's ability to do some math with simple symbols (e.g. multiplication). For many other operations, there are simple functions we can use. These often only need one or two (numeric) arguments, so they're easy to use. Here's a few:
+
+```{r}
+# Square Root
+sqrt(144)
+
+# Natural Log
+log(10)
+
+# Exponent
+exp(3)
+
+# sequence of numbers
+seq(from = 1, to = 5, by = 0.5)
+
+# R also has a shortcut for sequences of integers
+1:5
+
+# Repeating the same input many times
+rep(x = c(1, 2, 3), times = 3)
+
+# sum
+numbers <- 1:5
+sum(numbers)
+```
+
+### Logical Statements
+
+R has a variety of logic statements that can be used in if-else statements or any other setting where you need to employ a TRUE/FALSE logic. You use the double equal `==` operator to mean "is this exactly true". For example:
+
+```{r}
+2 == 2
+
+2 == 3
+
+2 == "Joe Biden"
+
+```
+
+You can also use the `!=` operator to mean "not equal to". For example:
+
+```{r}
+# it is FALSE that 2 is not equal to 2
+2 != 2
+
+# it is TRUE that 2 is not equal to 3
+2 != 3
+```
+
+Another logical operator, that is especially useful for filtering or creating new variables, is to include inequalities. For example, we use the key `>` to mean "greater than" and `<` to mean "less than". The order of the inputs into the inequality matter: "A is greater than B" (`A>B`) is equivalent to "B is less than A" (`B<A`).
+
+```{r}
+# 3 is greater than 2
+3 > 2
+
+# 3 is not less than 2
+3 < 2
+
+# 2 is less than 3
+2 < 3
+```
+
+You can also include weak inequalities by adding a `=` to your inequality: for example, you would write "greater than or equal to" as `>=`.
+
+```{r}
+# it is FALSE that 3 is greater than 3
+3 > 3
+
+# but it is TRUE that 3 is greater than or equal to 3
+3 >= 3
+```
+
+Adding a `!` before your logical statement creates a negation, turning TRUE into FALSE and vice versa. This may seem useless, but is important if you want to add a condition to your code that is "filter out every observation where this condition is true". For example:
+
+```{r}
+# it is FALSE that 2 is greater than 3
+2 > 3
+
+# but it is TRUE that 2 is NOT greater than 3
+!(2 > 3)
+
+```
+
+We can also create compound logical statements using two or more conditions. R will only return TRUE if *every* condition is TRUE, and FALSE otherwise. Specify multiple conditions using the `&` symbol. For example:
+
+```{r}
+# creating an object called "number" that takes the value of 5
+number <- 5
+
+# it is TRUE that number is not equal to 3
+number != 3
+
+# it is FALSE that number is greater than 7
+number > 7
+
+# it is FALSE that number is not equal to 3 AND that number is greater than 7
+number !=3 & number > 7
+
+# however, it is TRUE that number is not equal to 3 and
+# that number is greater than 4
+number !=3 & number > 4
+
+```
+
+Use the `|` symbol to mean "OR". This returns TRUE if either of the conditions is TRUE.
+
+```{r}
+
+# it is TRUE that 5 is not equal to 3
+5 != 3
+
+# it is FALSE that 5 is greater than 7
+5 > 7
+
+# even though 5 is not greater than 7, 5 is not equal to 3. 
+# therefore, it is TRUE that 5 is not equal to 3 OR that 5 is greater than 7
+5 !=3 | 5 > 7
+```
+
+# Loading Data
+
+Creating objects is useful, but often you will want to import a dataset that you have downloaded or created to perform your analyses on. Luckily, R has a wide range of ways to interact with all kinds of files on your computer.
+
+## Reading in Data
+
+Most datasets will be saved as a CSV (comma-separated-values), which you can load in using the command `read_csv`.
+
+```{r, include = FALSE}
+library(tidyverse)
+```
+
+```{r}
+congress_data <- read_csv("congress_data.csv")
+```
+
+You will often also find data in the `.dta` format if it was created using Stata. You can read this in using the `read_dta` function from the package `haven`.
+
+```{r , eval=FALSE}
+library(haven)
+congress_data <- read_dta("congres_data.dta")
+```
+
+You can also read data in directly from a URL:
+
+```{r, eval=FALSE}
+congress_data <- read_dta("www.thelawmakers.org/uploads/congress_data.dta")
+```
+
+In general, however, we encourage you to download and save the raw data. You cannot read data from a URL if it is behind a login, such as a course on Brightspace, within a zipped directory, or in a file that has been emailed to you. More broadly, what is stored at a URL might change or disappear, leaving you without your data and making it impossible to replicate your analysis.
+
+You'll notice that your data is read in as a dataframe:
+
+```{r}
+class(congress_data)
+```
+
+We can list the name of all the variables using the `ls()` function, with our dataframe inside the parentheses:
+
+```{r}
+ls(congress_data)
+```
+
+As before, we can use the `$` function to extract a single column:
+
+```{r, eval=FALSE}
+congress_data$seniority
+```
+
+```{r, echo=FALSE}
+head(congress_data$seniority, 20)
+```
+
+Use square brackets `[]` to extract individual values:
+
+```{r}
+congress_data$seniority[5]
+```
+
+And use `:` within the brackets to extract a range:
+
+```{r}
+congress_data$seniority[1:10]
+```
+
+We can perform quick data summaries on our variables. We need to include `na.rm=T` if our data has NAs. For example, the average Member of Congress in our dataset has served 5.275 terms.
+
+```{r}
+mean(congress_data$seniority, na.rm=T)
+```
+
+While the median Member of Congress has served 4 terms.
+
+```{r}
+median(congress_data$seniority, na.rm=T)
+```
+
+There's a standard deviation of 4.15 terms.
+
+```{r}
+sd(congress_data$seniority, na.rm=T)
+```
+
+We can do a quick glance at all of this information using the `summary()` function:
+
+```{r}
+summary(congress_data$seniority)
+```
+
+For categorical variables, we can use the `table()` function. For example, we can use `st_name` which tells us which state a Member of Congress represents:
+
+```{r}
+table(congress_data$state)
+```
+
+## Manipulating Data
+
+We can reduce our data by filtering out rows that meet a certain criteria using the `filter()` command. For example, suppose we were only interested in Members of Congress born on or after 1987 (which we would write as greater than`>` or equal `=` in the form `>=1987`).
+
+```{r}
+filter(congress_data, born >= 1987)
+```
+
+You can also subset to only certain columns using the `select()` command. For example, let's only keep a Member of Congress's name, birthyear, and first-dimension DW-NOMINATE score (which is a commonly used measure of their general ideology).
+
+```{r}
+select(congress_data, name, born, dwnom1)
+```
+
+We can chain together commands using the pipe `%>%` from the `tidyverse` package. You may also see the pipe written as `|>` for R's built-in function; both are equivalent. For example, we can write the above code as:
+
+```{r}
+congress_data %>%
+  filter(born >= 1987) %>%
+  select(name, born, dwnom1)
+```
+
+### `mutate()`
+We can also change or mutate variables using the `mutate()` function:
+
+```{r}
+congress_data %>% 
+  mutate(gender_binary = if_else(female == 1, "Female", "Male"),
+         age = year - born,
+         race = case_when(
+           black == 1 ~ "Black",
+           latino == 1 ~ "Latino",
+           aapi == 1 ~ "Asian",
+           TRUE ~ "White"
+         )) %>%
+  select(gender_binary, female, year, born, age, race)
+```
+
+We can also create summaries using the `group_by()` function. The `group_by()` function is one of the most versatile and powerful tools in R.
+
+```{r}
+congress_data %>%
+  group_by(majority) %>%
+  summarize(number_of_respondents = n(),
+            average_effectiveness = mean(les, na.rm=T))
+```
+
+We can also create summaries with multiple groups:
+
+```{r}
+congress_data %>%
+  group_by(majority, female) %>%
+  summarize(number_of_respondents = n(),
+            average_effectiveness = mean(les, na.rm=T))
+```
+
+Your data will only stick if you use the `<-` function.
+
+```{r}
+congress_data <- congress_data %>%
+  mutate(age = year - born,
+         gender = ifelse(female == 1, "Woman", "Man"),
+         party = ifelse(democrat == 1, "Democrat", "Republican"),
+         race = case_when(
+           latino == 1 ~ "Latino",
+           black == 1 ~ "Black",
+           aapi == 1 ~ "Asian",
+           TRUE ~ "White"
+         )) # fix this to include asian
+```
+
+## Tidying Data
+
+```{r}
+untidy_election_data <- read_csv("untidy_election_data.csv")
+
+head(untidy_election_data)
+```
+
+Each row of `untidy_election_data` is Member of Congress. In observational studies in American politics, the most commonly used unit of observation is legislator-congress
+
+```{r}
+long_data <- untidy_election_data %>%
+  select(!name) %>%
+  pivot_longer(cols = starts_with(c("presidentialvoteshare", "contributions")))
+long_data
+```
+
+Next, we can separate out the name into variables.
+
+```{r}
+long_data <- separate(long_data,
+                      col = "name",
+                      into = c("var", "year"))
+long_data
+```
+
+Finally, we use the `pivot_wider` function, which is like the inverse of `pivot_longer`. `pivot_wider` takes a key column and a value column, and turns each key into a column of its own.
+
+```{r}
+clean_election_data <- pivot_wider(long_data,
+                                   names_from = "var",
+                                   values_from = "value")
+clean_election_data
+```
+
+## Merging Data
+
+We'll now want to merge in the data.
+
+```{r}
+clean_election_data$year <- as.numeric(clean_election_data$year)
+clean_election_data <- clean_election_data %>%
+  mutate(year = year + 1) %>%
+  rename(icpsr = ICPSR2)
+
+```
+
+Now we can merge.
+
+```{r}
+congress_data <- left_join(congress_data, clean_election_data, by = c("icpsr", "year"))
+```
+
+Sometimes, data is not so clean, and merging can become particularly tiresome in such scenarios. Frequently, we need to merge multiple datasets. In such scenarios, the dyplr function `join` is remarkably helpful. There are two separate types of joins, mutating joins and filtering joins. Mutating joins create new variables based on matching rows or observations. In effect, we add columns from one data set to another, filtering joins. Filtering joins eliminate, or filter out, data from one data set based on information in another. To keep things easy, we'll stick to mutating joins for now.
+
+There are several things to remember when utilizing joins. First, we use "keys" to connect observations together; these are specific variables that match observations. There are multiple types of joins. When using filtering joins, we recommend sticking to the `left_join()` function. This is easiest to visualize. You have the data you are starting with on the left-hand side, and you are adding columns to it from another data set on the right-hand side. 
+
+Let's start with a basic example of how you might clean and merge data while examining it in one flow. 
+
+```{r}
+
+# Clear workspace (always a good idea at the start of a script)
+rm(list = ls())
+
+## A useful function for loading and updating packages. 
+pacman::p_load(
+    tidyverse,
+    peacesciencer, ## IR friends...you will love this package
+    lubridate ## needed for fixing dates
+)
+
+# In this step, we create a dataset of country years with war data
+
+war <- create_stateyears(system = "cow") %>% 
+  add_cow_wars(type = "intra", intratype = "all")
+
+## always inspect the name of your variables
+colnames(war)
+
+## Suppose we have another dataset of economic data as well 
+
+econ <- create_stateyears(system = "cow") %>% 
+  add_sim_gdp_pop()
+
+colnames(econ)
+
+## We are interested in the relationship between intrastate conflict and economic performance. So we take our main dataset, war, and add to it economic data via a left join.
+
+## Note that because the key variables are named the same, I did not need to specify the join keys
+data <- left_join(war, econ)
+
+## Always look at your data, here we select the variables we want and filter out where there was no intrastate war
+data %>% 
+  filter(!is.na(wartype)) %>% 
+  select(cw_name, year, wartype,sd_pwtrgdp) %>% 
+  head(10)
+
+
+```
+
+
+# Visualizing Data
+
+## Histograms
+
+```{r}
+ggplot(congress_data, aes (x = dwnom1)) + 
+  geom_histogram(color = "black",
+                 fill = "steelblue",
+                 alpha = 0.5, # increases transparency
+                 binwidth = 0.05) + # changes the number of bins
+  labs(x = "First-Dimension DW-NOMINATE",
+       y = "Number of Members of Congress",
+       title = "Ideological Distribution of Members of Congress",
+       subtitle = "Some are Liberal, Some are Conservative") +
+  theme_bw()
+```
+
+## Bar Charts
+
+```{r}
+ggplot(congress_data, aes (y = party)) + 
+  geom_bar(color = "black",
+           fill = "steelblue",
+           alpha = 0.7)+
+  labs(x = "Number of Respondents",
+       y = NULL,
+       title = "Members of Congress by Gender") +
+  theme_bw()
+```
+
+```{r}
+ggplot(congress_data, aes(y = gender)) + 
+  geom_bar(aes(fill = party), position = "dodge") + 
+  scale_fill_manual(values = c("Democrat" = "dodgerblue", "Republican" = "indianred")) +
+  labs(x = "Number of Respondents",
+       y = NULL,
+       fill = "Party",
+       title = "Members of Congress by Gender and Party") + 
+  theme_bw()
+
+```
+
+Scatterplots
+
+```{r}
+ggplot(congress_data, 
+       aes(x = dwnom1, y = presidentialvoteshare)) + 
+  geom_point(alpha = 0.5) + # increases transparency
+  labs( title = "Ideology and Democratic Presidential Vote Share",
+        subtitle = "More Liberal Legislators Represent More Liberal Districts",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District"
+        # the \n tells ggplot to include a linebreak
+  )+
+  theme_bw()
+```
+Let's mutate the measure so it's the share of the presidential candidate of the legislator's party
+```{r}
+congress_data <- congress_data %>%
+  mutate(presidentialvoteshare_mutate = ifelse(democrat==1, presidentialvoteshare, 100-presidentialvoteshare))
+```
+
+Do legislators tend to receive similar vote shares to the presidential candidates of their party?
+
+```{r}
+ggplot(congress_data, 
+       aes(x = vote_share, y = presidentialvoteshare_mutate)) + 
+  geom_point(position = "jitter",
+             alpha = 0.5)+
+  labs( title = "Legislator and Presidential Vote Share",
+        x = "Legislator's Vote Share in District",
+        y = "Presidential Candidate's Vote Share in District"
+        # the \n tells ggplot to include a linebreak
+  )+
+  ylim(25, 100) + 
+  xlim(45, 99) +
+  theme_bw()
+```
+## Faceting
+```{r}
+
+CEL_filtered <- congress_data %>%
+  filter(year %in% c(1981, 1985, 1989, 1993, 1996, 2001, 2005, 2009, 2013, 2017, 2021)) %>%
+  mutate(election_year = year-1)
+
+ggplot(CEL_filtered, 
+       aes(x = vote_share, y = presidentialvoteshare_mutate)) + 
+  geom_point(size = 1,
+    alpha = 0.7) + 
+   labs( title = "Legislator and Presidential Vote Share",
+         subtitle = "Vote Shares Are Increasingly Correlated",
+        x = "Legislator's Vote Share in District",
+        y = "Presidential Candidate's Vote Share in District"
+        # the \n tells ggplot to include a linebreak
+  )+
+  xlim(45, 100)+
+  ylim(25,100)+
+  facet_wrap(~ election_year, 
+             ncol = 5)+
+  theme_bw()
+```
+
+You can also facet with a categorical variable
+```{r}
+
+congress_data %>% 
+  filter(!is.na(presidentialvoteshare)) %>%
+ggplot(aes(x = vote_share, y = presidentialvoteshare_mutate)) + 
+  geom_point(position = "jitter",
+             size = 0.5,
+    alpha = 0.45) + 
+  ylim(25,100)+
+  facet_wrap(~ race, 
+             ncol = 10)+
+  theme_bw()
+```
+
+# Writing Functions and Loops
+
+There may be instances in which an existing function does not exist for what you want to do. You may have some repetitive task you need to perform over and over throughout a data analysis. Rather than copy-and-pasting a single operation multiple times---which clutters up your code and makes it more likely that you will make an error---you can write a function that does the task and use it throughout your code. When writing a function, there are three main components: the function name, the arguments, and the body of the function. The body of the function is where you specify what you want the function to do with the arguments.
+
+To write a function in R, use the `function()` function. This follows four steps:
+
+1.  Pick a name for your function and assign it to be a function.
+
+2.  Specify the inputs that your function is going to need, and pass these as arguments into the `function()` function.
+
+3.  Use curly braces `{ }` and within them specify all the operations the function should perform on the inputs.
+
+4.  Finally, using `return()`, specify what the function will put back into R's broader environment.
+
+Here is the general anatomy of a function:
+
+```{r, eval = FALSE}
+# we will call our function our_function
+# I'll use our_input as a placeholder for the input. 
+# when writing your own functions, you will add whatever inputs you want
+
+our_function <- function(input) {
+  
+  # all operations go here
+  values <- operations(input)
+  
+  #finally, specify what you want R to return
+  return(values)
+}
+```
+
+For example, let's suppose we want to create a quadratic function that squares whatever inputs we add and then adds 4. We would write this as function as $y = f(x^2+1)$. We would write this in our code as:
+
+```{r}
+our_quadratic_function <- function(x){
+  y <- (x^2)
+  return(y)
+}
+```
+
+Let's create a vector called `our_vector` and pass it into `our_funky_function`
+
+```{r}
+our_first_vector <- c(1, 3, 5, 7)
+
+our_quadratic_function(our_first_vector)
+```
+
+Of course, our function is performing mathematical objects on the inputs, so will not be able to handle non-numeric inputs. It won't be able to handle inputs that aren't numbers. Because it isn't on the lookout for missing values, it will simply return another missing value to us. For example:
+
+```{r, error = TRUE}
+our_second_vector <- c(1, 3, "Joe Biden", 7)
+
+our_quadratic_function(our_second_vector)
+```
+
+Let's revise our function so it politely informs us if we have missing values:
+
+```{r}
+our_polite_function <- function(x){
+  if(is.numeric(x)){
+    y <- (x^2)
+    return(y)
+  }
+  else{
+    return("Excuse me, I think you have non-numeric values")
+  }
+}
+```
+
+Let's try it with our first vector, which contained all numeric values:
+
+```{r}
+our_polite_function(our_first_vector)
+```
+
+Now, let's try it with `our_second_vector` which contained some non-numeric inputs:
+
+```{r}
+our_polite_function(our_second_vector)
+```
+
+Perhaps we know that our input has nonnumeric values, but want R to continue to perform the function on the values that it can. We can rewrite a new function that tries to coerce elements into numeric form, and lists them as NA if they cannot be numeric:
+
+```{r}
+
+our_pragmatic_function <- function(x) {
+  
+  x <- as.numeric(x)
+  
+  y <- (x^2)
+  
+  return(y)
+}
+  
+our_pragmatic_function(our_second_vector)
+```
+
+For another example, base R does not come with a function that calculates the mode of a vector. We can write our own function to do this. Recall that, the mode is the value that appears most frequently in a vector. 
+
+```{r}
+
+# A function that calculates the mode
+our_mode <- function(x, na.rm = FALSE) {
+  
+  if(na.rm){ #if there are missing values, remove them
+    x = x[!is.na(x)]
+  }
+
+  val <- unique(x) #unique examines all unique values in the vector
+  return(val[which.max(tabulate(match(x, val)))]) # returns the most frequent value
+}
+
+```
+
+Before we celebrate, let's create a vector to test our function: 
+
+```{r}
+# We manually create a vector of values, I include an NA to make sure our function is working
+v <- c(1, 2, 3, 3, 3, 4, 5, NA)
+
+## Test the output
+our_mode(v)
+```
+
+
+```{r}
+
+## Loops
+
+The main alternative to functions is to write loops (usually called for loops). For intuition, suppose you want to repaint a room in your house. You need each of the four walls to be painted green, which involves the same action repeated four times. If you were giving directions to accomplish this task, you would not say "Paint wall 1 green. Paint wall 2 green. Paint wall 3 green. Paint wall 4 green." You would say "Paint all four walls green." In this statement, you have defined (1) what you want to do to each wall (paint green), and the set of walls to do it to (all four walls).
+
+Similarly, we use for loops to tell R to repeat an action across a set of inputs. For loops contain two parts:
+
+1.  An outer statement, which uses parentheses `( )` to tell R which units to iterate over (e.g. walls 1-4).
+
+2.  An inner statement, which uses curly braces `{ }`to tell R what do at each iteration (paint green).
+
+If we were telling R to paint our walls, we would write this as `for(wall in 1:4) {paint green(wall)}` . For example, suppose that we want to replicate our quadratic function from early that squares the inputes. We would write this as:
+
+```{r}
+our_first_vector <- c(1,3,5,7,9)
+
+# create an empty vector to store our results
+squared_vector <- numeric(length(our_first_vector))
+
+
+for(i in seq_along(our_first_vector)){
+  squared_vector[i] <- our_first_vector[i]^2
+}
+
+squared_vector
+```
+
+In general, functions are more efficient than for loops.
