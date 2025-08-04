@@ -31,15 +31,15 @@ self-contained: true
 ::: columns
 
 ::: column
-![](<images/professional headshot (2).jpg>){width="100%" height="10cm"}
-
+![](images/professional\ headshot\ \(2\).jpg)
 **Patrick Buhr**  
-Fifth-year Ph.D. Candidate researching the U.S. Congress, presidency, and bureaucracy.
+Fifth-year Ph.D. Candidate …
 :::
 
 ::: column
+![](images/mason_headshot.JPG)
 **Mason Auten**  
-Third-year Ph.D. Student researching historical state formation and conflict.
+Third-year Ph.D. Student …
 :::
 
 :::
@@ -356,13 +356,8 @@ Treat this like a job: start work at 9:00AM and work until at least 5:00PM.
 
 ## Working with us
 
-Patrick's office hours: Fridays 3:00PM–5:00PM (sign up on Calendly)  
+-  Always feel like you can talk to us about whatever is on your mind, whether it is related to stats or not.
+-  Mason works in Office 331, anytime his office is open feel free to knock and ask for help. 
 
-Payge's office hours: Mondays 3:00PM–5:00PM (sign up on Calendly)  
 
-Recitation is at 1:00PM on Thursdays and open office hours afterwards.
-
-Try for at least 30 minutes to solve a problem before coming to us.
-
-Always feel like you can talk to us about whatever is on your mind, whether it is related to stats or not.
 
