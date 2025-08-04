@@ -1,0 +1,499 @@
+---
+title: "Multiparty Bargaining, War Making, and State Making"
+author: "Mason Auten"
+shortauthor: "Mason Auten"
+institute: "Vanderbilt University"
+email: "mason.auten@vanderbilt.edu"
+date: today
+mainfont: "Arial"
+sansfont: "Arial"
+format:
+  revealjs: 
+    theme: serif
+    slide-number: true
+    embed-resources: true
+    center: true
+    link-external-icon: true
+    link-external-newwindow: true
+    self-contained-math: true
+    incremental: false
+    citations-hover: true
+    scrollable: false
+    reference-location: document
+    progress: true
+    slide-level: 2
+    self-contained: true
+    toc: false
+fontsize: 28px
+embed-resources: true
+bibliography: coercive capacity.bib
+---
+
+## Introduction
+
+> "Be it thy course to busy giddy minds with foreign quarrels." [@shakespeare2016KingHenryIV, 3109-3110]
+
+## Overview
+
+-   Throughout much of early history, bargaining occurred both with the elites with whom the budding central authority shared power and with external rulers.
+-   Domestic elites contributed independently to the strength of the state.
+-   How did shifting power among domestic parties influence war, peace, and the development of the state?
+
+## Preview: Main Results
+
+1.  Internal conflict, external conflict, and peace occur in equilibrium.
+2.  Large domestic power shifts favoring the domestic elite (a contract mechanism) can cause war in the first round if the ruler values the future sufficiently.
+3.  If the ruler does not value the future, then such power shifts result in external conflict in the second round.
+4.  The ruler uses the threat of foreign war to extract more from domestic elites.
+5.  In this way, contract mechanisms of state building can trigger bellecist mechanisms of state-building.
+
+## Justification
+
+-   Canonical theories of state building:
+    1.  War-making [@tilly1985WarMakingState; @tilly1990CoercionCapitalEuropean; @queralt2019WarInternationalFinance].
+    2.  Internal bargaining and contracts [@garfias2024StateBuildingHistoricalPolitical; @grzymala-busse2020WarContractsMedieval; @kenkel2023TheoryExternalWars; @levi1988RuleRevenue].
+-   These theories each seem to capture only part of the story.
+
+## Departure
+
+-   Extending existing theories through multi-issue bargaining.
+-   Considering two distinct sources of shifting power.
+    -   One shifting exogenously.
+    -   One shifting endogenously.
+
+# Basline Model
+
+## Baseline Model Approach
+
+-   Bargaining occurs over two periods under complete information.
+-   There is a domestic good, and a foreign good.
+-   The elite cares only about the domestic good, the foreign opponent cares only about the foreign good, and the ruler cares about both.
+-   Power shifts exogenously to favor the domestic elite over time.
+    -   $p < p'$
+-   Power shifts occur endogenously based on the bargain between the ruler and the elite regarding foreign opposition.
+    -   $q > q'$
+
+## Substance and Symbols
+
+-   $\nu$: Domestic good (e.g., English wool trade).
+    -   Conflict reduces its value: $\nu^c < \nu$.
+-   $1$: Foreign good (e.g., English king’s holdings in Gascony).
+    -   Divided via an external bargaining parameter: $q$.
+    -   Conflict destroys $(1-\tau)\in(0,1)$ fraction of it.
+
+## Players
+
+-   $i \in \{R, E, F\}$
+    -   $R \equiv$ Ruler
+    -   $E \equiv$ Domestic elite
+    -   $F \equiv$ Foreign adversary
+
+## Actions
+
+-   The ruler decides whether to fight with the foreign opponent $f \in \{0, 1\}$.
+-   Before the outcome of that interaction is realized, $R$ makes an offer, $x$, to $E$.
+-   $E$ accepts or rejects.
+-   If $E$ defects, then $R$'s probability of defeating the foreign opponent decreases.
+
+## Sequence
+
+1.  $R$ decides whether to initiate conflict with $F$ or not.
+
+2.  $R$ makes a take-it-or-leave-it offer to $E$.
+
+3.  $E$ accepts or rejects; rejection ends the game with domestic conflict.
+
+4.  If $E$ accepts, the game moves on to round 2, and the interaction repeats.
+
+5.  The game ends, and payoffs are received.
+
+## Utilities if E Rejects
+
+::: utilities-table
+```{=html}
+<style>
+.utilities-table table td {
+  transition: background-color 0.3s ease;
+}
+.peace-r1 { background-color: rgba(135, 206, 250, 0.2); }
+.war-r1 { background-color: rgba(255, 160, 122, 0.2); }
+.peace-r2 { background-color: rgba(135, 206, 250, 0.2); }
+.war-r2 { background-color: rgba(255, 192, 203, 0.2); }
+</style>
+```
+
+| **Player** | [**Round 1** $(f = 0)$]{.fragment .highlight-blue} | [**Round 1**$(f = 1)$]{.fragment .highlight-red} | [**Round 2** $(f = 0)$]{.fragment .highlight-blue} | [**Round 2** $(f = 1)$]{.fragment .highlight-red} |
+|---------------|---------------|---------------|---------------|---------------|
+| $U_R$ | [$\frac{p' (\nu^c + q)}{1 - \delta}$]{.fragment .peace-r1} | [$\frac{qp'(\nu^c + \tau)}{1 - \delta}$]{.fragment .war-r1} | [$\frac{p(\nu^c + q)}{1 - \delta}$]{.fragment .peace-r2} | [$\frac{qp(\nu^c + \tau)}{1 - \delta}$]{.fragment .war-r2} |
+| $U_E$ | [$\frac{(1-p')v^c}{1 - \delta}$]{.fragment .peace-r1} | [$\frac{q(1-p')v^c}{1 - \delta}$]{.fragment .war-r1} | [$\frac{(1-p)v^c}{1 - \delta}$]{.fragment .peace-r2} | [$\frac{q(1-p)v^c}{1 - \delta}$]{.fragment .war-r2} |
+:::
+
+## Utilities if E Accepts
+
+::: utilities-table
+| **Player** | [**Round 1** $(f = 0)$]{.fragment .highlight-blue} | [**Round 1** $(f = 1)$]{.fragment .highlight-red} | [**Round 2** $(f = 0)$]{.fragment .highlight-blue} | [**Round 2** $(f = 1)$]{.fragment .highlight-red} |
+|---------------|---------------|---------------|---------------|---------------|
+| $U_R$ | [$x_1(0) + q' \frac{V \delta}{1- \delta}$]{.fragment .peace-r1} | [$q'\bigl(x_1(1) + \tau + \frac{\delta V}{1 - \delta} \bigr)$]{.fragment .war-r1} | [$\frac{x_2(0) + q'}{1 - \delta}$]{.fragment .peace-r2} | [$\frac{q'\bigl(x_2(1) + \tau\bigr)}{1 - \delta}$]{.fragment .war-r2} |
+| $U_E$ | [$\nu - x_1(0) + \frac{\delta V}{1 - \delta}$]{.fragment .peace-r1} | [$q'\bigl(\nu - x_1(1)+ \frac{\delta V}{1 - \delta} \bigr)$]{.fragment .war-r1} | [$\frac{\nu - x_2(0)}{1 - \delta}$]{.fragment .peace-r2} | [$\frac{q'\nu - x_2(1)}{1 - \delta}$]{.fragment .war-r2} |
+:::
+
+# Analysis
+
+## War in the Second Round
+
+-   Internal conflict never occurs in the second round.
+-   External conflict occurs in the second round when:
+    -   The value of the domestic good is not too high.
+    -   Power is highly in favor of the elite.
+-   The ruler uses the threat of external conflict to indirectly manipulate the reservation value of the elite.
+
+## Round 1
+
+-   External conflict can happen in round 1 IFF it does not occur in round 2.
+-   Internal conflict can occurs when players are sufficiently patient and the domestic power shift is large.
+-   Sometimes, the prospect of future external conflict in round 2 makes it easier to collapse the bargaining range in round 1.
+
+## Exogenous Power Shift
+
+```{r}
+
+#| echo: false
+#| output: false
+
+
+rm(list = ls())
+
+pacman::p_load(
+  tidyverse,
+  knitr,
+  ggplot2,
+  pbapply, 
+  gridExtra, 
+  pbapply, 
+  plotly, 
+  purrr
+)
+
+
+## This is a horrendous long function for finding equilbrium, there are again better weays to do this, it was midnight and I was tired 
+
+classify_equilibrium_dp <- function(delta, p, p_prime, q, q_prime, nu, nu_c, tau) {
+  #  Condition 1: External war in round 2  
+
+  cond_extWar_R2 <- (
+    nu < ((1 - p) * nu_c * (1 - q) - q_prime * (1 - tau)) / (1 - q_prime)
+  )
+  
+
+  # Condition 2: External war in round 1, peace in R2   #
+  x1_empty <- nu - nu_c + (nu_c * (p_prime - delta * p)) / (1 - delta)
+  x1_F <- nu - (nu_c / ((1 - delta) * q_prime)) * (
+    q * (1 - p_prime) - q * (1 - p) * delta
+  )
+  LHS <- q_prime * x1_F - x1_empty + q_prime * (tau - 1) +
+         (delta / (1 - delta)) * (
+           q_prime * (nu - nu_c * (1 - p) + tau) -
+           (nu - nu_c * (1 - p) + q_prime)
+         )
+  cond_extWar_peace_R2 <- (LHS > 0)
+
+  # Condition 3a: Internal war in R1 threshold 
+  # delta > (1 - p_prime)/(1 - p) 
+  # Condition 3b: Internal war in R1 specifically if R2 has external war
+  # Condition 3c: Internal war in R1 specifically if R2 is peaceful      
+
+  cond_internal_R1_original  <- (delta > (1 - p_prime) / (1 - p))
+  cond_internal_R1_extWarR2  <- (
+    delta > (q_prime * (nu - p_prime * (nu_c + q))) /
+             (q * (1 - p) * nu_c)
+  )
+  cond_internal_R1_peaceR2   <- (
+    delta > (nu + q_prime - p_prime * (nu_c + q)) /
+             ((1 - p) * nu_c)
+  )
+
+
+  if (cond_extWar_R2) {
+    # R2 has external war
+    
+    # Check if R also initiates internal war in R1 under ext-war scenario
+    if (cond_internal_R1_original && cond_internal_R1_extWarR2) {
+      return("IntWar_R1_ExtWar_R2")
+    } else {
+      return("Peace_R1_ExtWar_R2")
+    }
+  } else {
+    # R2 is peaceful => check ext war in R1
+    if (cond_extWar_peace_R2) {
+      return("ExtWar_R1_Peace_R2")
+    } else {
+      # If no external war in R1, see if internal war in R1 when R2 is peaceful
+      if (cond_internal_R1_original && cond_internal_R1_peaceR2) {
+        return("IntWar_R1_Peace_R2")
+      } else {
+        return("Peace")
+      }
+    }
+  }
+}
+
+
+
+
+```
+
+```{r}
+
+#| fig-cap: "Changes in Equilbrium based on Domestic Power Shifts"
+#| echo: false
+#| output: true
+
+
+two_param_region_plot_p_pprime <- function(
+  p_seq = seq(0.01, 0.8, 0.01),
+  pprime_seq = seq(0.2, 0.99, 0.01),
+  delta = 0.99,        # High discount factor
+  q = 0.3,
+  q_prime = 0.7,
+  nu = 2,
+  nu_c = 1.7,
+  tau = 0.7
+) {
+  grid_df <- expand.grid(p = p_seq, p_prime = pprime_seq)
+  grid_df <- grid_df %>% filter(p < p_prime)  # Only valid region
+  
+  outcomes <- purrr::pmap_chr(grid_df, function(p, p_prime) {
+    classify_equilibrium_dp(
+      delta = delta,
+      p = p,
+      p_prime = p_prime,
+      q = q,
+      q_prime = q_prime,
+      nu = nu,
+      nu_c = nu_c,
+      tau = tau
+    )
+  })
+  
+  grid_df$outcome <- factor(outcomes, 
+    levels = c("IntWar_R1_ExtWar_R2","Peace_R1_ExtWar_R2",
+               "ExtWar_R1_Peace_R2","IntWar_R1_Peace_R2","Peace")
+  )
+  
+  color_mapping <- c(
+    "IntWar_R1_ExtWar_R2" = "red",
+    "Peace_R1_ExtWar_R2"  = "orange",
+    "ExtWar_R1_Peace_R2"  = "blue",
+    "IntWar_R1_Peace_R2"  = "purple",
+    "Peace"               = "green"
+  )
+  
+  ggplot(grid_df, aes(x = p, y = p_prime, fill = outcome)) +
+    geom_tile() +
+    scale_fill_manual(values = color_mapping) +
+    labs(
+      subtitle = paste("q =", q, ", q' =", q_prime,
+                       ", ν =", nu, ", ν^c =", nu_c, ", τ =", tau),
+      x = "p (Lower Power Value)",
+      y = "p' (Higher Power Value)",
+      fill = "Outcome"
+    ) +
+    theme_minimal()
+}
+
+## print
+two_param_region_plot_p_pprime()
+
+```
+
+## Comments
+
+-   Domestic power shifts cause conflict more often now.
+    -   Even if a peaceful domestic power shift happens, external conflict may occur in round 2 so that the ruler can extract more from the elite
+-   The ruler may want to stop the power shift because:
+    -   They do not want peace the elite will implement [@fearonRationalistExplanationsWar1995]
+    -   However, the inefficiency of external war in the second round makes this outcome more likely because future war implies that some inefficiency will arise regardless; the ruler merely needs to decide *where* it is best to bear that cost
+
+## Endogneous Power Shift
+
+```{r}
+#| fig-cap: "Changes in Equilbrium based on Changes to Foreign Bargaining Power"
+#| echo: false
+#| output: true
+
+
+facet_by_delta_in_qqprime <- function(
+  # Ranges for q, q'
+  q_seq = seq(0, 0.8, by = 0.02),
+  qprime_seq = seq(0.1, 0.95, by = 0.02),
+  # A vector of delta values to facet on
+  delta_values = c(0.3, 0.6, 0.7, 0.8),
+  # Fixed parameters
+  p = 0.2,
+  p_prime = 0.7, 
+  nu = 2,        
+  nu_c = 1.8,      
+  tau = 0.7 
+) {
+  # Create a grid over (q, q', delta)
+  grid_df <- expand.grid(
+    q = q_seq,
+    q_prime = qprime_seq,
+    delta = delta_values
+  )
+  
+  # Enforce q' > q
+  grid_df <- grid_df %>% filter(q_prime > q)
+  
+  # Classify each (q, q', delta)
+  grid_df$outcome <- purrr::pmap_chr(grid_df, function(q, q_prime, delta) {
+    classify_equilibrium_dp(
+      delta = delta,
+      p = p,
+      p_prime = p_prime,
+      q = q,
+      q_prime = q_prime,
+      nu = nu,
+      nu_c = nu_c,
+      tau = tau
+    )
+  })
+  
+  # Convert outcome to a factor 
+  grid_df$outcome <- factor(grid_df$outcome,
+    levels = c(
+      "IntWar_R1_ExtWar_R2",
+      "Peace_R1_ExtWar_R2",
+      "ExtWar_R1_Peace_R2",
+      "IntWar_R1_Peace_R2",
+      "Peace"
+    )
+  )
+  
+  # Define color mapping for the outcomes
+  color_mapping <- c(
+    "IntWar_R1_ExtWar_R2" = "red",
+    "Peace_R1_ExtWar_R2"  = "orange",
+    "ExtWar_R1_Peace_R2"  = "blue",
+    "IntWar_R1_Peace_R2"  = "purple",
+    "Peace"               = "green"
+  )
+  
+  #  Plot: facet by delta
+  ggplot(grid_df, aes(x = q, y = q_prime, fill = outcome)) +
+    geom_tile() +
+    scale_fill_manual(values = color_mapping) +
+    geom_abline(slope = 1, intercept = 0, linetype = "dashed", 
+                color = "black", alpha = 0.5) +
+    facet_wrap(~ delta, ncol = 2, labeller = label_both) +
+    labs(
+      subtitle = paste("p =", p, ", p' =", p_prime, 
+                       ", ν =", nu, ", ν^c =", nu_c, ", τ =", tau),
+      x = "q (No Elite Help)",
+      y = "q' (With Elite Help)",
+      fill = "Outcome"
+    ) +
+    theme_minimal()
+}
+
+## print
+facet_by_delta_in_qqprime()
+```
+
+## Comments
+
+-   The shift of power in relation to the foreign adversary leads to different equilibrium outcomes depending on other parameters.
+    -   In general, a larger shift means greater chances of war in the second round.
+    -   However, when the ruler becomes more patient, intermediate power shifts incentivize the ruler toward internal conflict.
+    -   Future inefficiencies make it rational to stop the internal power shift.
+    -   When the ruler does not need the elite, and their bargaining position relative to the foreign power is strong, peace prevails.
+
+# Extension
+
+## Set-up
+
+-   Now, Foreign adversary ($F$) becomes strategic, choosing whether to influence domestic elites ($E$).
+-   New possible outcomes include peace, foreign conflict (with $E$ aligned with $R$), allied conflict ($E$ and $F$ vs. $R$), or civil war.
+
+## Changes
+
+-   The foreign opponent decides to support the domestic elite or not $s \in \{0, 1\}$.
+    -   Support is costly and functions as a deal between the elite and foreign power, conditional on them ruling.
+        -   "Would you like some of Gascony?"
+-   The ruler decides whether to fight with the foreign opponent $f \in \{0, 1\}$.
+    -   Before the outcome of that interaction is realized, $R$ makes an offer, $x$, to $E$.
+
+## Changes
+
+-   $E$ accepts or rejects the offer from the ruler.
+-   When rejecting, it is assumed that $E$ accepts $F's$ offer.
+    -   Rejection now leads to $(1 - p)(\nu^c + \gamma)$
+-   Ruler now needs to offer more to keep elite because bargaining is occasionally over both foreign and domestic goods.
+
+## Sequence
+
+1.  $F$ chooses to support $E$ or not
+2.  $R$ decides whether to initiate conflict with $F$ or not.
+3.  $R$ makes a take-it-or-leave-it offer to $E$.
+4.  $E$ accepts or rejects; rejection ends the game with domestic conflict.
+5.  The game ends, and payoffs are received.
+
+## E rejects {.incremental}
+
+| **Player** | $f = 0$, $s = 0$ | $f = 0$, $s = 1$ | $f = 1$, $s = 0$ | $f = 1$, $s = 1$ |
+|---------------|---------------|---------------|---------------|---------------|
+| $U_R$ | $p(\nu^c + q)$ | $p(\tau + \nu^c)$ | $qp(\nu^c + \tau)$ | $\underline{p}(\nu^c + \tau)$ |
+| $U_E$ | $(1-p)v^c$ | $(1 - p)(\nu^c + \gamma)$ | $q(1-p)v^c$ | $(1 - \underline{p})(\nu^c + \gamma)$ |
+| $U_F$ | $1 - qp$ | $1 - \gamma = p(\gamma - \gamma^c) - pq$ | $1 - p(\tau - q\tau)$ | $(1 - \underline{p}) (\tau - \gamma)$ |
+
+## E accepts {.incremental}
+
+| **Player** | $f = 0$, $s = 0$ | $f = 0$, $s = 1$ | $f = 1$, $s = 0$ | $f = 1$, $s = 1$ |
+|---------------|---------------|---------------|---------------|---------------|
+| $U_R$ | $x(0, 0) + q'$ | $x(0, 1) + q'$ | $q'[x(1, 0) + \tau]$ | $q'[x(1, 1) + \tau]$ |
+| $U_E$ | $\nu - x$ | $\nu - x(0, 1)$ | $q'[\nu - x(1, 0)]$ | $q'[\nu - x(1, 1)]$ |
+| $U_F$ | $1 - q'$ | $1 - q' - \gamma^c$ | $(1 - q')\tau$ | $(1 - q')(\tau - \gamma^c)$ |
+
+## Tentative Results
+
+-   $\gamma$ shifts how much rulers must offer elites, occasionally eliminating bargaining options entirely.
+-   Anticipating  xternal conflict, $F$ sometimes invests in the elite to avoid direct conflict.
+-   Such investments can trigger unique conflict scenarios:
+    -   Ruler may attack elites directly because paying them off is too costly.
+    -   Thus, foreign investment can prevent direct foreign conflict via incentivizing domestic conflict.
+
+## Conclusion
+
+-   Even successful domestic bargaining triggers incentives for future external conflicts
+-   Perversely, the future inefficiency of war weighs on present decision-making and creates further avenues for domestic conflict.
+-   Internal contracts between the elite and the ruler could spur external conflict.
+-   Hence, state building through contracting may help trigger state building through war making. Equations
+
+## References {.allowframebreaks}
+
+::: {#refs}
+:::
+
+\scriptsize
+
+# Equations for Federica 
+
+## Foreign War in Round 2
+
+- $\nu <\frac{(1 - p)\nu^c(1 - q) - q' (1 - \tau)}{1 - q'}$
+
+## Internal War Conditions
+
+- $\delta > \frac{1 - p'}{1 - p}$
+- If there is peace in round 2
+  - Then war when: $\delta > \frac{\nu + q' - p'(\nu^c + q)}{\nu^c (1 - p)}$ 
+- If there is war in round 2,
+  - Then internal war in round 1 when: $\delta > \frac{q'[\nu - p'(\nu^c + q)]}{q(1 - p)\nu^c}$
+
+## Extension: Foreign Funded Conflict
+- If $s = 1$, and the following hold, then $R$ prefers internal conflict
+  - $\nu - \nu^c + q' - pq \leq \gamma$
+  - $\nu \geq \dfrac{\gamma - \tau(q' - \underline{p}) + \nu^c}{q'}$
+- And $F$ prefers to invest 
+  - $1 - \gamma + p(\gamma - \gamma^c) - pq > (1 - q')\tau$
+
