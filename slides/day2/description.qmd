@@ -1,0 +1,386 @@
+---
+title: Description
+subtitle: "Statistics for Political Science"
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Mason Auten
+    email: mason.auten@vanderbilt.edu
+    affiliations: Vanderbilt University
+  - name: Patrick Smith
+    email: patrick.smith@vanderbilt.edu
+    affiliations: Vanderbilt University
+date: today
+self-contained: true
+---
+
+## Norms of the Class
+
+1. Focus on getting better, not on being “good.”  
+2. This program is your job.
+
+This class is designed to give you the skills to pursue your own independent research projects in the future; don't worry about writing the perfect paper.
+
+
+## Where are we? Where are we going?
+
+$$
+\underbrace{\text{Description}}_{\text{This week}}
+  \;+\;
+\underbrace{\text{Inference}}_{\text{Next week}}
+  \;=\;
+\underbrace{\text{Regression}}_{\text{Where the magic happens}}
+$$
+
+
+## Today's Agenda
+
+“Correlation doesn't equal causation”
+
+...but all our statistical evidence about causation is built on correlations.
+
+We need to understand the basics of statistical correlations:
+
+- Mean and median  
+- Variance and standard deviation  
+- Covariance and correlation  
+- Visualizing statistical relationships
+
+---
+
+## A Note on Notation
+
+We will introduce quite a lot of notation in the next few weeks. We have tried to keep notation to a minimum, but it is often necessary to communicate complex ideas quickly and precisely.
+
+Notation today:
+
+- \(Y\) = typically the dependent variable.  
+- \(n\) = the total number of observations in sample \(n\).  
+- \(i\) = an individual within the sample \(n\).  
+- \(Y_i\) = the value of variable \(Y\) for individual \(i\).  
+- \(\sum_{i=1}^n Y_i\) = the sum of all values of \(Y\) for each individual \(i\) in sample \(n\).  
+- \(\bar{Y}\) (“Y-bar”) = mean of sample \(Y\).
+
+---
+
+## Why Description Matters
+
+**Quantitative political science** seeks to understand political phenomena through numerical representation.
+
+- Description is the foundation of all statistical work.  
+- It tells us: *What can we say about the data we have?*  
+- Before inference or prediction, we need to understand our data.
+
+---
+
+## Example: Weeks For Abortion
+
+“Different states are debating when, if at all, abortion should be legal during a woman’s
+pregnancy. A normal pregnancy could go up to as many as 40 weeks. Until what point in a pregnancy do you think a woman should be legally allowed to obtain an abortion?”
+
+Respondents choose number of weeks (0–40)
+
+---
+
+## Can we just look at the data?
+
+![](images/figure_one.png){width="100%"}
+
+---
+
+## What about a frequency table?
+
+![](images/figure_two.png){width="100%"}
+
+---
+
+## What if we want to compare by party affiliation?
+
+![](images/figure_three.png){width="100%"}
+
+---
+
+## What if we want to compare by age?
+
+![](images/figure_four.png){width="100%"}
+
+---
+
+## Why do we need statistical description?
+
+Fundamental tension in quantitative analysis: **detail** vs **parsimony**.
+
+- Sample Mean 17.08 weeks.  
+- Sample Median: 15 weeks.
+
+Compare averages across categories:
+
+- (Mean \(\mid\) Republican) = 10.5  
+- (Mean \(\mid\) Democrat) = 22.8
+
+Summarize relationships across multiple continuous variables:
+
+- Correlation between Age and Abortion Weeks = –0.086
+
+---
+
+# Central Tendency
+
+## Central Tendency
+
+**Central tendency** refers to measures that identify the center of a dataset.  
+Continuous and ordinal variables:
+
+- **Mean:** average value.  
+- **Median:** value at ≥50% of the distribution.  
+- **Mode:** more frequently occurring value.¹  
+
+Categorical variables: report as tables or recode in binary.
+
+¹ This value is often meaningless for continuous variables, so is rarely included.
+
+---
+
+## Mean
+
+$$
+\bar{Y} = \frac{\sum_{i=1}^n Y_i}{n}
+$$
+
+Components:
+
+- \(\bar{Y}\) (“Y-bar”) = mean of \(Y\)  
+- \(\sum_{i=1}^n Y_i\) = the sum of all values of \(Y\)  
+- \(n\) = the total number of observations
+
+---
+
+## Properties of Mean
+
+**1. Zero-Sum Property**  
+
+$$
+\sum_{i=1}^n (Y_i - \bar{Y}) = 0
+$$
+
+**2. Least-Squares Property**  
+$$
+\sum_{i=1}^n (Y_i - \bar{Y})^2 \;<\; 
+\sum_{i=1}^n (Y_i - c)^2
+\quad \forall\; c \neq \bar{Y}
+$$
+
+---
+
+## Median
+
+The **median** is the middle value of a variable when the observations are ordered from smallest to largest.
+
+It divides the distribution into two equal halves: 50% of values are below the median and 50% are above it.
+
+- If there is an **odd** number of observations, the median is the middle value.  
+- If there is an **even** number of observations, the median is the average of the two middle values.
+
+**Key advantage:** The median is resistant to outliers and skewed data.
+
+---
+
+## Age
+
+![](images/mean_median_one.png){width="100%"}
+
+---
+
+## Age: Mean is 52.48
+
+![](images/mean_median_two.png){width="100%"}
+
+---
+
+## Age: Median is 56
+
+![](images/mean_median_three.png){width="100%"}
+
+---
+
+## Binary
+
+![](images/binary_one.png){width="100%"}
+
+---
+
+## Binary: Mean is 0.623
+
+![](images/binary_two.png){width="100%"}
+
+---
+
+## Binary: Median is 1
+
+![](images/binary_three.png){width="100%"}
+
+---
+
+## Mean vs. Median
+
+Imagine there are 5 people sitting in a bar:
+
+- Net worth: \$10,000, \$120,000, \$140,000, \$250,000  
+- Mean: \$130,000  
+- Median: \$130,000  
+
+Imagine that Elon Musk walks into the bar:
+
+- Net worth: \$10,000, \$120,000, \$140,000, \$250,000, \$393,000,000,000  
+- Mean: \$78,600,104,000  
+- Median: \$140,000  
+
+---
+
+# Dispersion
+
+## Variance
+
+Variance is the typical (squared) distance between an observation and the mean:
+
+$$
+\mathrm{var}(Y) = s^2 = \frac{\sum_{i=1}^n (Y_i - \bar{Y})^2}{n}
+$$
+
+- Calculate each observation’s distance from the mean: $(Y_i - \bar{Y})$  
+- Square the distances: $((Y_i - \bar{Y})^2)$  
+  - Now they’re all positive.  
+  - Bigger differences matter more.  
+- Take the average of the squared differences.
+
+---
+
+## Standard Deviation
+
+$$
+\mathrm{sd}(Y) = s = \sqrt{\frac{\sum_{i=1}^n (Y_i - \bar{Y})^2}{n}}
+$$
+
+Assuming a normal distribution:
+
+- 68% of observations will be within one standard deviation.  
+- 95% of observations will be within two standard deviations.  
+- 99.5% of observations will be within three standard deviations.
+
+---
+
+## Age
+
+![](images/sd_zero.png){width="100%"}
+
+---
+
+## Age: One Standard Deviation
+
+![](images/sd_one.png){width="100%"}
+
+---
+
+## Age: Two Standard Deviations
+
+![](images/sd_two.png){width="100%"}
+
+---
+
+## Age: Three Standard Deviations
+
+![](images/sd_three.png){width="100%"}
+
+# 10 Minute Break
+
+
+# Bivariate Description
+
+## Covariance
+
+$$
+\mathrm{cov}(X, Y) = \frac{\sum_{i=1}^n (X_i - \bar{X})(Y_i - \bar{Y})}{n}
+$$
+- If $X$ and $Y$ tend to increase together, most terms are positive → positive covariance.  
+- If there’s no clear relationship, positives and negatives cancel → covariance ≈ 0.
+
+`cov(Age, Weeks of Abortion) = -18.4`
+
+---
+
+## Correlation
+
+$$
+\mathrm{cor}(X,Y) = \frac{\mathrm{cov}(X,Y)}{\mathrm{sd}(X)\,\mathrm{sd}(Y)}
+$$
+
+- $(\mathrm{cor}(X,Y)=1)$ → perfect positive linear relationship.  
+- $(\mathrm{cor}(X,Y)=-1)$ → perfect negative linear relationship.  
+- $(\mathrm{cor}(X,Y)=0)$ → no linear relationship.
+
+`cor(Age, Weeks of Abortion) = -0.086`
+
+---
+
+## Correlation
+
+![](images/corr.png){width="100%"}
+
+---
+
+# Data Visualization
+
+## Why Visualize Data?
+
+- Helps identify patterns and outliers  
+- Makes data easier to interpret  
+- Communicates findings effectively
+
+---
+
+## Histogram
+
+![](images/histogram.png){width="100%"}
+
+---
+
+## Histograms?
+
+Histograms allow us to visualize the distribution of a single continuous variable.
+
+- The x-axis displays the bins or intervals of the variable.  
+- The y-axis shows how many observations fall into each bin.
+
+---
+
+## Box Plots
+
+![](images/boxplot.png){width="100%"}
+
+---
+
+## Box Plots?
+
+Box plots help us compare the distributions of a continuous variable across categories.
+
+- The continuous variable is on the y-axis.  
+- The categorical variable is on the x-axis.
+
+---
+
+## Scatter Plots
+
+![](images/scatterplot.png){width="100%"}
+
+---
+
+## Scatter Plots?
+
+We use scatter plots to visualize the relationship between two continuous variables:
+
+- The independent variable is on the x-axis.  
+- The dependent variable is on the y-axis.
+
+---
