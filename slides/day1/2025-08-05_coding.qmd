@@ -9,7 +9,7 @@ author:
   - name: Mason Auten
     email: mason.auten@vanderbilt.edu
     affiliations: Vanderbilt University
-  - name: Patrick Smith
+  - name: Patrick Buhr
     email: patrick.smith@vanderbilt.edu
     affiliations: Vanderbilt University
 date: today
@@ -24,7 +24,9 @@ bibliography: skills_camp.bib
 
 pacman::p_load(tidyverse)
 ```
-# R YOU READY?: Getting Started with R
+
+
+# Getting Started with R
 
 ## Work Space
 
@@ -132,7 +134,7 @@ library(tidyverse)
 
 ```
 
-## Excuting Code cont. 
+## Excuting Code Cont. 
 - Commeting out code will cause it to be skipped
 
 ```{r}
@@ -172,7 +174,7 @@ mult_obj <- 250*5
 - Names of objects are case sensitive
   - Where a space would go, try using `.` or ` _` instead. 
 
-## Objects and Functions Continued {.scrollable}
+## Objects and Functions Cont. {.scrollable}
 
 - To print the values of the objects we simply list them 
 
@@ -196,6 +198,7 @@ mult_obj  %>%
 head(10)
 ```
 
+## Objects and Functions Cont. {.scrollable}
 - To see all objects in your working environment: 
 
 ```{r}
@@ -227,7 +230,7 @@ rm(add_obj)
 class(mult_obj)
 ```
 
-## Objects and Functions continued {.scrollable}
+## Objects and Functions Cont. {.scrollable}
 
 - Again, R is a vector based lanague
   - We work with an $n \times 1$ collection of elements
@@ -261,6 +264,7 @@ class(sec_schools)
 
 ```
 
+## Objects and Functions Cont. {.scrollable}
 - We can then ccheck the length of this particular vector 
 
 ```{r}
@@ -271,6 +275,7 @@ length(ranking)
 length(sec_schools)
 ```
 
+## Objects and Functions Cont. {.scrollable}
 - Each element of a vector must be of the same class
 
 ```{r}
@@ -288,6 +293,7 @@ mixed_vector
 
 class(mixed_vector)
 ```
+
 ## Data Frames{.scrollable}
 
 - Most functions we use in R utilize dataframes
@@ -307,6 +313,7 @@ sec_rankings
 
 ```
 
+## Data Frames Cont. {.scrollable}
 - The dataframe is treated as a type of matrix, and we can acess specific elements like so 
 
 
