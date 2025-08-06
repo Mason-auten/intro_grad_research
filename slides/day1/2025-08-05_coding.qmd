@@ -1,0 +1,167 @@
+---
+title: Directories and Coding
+subtitle: "Statistics for Political Science"
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Mason Auten
+    email: mason.auten@vanderbilt.edu
+    affiliations: Vanderbilt University
+  - name: Patrick Smith
+    email: patrick.smith@vanderbilt.edu
+    affiliations: Vanderbilt University
+date: today
+self-contained: true
+---
+
+
+# R YOU READY?: Getting Started with R
+
+## Work Space
+
+When you open RStudio, you will see four different windows:
+
+-   **Console**: where you will enter code, and where the outputs appear. You can type into it directly and press enter to see the result.
+
+-   **R Script**: your script is where you keep a record of your work. As a general rule, you should always write your code here first before executing it in the console
+
+-   **Environment and History:** The environment tab shows all of the objects that you currently have loaded into your workspace. The history tab shows a list of commands used so far.
+
+-   **Files, plots, packages, help, viewer and presentation:** The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs.
+
+
+## Working Directories
+
+The first thing to do is set a working directory. Two broad ways to do this:
+
+
+1. Manually
+2. Project: Based
+
+## Working Directories: Manually
+
+- First we want to check where are working directory. There are two different commands that capture the same objective.
+
+```{r}
+#| echo: true
+#| eval: true
+
+getwd()
+
+here::here()
+
+```
+
+- Next, we want to set that working directory 
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+setwd("C:/Users/patri/OneDrive/Documents/MathCamp")
+```
+
+## Working Directories: Project Based
+
+Working from a project allows you to set your working directory automatically
+
+::: {.incremental}
+
+1. Click the project button
+2. Select new directory then new project
+3. Create the folder
+
+:::
+
+## Loading Packages
+
+- The strength of R is in the community. 
+- You'll frequently be loading packages that extent the basline functions of R. 
+- Installation only needs to be done once
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages("tidyverse")
+
+```
+
+- However, we need to load packages before each use
+  
+
+```{r}
+#| eval: false
+#| echo: true
+library(tidyverse)
+
+```
+- Every R script should start by loading your packages
+
+## Excuting Code
+
+- All scripts have active and inactive lines. Active lines are executable.
+  - On Mac, press COMMAND+RETURN
+  - On PC, press CNTRL+RETURN
+
+
+```{r}
+#| eval: true
+#| echo: true
+2+2
+
+```
+
+- While R is flexible and powerful, it is also can do simple calculations
+
+```{r}
+#| eval: true
+#| echo: true
+2+2
+6-2
+250*5
+
+```
+
+## Excuting Code cont. 
+- Commeting out code will cause it to be skipped
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+## Commenting out lines means that R won't try to run that line
+## Notice how R skips over this line? 
+3^2
+```
+
+- Try to commment your code, it saves future you and future reviewers headaches
+
+## Objects and Functions 
+
+- R is a vector based language. 
+- We can store values as "objects"
+
+```{r}
+#| eval: false
+#| echo: true
+
+NAME <- VALUE
+```
+
+- Any of the prevous calculations could be stored as objects
+
+```{r}
+#| eval: false
+#| echo: true
+
+add_obj <- 4+4 
+mult_obj <- 250*5
+```
+
+- Names of objects are case sensitive
+  - Where a space would go, try using `.` or ` _` instead. 
+
