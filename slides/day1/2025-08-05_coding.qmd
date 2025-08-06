@@ -14,9 +14,16 @@ author:
     affiliations: Vanderbilt University
 date: today
 self-contained: true
+bibliography: skills_camp.bib
 ---
 
+```{r}
+#| echo: false
+#| eval: true
+#| output: false
 
+pacman::p_load(tidyverse)
+```
 # R YOU READY?: Getting Started with R
 
 ## Work Space
@@ -155,7 +162,7 @@ NAME <- VALUE
 - Any of the prevous calculations could be stored as objects
 
 ```{r}
-#| eval: false
+#| eval: true
 #| echo: true
 
 add_obj <- 4+4 
@@ -165,3 +172,187 @@ mult_obj <- 250*5
 - Names of objects are case sensitive
   - Where a space would go, try using `.` or ` _` instead. 
 
+## Objects and Functions Continued {.scrollable}
+
+- To print the values of the objects we simply list them 
+
+```{r}
+#| eval: true
+#| echo: true
+
+add_obj 
+mult_obj 
+```
+
+- For large vectors, we can also specify how many of the results are printed
+
+```{r}
+#| eval: true
+#| echo: true
+
+# With large objects it helps to tell it how many values you want printed
+
+mult_obj  %>% 
+head(10)
+```
+
+- To see all objects in your working environment: 
+
+```{r}
+#| eval: true
+#| echo: true
+
+ls()
+
+```
+
+- To remove a specific object 
+
+```{r}
+#| eval: true
+#| echo: true
+rm(add_obj)
+
+# Or remove all objects with rm(list=ls())
+```
+
+- Objects in R are seperated into "classes"
+  - Classes include: chracter, numeric, vector, factor, matrix, list, dataframe and so on. 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+class(mult_obj)
+```
+
+## Objects and Functions continued {.scrollable}
+
+- Again, R is a vector based lanague
+  - We work with an $n \times 1$ collection of elements
+
+- Here is one way to create vectors
+
+```{r}
+#| eval: true
+#| echo: true
+
+ranking <- c(1,2,3,4,5)
+ranking
+class(ranking)
+
+```
+
+- We can create chracter based objects and add inofrmation to it ex post
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+our_school <- "Vanderbilt"
+
+class(our_school)
+
+sec_schools <- c(our_school, "University of Florida", "UT Austin", "Georgia", "Texas A&M")
+sec_schools
+class(sec_schools)
+
+```
+
+- We can then ccheck the length of this particular vector 
+
+```{r}
+#| eval: true
+#| echo: true
+length(ranking)
+
+length(sec_schools)
+```
+
+- Each element of a vector must be of the same class
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+class(ranking)
+
+class(sec_schools)
+
+mixed_vector <- c(ranking, sec_schools)
+
+mixed_vector
+
+class(mixed_vector)
+```
+## Data Frames{.scrollable}
+
+- Most functions we use in R utilize dataframes
+- Dataframes do not have to be of the same class
+  - But each element in a column should be of the same oclumn 
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+sec_rankings <- cbind.data.frame(ranking, sec_schools)
+
+class(sec_rankings)
+
+sec_rankings
+
+```
+
+- The dataframe is treated as a type of matrix, and we can acess specific elements like so 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+sec_rankings[2,2]
+
+# Another way to do it
+sec_rankings[2,"sec_schools"]
+```
+
+- Access a specific column like so 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+sec_rankings$sec_schools
+```
+
+## Functions 
+
+- R functions are analaguous to mathmatical functions. They are a mapping from one set of values to another
+- Functions are made of three componenets [@wickham2019Advanced] 
+  1. The arguments you use
+  2. The body of code inside the function
+  3. The structure of the data 
+- Calling a function `function(input)`
+
+
+```{r}
+#| eval: false
+#| echo: true
+
+
+?function()
+
+```
+
+
+
+## References
+
+::: {#refs}
+:::
