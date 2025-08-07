@@ -2,7 +2,7 @@
 
 **Vanderbilt University — Department of Political Science**\
 **Instructors:** Mason Auten & Patrick Buhr\
-**Dates:** August 18–22, 2025\
+**Dates:** August 11-15, 2025\
 **Location:** Commons 349\
 **Contact:** [mason.auten\@vanderbilt.edu](mailto:mason.auten@vanderbilt.edu), [patrick.buhr\@vanderbilt.edu](mailto:patrick.buhr@vanderbilt.edu)
 
@@ -46,11 +46,11 @@ ChatGPT and other LLMs are tools—powerful ones, but not a substitute for your 
 
 | Date | Morning (9:00–12:00) | Afternoon (1:00–4:00) |
 |-----------------|---------------------------------|----------------------|
-| Mon 8/18 | Introduction to Programming: Organizing projects, packages, working directories; loading data; dataframes, objects, functions, principles of programming. Homework: Make a directory, organize files, and load data. | Norms & Expectations: Research career overview; building mentorship; time management; “Every talk is a job talk.” |
-| Tue 8/19 | Descriptive Statistics: measures of central tendency (mean, median), dispersion (standard deviation), bivariate descriptive statistics (correlation, covariance). Homework: Load data, some manipulation, descriptive | Technical Skills: Git/GitHub basics; collaborator workflows; note-taking practices. |
-| Wed 8/20 | ISSS Training (morning) | TA Training (afternoon) |
-| Thu 8/21 | Data Manipulation in R: Debugging; loading & tidying; creating, transforming, filtering, summarizing, merging data. Homework: Data wrangling. | Technical Skills II: Quarto, LaTeX & math notation; bibliography & YAML front matter. |
-| Fri 8/22 | Data Visualization: ggplot2 basics; histograms, boxplots, bar charts, scatterplots; aesthetics & dimension reduction. | Graduate Study: Course milestones; prelim exams; second-year paper prep; developing research agendas. |
+| Mon 8/11 | Introduction to Programming: Organizing projects, packages, working directories; loading data; dataframes, objects, functions, principles of programming. Homework: Make a directory, organize files, and load data. | Norms & Expectations: Research career overview; building mentorship; time management; “Every talk is a job talk.” |
+| Tue 8/12 | Descriptive Statistics: measures of central tendency (mean, median), dispersion (standard deviation), bivariate descriptive statistics (correlation, covariance). Homework: Load data, some manipulation, descriptive | Technical Skills: Git/GitHub basics; collaborator workflows; note-taking practices. |
+| Wed 8/13 | ISSS Training (morning) | TA Training (afternoon) |
+| Thu 8/14 | Data Manipulation in R: Debugging; loading & tidying; creating, transforming, filtering, summarizing, merging data. Homework: Data wrangling. | Technical Skills II: Quarto, LaTeX & math notation; bibliography & YAML front matter. |
+| Fri 8/15 | Data Visualization: ggplot2 basics; histograms, boxplots, bar charts, scatterplots; aesthetics & dimension reduction. | Graduate Study: Course milestones; prelim exams; second-year paper prep; developing research agendas. |
 
 ------------------------------------------------------------------------
 
@@ -73,8 +73,4 @@ ChatGPT and other LLMs are tools—powerful ones, but not a substitute for your 
 
 ## Acknowledgments
 
-This course was developed by Mason Auten and Patrick Buhr and draws inspiration from:
-
--   Brenton Kenkel’s *Mathematical Foundations of Political Analysis*
--   Jim Bisbee's *Statistics for Political Research I*
--   Andres Gannon: All skills related instruction.
+This course was developed by Mason Auten and Patrick Buhr and draws inspiration from courses taught by Brenton Kenkel, Jim Bisbee, and Andres Gannon. We also thank Rachel Lienesch and Nguyen Ha for sharing materials. 
