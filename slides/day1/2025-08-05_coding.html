@@ -1112,15 +1112,15 @@ Patrick Buhr
 <h2>Work Space</h2>
 <p>When you open RStudio, you will see four different windows:</p>
 <ul>
-<li><p><strong>Console</strong>: where you will enter code, and where the outputs appear. You can type into it directly and press enter to see the result.</p></li>
-<li><p><strong>R Script</strong>: your script is where you keep a record of your work. As a general rule, you should always write your code here first before executing it in the console</p></li>
-<li><p><strong>Environment and History:</strong> The environment tab shows all of the objects that you currently have loaded into your workspace. The history tab shows a list of commands used so far.</p></li>
-<li><p><strong>Files, plots, packages, help, viewer and presentation:</strong> The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs.</p></li>
+<li><strong>Console</strong>: where you will enter code, and where the outputs appear. You can type into it directly and press Enter to see the result.</li>
+<li><strong>R Script</strong>: Your script is where you keep a record of your work. As a general rule, you should always write your code here first before executing it in the console</li>
+<li><strong>Environment and History:</strong> The environment tab shows all of the objects that you currently have loaded into your workspace. The history tab shows a list of commands used so far.</li>
+<li><strong>Files, plots, packages, help, viewer and presentation:</strong> The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs.</li>
 </ul>
 </section>
 <section id="working-directories" class="slide level2">
 <h2>Working Directories</h2>
-<p>The first thing to do is set a working directory. Two broad ways to do this:</p>
+<p>The first thing to do is to set a working directory. Two broad ways to do this:</p>
 <ol type="1">
 <li>Manually</li>
 <li>Project: Based</li>
@@ -1129,7 +1129,7 @@ Patrick Buhr
 <section id="working-directories-manually" class="slide level2">
 <h2>Working Directories: Manually</h2>
 <ul>
-<li>First we want to check where are working directory. There are two different commands that capture the same objective.</li>
+<li>First, we want to check where the working directory is. There are two different commands that capture the same objective.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href></a><span class="fu">getwd</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1150,11 +1150,11 @@ Patrick Buhr
 </section>
 <section id="working-directories-project-based" class="slide level2">
 <h2>Working Directories: Project Based</h2>
-<p>Working from a project allows you to set your working directory automatically</p>
+<p>Working from a project allows you to set your working directory automatically.</p>
 <div>
 <ol type="1">
 <li class="fragment">Click the project button</li>
-<li class="fragment">Select new directory then new project</li>
+<li class="fragment">Select a new directory, then new project</li>
 <li class="fragment">Create the folder</li>
 </ol>
 </div>
@@ -1163,7 +1163,7 @@ Patrick Buhr
 <h2>Loading Packages</h2>
 <ul>
 <li>The strength of R is in the community.</li>
-<li>You’ll frequently be loading packages that extent the basline functions of R.</li>
+<li>You’ll frequently be loading packages that extend the baseline functions of R.</li>
 <li>Installation only needs to be done once</li>
 </ul>
 <div class="cell">
@@ -1179,14 +1179,12 @@ Patrick Buhr
 <li>Every R script should start by loading your packages</li>
 </ul>
 </section>
-<section id="excuting-code" class="slide level2">
-<h2>Excuting Code</h2>
+<section id="executing-code" class="slide level2">
+<h2>Executing Code</h2>
 <ul>
-<li>All scripts have active and inactive lines. Active lines are executable.
-<ul>
+<li>All scripts have active and inactive lines. Active lines are executable.</li>
 <li>On Mac, press COMMAND+RETURN</li>
-<li>On PC, press CNTRL+RETURN</li>
-</ul></li>
+<li>On PC, press CTRL+RETURN</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1195,7 +1193,7 @@ Patrick Buhr
 </div>
 </div>
 <ul>
-<li>While R is flexible and powerful, it is also can do simple calculations</li>
+<li>While R is flexible and powerful, it can also do simple calculations</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href></a><span class="dv">2</span><span class="sc">+</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1212,10 +1210,10 @@ Patrick Buhr
 </div>
 </div>
 </section>
-<section id="excuting-code-cont." class="slide level2">
-<h2>Excuting Code Cont.</h2>
+<section id="executing-code-cont." class="slide level2">
+<h2>Executing Code Cont.</h2>
 <ul>
-<li>Commeting out code will cause it to be skipped</li>
+<li>Commenting out code will cause it to be skipped</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href></a><span class="do">## Commenting out lines means that R won&#39;t try to run that line</span></span>
@@ -1226,36 +1224,35 @@ Patrick Buhr
 </div>
 </div>
 <ul>
-<li>Try to commment your code, it saves future you and future reviewers headaches</li>
+<li>Comment. Your. Code.</li>
+<li>It saves future you and future reviewers headaches</li>
 </ul>
 </section>
 <section id="objects-and-functions" class="slide level2">
 <h2>Objects and Functions</h2>
 <ul>
-<li>R is a vector based language.</li>
+<li>R is a vector-based language.</li>
 <li>We can store values as “objects”</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href></a>NAME <span class="ot">&lt;-</span> VALUE</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Any of the prevous calculations could be stored as objects</li>
+<li>Any of the previous calculations could be stored as objects</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href></a>add_obj <span class="ot">&lt;-</span> <span class="dv">4</span><span class="sc">+</span><span class="dv">4</span> </span>
 <span id="cb19-2"><a href></a>mult_obj <span class="ot">&lt;-</span> <span class="dv">250</span><span class="sc">*</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Names of objects are case sensitive
-<ul>
+<li>Names of objects are case sensitive</li>
 <li>Where a space would go, try using <code>.</code> or <code>_</code> instead.</li>
-</ul></li>
 </ul>
 </section>
 <section id="objects-and-functions-cont." class="slide level2 scrollable">
 <h2>Objects and Functions Cont.</h2>
 <ul>
-<li>To print the values of the objects we simply list them</li>
+<li>To print the values of the objects, we simply list them</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href></a>add_obj </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1271,7 +1268,7 @@ Patrick Buhr
 <li>For large vectors, we can also specify how many of the results are printed</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href></a><span class="co"># With large objects it helps to tell it how many values you want printed</span></span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href></a><span class="co"># With large objects, it helps to tell it how many values you want printed</span></span>
 <span id="cb24-2"><a href></a></span>
 <span id="cb24-3"><a href></a>mult_obj  <span class="sc">%&gt;%</span> </span>
 <span id="cb24-4"><a href></a><span class="fu">head</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1300,10 +1297,8 @@ Patrick Buhr
 <span id="cb28-3"><a href></a><span class="co"># Or remove all objects with rm(list=ls())</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Objects in R are seperated into “classes”
-<ul>
-<li>Classes include: chracter, numeric, vector, factor, matrix, list, dataframe and so on.</li>
-</ul></li>
+<li>Objects in R are separated into “classes”</li>
+<li>Classes include: character, numeric, vector, factor, matrix, list, dataframe, and so on.</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href></a><span class="fu">class</span>(mult_obj)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1315,10 +1310,8 @@ Patrick Buhr
 <section id="objects-and-functions-cont.-2" class="slide level2 scrollable">
 <h2>Objects and Functions Cont.</h2>
 <ul>
-<li>Again, R is a vector based lanague
-<ul>
+<li>Again, R is a vector-based language</li>
 <li>We work with an <span class="math inline">\(n \times 1\)</span> collection of elements</li>
-</ul></li>
 <li>Here is one way to create vectors</li>
 </ul>
 <div class="cell">
@@ -1333,7 +1326,7 @@ Patrick Buhr
 </div>
 </div>
 <ul>
-<li>We can create chracter based objects and add inofrmation to it ex post</li>
+<li>We can create character-based objects and add information to it ex post</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href></a>our_school <span class="ot">&lt;-</span> <span class="st">&quot;Vanderbilt&quot;</span></span>
@@ -1357,7 +1350,7 @@ Patrick Buhr
 <section id="objects-and-functions-cont.-3" class="slide level2 scrollable">
 <h2>Objects and Functions Cont.</h2>
 <ul>
-<li>We can then ccheck the length of this particular vector</li>
+<li>We can then check the length of this particular vector</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href></a><span class="fu">length</span>(ranking)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1403,10 +1396,8 @@ Patrick Buhr
 <h2>Data Frames</h2>
 <ul>
 <li>Most functions we use in R utilize dataframes</li>
-<li>Dataframes do not have to be of the same class
-<ul>
-<li>But each element in a column should be of the same oclumn</li>
-</ul></li>
+<li>Dataframes do not have to be of the same class</li>
+<li>But each element in a column should be of the same column</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href></a>sec_rankings <span class="ot">&lt;-</span> <span class="fu">cbind.data.frame</span>(ranking, sec_schools)</span>
@@ -1429,7 +1420,7 @@ Patrick Buhr
 <section id="data-frames-cont." class="slide level2 scrollable">
 <h2>Data Frames Cont.</h2>
 <ul>
-<li>The dataframe is treated as a type of matrix, and we can acess specific elements like so</li>
+<li>The dataframe is treated as a type of matrix, and we can access specific elements like so</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href></a>sec_rankings[<span class="dv">2</span>,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1456,17 +1447,249 @@ Patrick Buhr
 <section id="functions" class="slide level2">
 <h2>Functions</h2>
 <ul>
-<li>R functions are analaguous to mathmatical functions. They are a mapping from one set of values to another</li>
-<li>Functions are made of three componenets <span class="citation" data-cites="wickham2019Advanced">(<a href="#/references" role="doc-biblioref" onclick>Wickham 2019</a>)</span>
+<li>R functions are analogous to mathematical functions. They are a mapping from one set of values to another</li>
+<li>Functions are made of three components <span class="citation" data-cites="wickham2019Advanced">(<a href="#/references" role="doc-biblioref" onclick>Wickham 2019</a>)</span></li>
+</ul>
 <ol type="1">
 <li>The arguments you use</li>
 <li>The body of code inside the function</li>
 <li>The structure of the data</li>
-</ol></li>
+</ol>
+<ul>
 <li>Calling a function <code>function(input)</code></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href></a>?<span class="cf">function</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mathematical-operators" class="slide level2">
+<h2>Mathematical Operators</h2>
+<ul>
+<li>Let’s go over some basic mathematical operators you’ll use</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href></a><span class="co"># Square Root</span></span>
+<span id="cb64-2"><a href></a><span class="fu">sqrt</span>(<span class="dv">144</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href></a><span class="co"># Natural Log</span></span>
+<span id="cb66-2"><a href></a><span class="fu">log</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.302585</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href></a><span class="co"># Exponent</span></span>
+<span id="cb68-2"><a href></a><span class="fu">exp</span>(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 20.08554</code></pre>
+</div>
+</div>
+</section>
+<section id="mathematical-operators-cont." class="slide level2">
+<h2>Mathematical Operators Cont.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href></a><span class="co"># sequence of numbers</span></span>
+<span id="cb70-2"><a href></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href></a><span class="co"># R also has a shortcut for sequences of integers</span></span>
+<span id="cb72-2"><a href></a><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href></a><span class="co"># Repeating the same input many times</span></span>
+<span id="cb74-2"><a href></a><span class="fu">rep</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>), <span class="at">times =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 1 2 3 1 2 3</code></pre>
+</div>
+</div>
+<ul>
+<li>We can store data as an object and use it in operations as well</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href></a>numbers <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb76-2"><a href></a><span class="fu">sum</span>(numbers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 15</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-statements" class="slide level2">
+<h2>Logical Statements</h2>
+<ul>
+<li>To write more advanced code, you’ll want to get familiar with the way that R handles logical statements.</li>
+<li>Logical statements are used in settings where you want to use a TRUE/FALSE logic.</li>
+<li><code>==</code> means “is exactly true.”</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href></a><span class="dv">2</span> <span class="sc">==</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href></a><span class="dv">2</span> <span class="sc">==</span> <span class="st">&quot;Joe Biden&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-statements-cont." class="slide level2">
+<h2>Logical Statements Cont.</h2>
+<ul>
+<li>To say that a particular object is not equal to another, we use <code>!=</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href></a><span class="co"># it is FALSE that 2 is not equal to 2</span></span>
+<span id="cb84-2"><a href></a><span class="dv">2</span> <span class="sc">!=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href></a><span class="co"># it is TRUE that 2 is not equal to 3</span></span>
+<span id="cb86-2"><a href></a><span class="dv">2</span> <span class="sc">!=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-statements-cont.-1" class="slide level2">
+<h2>Logical Statements Cont.</h2>
+<ul>
+<li>We can also use strict inequalities and weak inequalities</li>
+<li>Here are some examples of strict inequalities:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href></a><span class="co"># 3 is greater than 2</span></span>
+<span id="cb88-2"><a href></a><span class="dv">3</span> <span class="sc">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href></a><span class="co"># 3 is not less than 2</span></span>
+<span id="cb90-2"><a href></a><span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href></a><span class="co"># 2 is less than 3</span></span>
+<span id="cb92-2"><a href></a><span class="dv">2</span> <span class="sc">&lt;</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-statements-cont.-2" class="slide level2">
+<h2>Logical Statements Cont.</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href></a><span class="co"># 3 is greater than 2</span></span>
+<span id="cb94-2"><a href></a><span class="dv">3</span> <span class="sc">&gt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href></a><span class="co"># 3 is not less than 2</span></span>
+<span id="cb96-2"><a href></a><span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href></a><span class="co"># 2 is less than 3</span></span>
+<span id="cb98-2"><a href></a><span class="dv">2</span> <span class="sc">&lt;</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-statements-cont.-3" class="slide level2">
+<h2>Logical Statements Cont.</h2>
+<ul>
+<li>We can use weak inequalities by adding a <code>=</code> in front of or behind <code>&gt;</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href></a><span class="co"># it is FALSE that 3 is greater than 3</span></span>
+<span id="cb100-2"><a href></a><span class="dv">3</span> <span class="sc">&gt;</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href></a><span class="co"># but it is TRUE that 3 is greater than or equal to 3</span></span>
+<span id="cb102-2"><a href></a><span class="dv">3</span> <span class="sc">&gt;=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<ul>
+<li>Adding a <code>!</code> before your logical statement creates a negation, turning TRUE into FALSE and vice versa.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href></a><span class="co"># it is FALSE that 2 is greater than 3</span></span>
+<span id="cb104-2"><a href></a><span class="dv">2</span> <span class="sc">&gt;</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href></a><span class="co"># but it is TRUE that 2 is NOT greater than 3</span></span>
+<span id="cb106-2"><a href></a><span class="sc">!</span>(<span class="dv">2</span> <span class="sc">&gt;</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-statements-cont.-4" class="slide level2">
+<h2>Logical Statements Cont.</h2>
+<ul>
+<li>We can combine these operators to create compound logical statements.</li>
+<li>R returns true if and only if every condition is true</li>
+<li>Specify multiple conditions using the <code>&amp;</code> symbol.</li>
+</ul>
+</section>
+<section id="logical-statements-cont.-5" class="slide level2">
+<h2>Logical Statements Cont.</h2>
+<ul>
+<li>Example:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href></a><span class="co"># creating an object called &quot;number&quot; that takes the value of 5</span></span>
+<span id="cb108-2"><a href></a>number <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb108-3"><a href></a></span>
+<span id="cb108-4"><a href></a><span class="co"># it is TRUE that number is not equal to 3</span></span>
+<span id="cb108-5"><a href></a>number <span class="sc">!=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href></a><span class="co"># it is FALSE that number is greater than 7</span></span>
+<span id="cb110-2"><a href></a>number <span class="sc">&gt;</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href></a><span class="co"># it is FALSE that number is not equal to 3 AND that number is greater than 7</span></span>
+<span id="cb112-2"><a href></a>number <span class="sc">!=</span><span class="dv">3</span> <span class="sc">&amp;</span> number <span class="sc">&gt;</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href></a><span class="co"># however, it is TRUE that number is not equal to 3 and</span></span>
+<span id="cb114-2"><a href></a><span class="co"># that number is greater than 4</span></span>
+<span id="cb114-3"><a href></a>number <span class="sc">!=</span><span class="dv">3</span> <span class="sc">&amp;</span> number <span class="sc">&gt;</span> <span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section>
+<section id="logical-statements-cont.-6" class="slide level2">
+<h2>Logical Statements Cont.</h2>
+<ul>
+<li><code>|</code> means “OR” in R. Use it to return true if one of the conditions specified in the or statement is true.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href></a><span class="co"># it is TRUE that 5 is not equal to 3</span></span>
+<span id="cb116-2"><a href></a><span class="dv">5</span> <span class="sc">!=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href></a><span class="co"># it is FALSE that 5 is greater than 7</span></span>
+<span id="cb118-2"><a href></a><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href></a><span class="co"># even though 5 is not greater than 7, 5 is not equal to 3. </span></span>
+<span id="cb120-2"><a href></a><span class="co"># therefore, it is </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="references" class="slide level2 smaller scrollable">
