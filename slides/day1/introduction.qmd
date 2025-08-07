@@ -244,44 +244,64 @@ In this course, we will only use dataframes. The major alternative to dataframes
 
 ## Continuous Variables
 
+::: columns
+::: {.column width="50%"}
+
 **Definition**: Continuous (sometimes called numeric) variables have ordered categories with equal intervals between values.
 
 - Data is ordered with meaningful differences.  
 - Zero may or may not indicate an absence of the measured attribute.
+:::
 
+::: {.column width="50%"}
 **Examples**:
 
 - **Temperature**: The difference between 40°F and 50°F is the same as between 50°F and 60°F.  
 - **SAT Scores**: The difference between 1100 and 1200 is the same as between 1200 and 1300.  
 - **Age:** The difference between 30 years old and 40 years old is the same as between 40 years old and 50 years old.
+:::
+:::
+
 
 
 ## Binary Variables
 
+::: columns
+::: {.column width="50%"}
 **Definition**: Binary (sometimes called Boolean) variables are either 1 or 0 (or TRUE/FALSE)
 
 - Some variables are binary by definition.  
 - Often, we binarize a variable for analytic convenience.
+
+:::
+
+::: {.column width="50%"}
 
 **Examples**:
 
 - **Voter turnout**: Either a person voted (1) or did not vote (0)  
 - **Party**: transform categorical into either a person is a Democrat (1) or not (0) which includes all others.  
 - **Income:** transform continuous into either a person makes ≥ $100,000 (1) or not (0).
-
+:::
+:::
 
 ## Examples
 
 What type of variable is the following (categorical, ordinal, continuous, binary):
 
+::: {.fragment .fade-in}
 **Religious affiliation** (e.g. Catholic, Protestant, Muslim, Jewish, None).  
 Categorical, because categories are not ranked.
-
+:::
+::: {.fragment .fade-in}
 **Unemployment rate in a Member of Congress's district** (percentage of constituents who are unemployed)  
 Continuous, because distance between numbers is consistent.
+:::
 
+::: {.fragment .fade-in}
 **Political interest** (e.g. not interested, slightly interested, fairly interested, very interested)  
 Ordinal, because categories have a ranking
+:::
 
 ## Variable Choices
 
@@ -289,11 +309,20 @@ Often, we can represent concepts in different ways.
 
 What would be the best way to operationalize education?
 
+::: {.fragment .fade-in}
 - **Categorical:** No High School, High School, Some College, Bachelor’s Degree, Graduate Degree.  
+:::
+::: {.fragment .fade-in}
 - **Continuous:** Years of education.  
+:::
+::: {.fragment .fade-in}
 - **Binary:** Whether or not an individual attended college.
+:::
 
-Best choice is based on your theory and research design.
+::: {.fragment .fade-in}
+- Best choice is based on your theory and research design.
+:::
+
 
 # 10 Minute Break
 
@@ -301,13 +330,13 @@ Best choice is based on your theory and research design.
 
 ## Why Use R for Statistics?
 
-R is a powerful and widely used programming language for statistical analysis.
+- R is a powerful and widely used programming language for statistical analysis.
 
-It is free, open-source, and widely supported by researchers and data analysts.
+- It is free, open-source, and widely supported by researchers and data analysts.
 
-R provides extensive libraries for data visualization, regression modeling, and machine learning.
+- R provides extensive libraries for data visualization, regression modeling, and machine learning.
 
-Learning R enhances your ability to conduct independent research and analyze real-world data.
+- Learning R enhances your ability to conduct independent research and analyze real-world data.
 
 
 
@@ -322,47 +351,55 @@ Learning R enhances your ability to conduct independent research and analyze rea
 
 ## Principles of Programming
 
+::: columns
+::: {.column width="50%"}
+
 **Principle One:** "Write code for humans."
 
 - Indent your code according to style conventions in www.style.tidyverse.org. RStudio will typically do this automatically.  
 - Add explanatory comments to everything you do using `#`.  
 - Basic principle: if I got hit by a bus tomorrow, could people figure out what I was trying to do and finish my code?
+::::
 
+::: {.column width="50%"}
 **Principle Two:** "Let the computer do the work"
 
 - Copy-and-paste doesn't work: prone to errors, time intensive if you need to make changes, and confusing to read.  
 - Any repetitive task can be done with minimal lines of code.  
 - If someone else has your data and code, they must be able to replicate your same results.
-
+:::
+:::
 
 
 ## Debugging and Asking for Help
+
+::: columns
+::: {.column width="50%"}
 
 Types of problems:
 
 - Errors: the R script stops because it cannot execute your command.  
 - Warnings: the R script was able to execute your command (and produce output) but thinks you need to check the output.  
 - Unexpected output: your script executed without warnings, but the output isn't what you expected (e.g. output is NA).
+:::
 
+::: {.column width="50%"}
 Solving problems:
 
 1. Find the exact line of code causing the problem.  
 2. Look on StackOverflow/ChatGPT.  
 3. Come to us in office hours.
-
+:::
+:::
 
 
 ## Statement on ChatGPT
 
-ChatGPT and other LLMs are **tools**. Being able to use them well will be an essential part of your workflow in the future.
-
-However, like any tool, it is exceptionally easy to misuse ChatGPT if you don't know what you are doing.
-
-Use ChatGPT for learning, to clarify concepts, and to troubleshoot your own code—but do **not** use it to replace your own analytical thinking.
-
-Your ability to think clearly and rigorously about the underlying statistics is what will set you apart.
-
-**Class Policy:** you may use ChatGPT to help troubleshoot, debug, or clarify your code. If you do so, you must submit the text of your chat as part of your assignment.
+- ChatGPT and other LLMs are **tools**. Being able to use them well will be an essential part of your workflow in the future.
+- However, like any tool, it is exceptionally easy to misuse ChatGPT if you don't know what you are doing.
+- Use ChatGPT for learning, to clarify concepts, and to troubleshoot your own code—but do **not** use it to replace your own analytical thinking.
+- Your ability to think clearly and rigorously about the underlying statistics is what will set you apart.
+- **Class Policy:** you may use ChatGPT to help troubleshoot, debug, or clarify your code. If you do so, you must submit the text of your chat as part of your assignment.
 
 
 # Norms and Expectations
