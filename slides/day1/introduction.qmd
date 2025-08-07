@@ -125,14 +125,17 @@ Measures both direction (Liberal vs. Conservative) as well as intensity (Somewha
 -   Scores are averaged to create a composite racial resentment index.
 
 ## Why does operationalization matter?
-
-::: column
-![](images/hillbilly.jpg){width="60%"}
+::::: columns
+::: {.column width="50%"}
+<img src="images/hillbilly.jpg" height="400px"/>
 :::
 
-::: column
-![](images/identitycrisis.jpeg){width="60%"}
+::: {.column width="50%"}
+<img src="images/identitycrisis.jpeg" height="400px"/>
+
 :::
+:::::
+
 
 # Variables
 
@@ -149,8 +152,6 @@ Every causal statement has the **counterfactual** of "if $x$ had been different,
 
 ## What is a Variable?
 
-::::: columns
-::: {.column width="50%"}
 We study **units**.
 
 -   Units can be thought of as individuals.\
@@ -159,15 +160,11 @@ We study **units**.
 Units have **attributes**.
 
 -   Characteristics of a unit that distinguish it from other units.
-:::
 
-::: {.column width="50%"}
 **Variables** are logical groupings of mutually exclusive attributes.
 
 -   Each variable has a **score**—a numerical value corresponding to the attribute for that specific unit.\
 -   Examples: GDP, Population, GDP per capita
-:::
-:::::
 
 ## Dataframes
 
@@ -200,14 +197,18 @@ In this course, we will only use dataframes. The major alternative to dataframes
 
 ::::: columns
 ::: {.column width="50%"}
-**Definition**: Nominal variables classify data into distinct categories without any inherent order or ranking.
+**Definition**: 
+
+Nominal variables classify data into distinct categories without any inherent order or ranking.
 
 -   Categories are mutually exclusive.\
 -   No logical order among categories.
 :::
 
 ::: {.column width="50%"}
-**Examples**: - **Political Party Affiliation**: Democrat, Republican, Independent, Other\
+**Examples**: 
+
+- **Political Party Affiliation**: Democrat, Republican, Independent, Other\
 - **Country of Origin**: United States, Canada, Mexico\
 - **Race**: Black, White, AAPI, Latino/a
 :::
@@ -217,7 +218,9 @@ In this course, we will only use dataframes. The major alternative to dataframes
 
 ::::: columns
 ::: {.column width="50%"}
-**Definition**: Ordinal variables have categories that can be ranked in a meaningful order, but the differences between categories are not necessarily equal.
+**Definition**: 
+
+Ordinal variables have categories that can be ranked in a meaningful order, but the differences between categories are not necessarily equal.
 
 -   Data has a clear ranking order.\
 -   Differences between ranks are not necessarily equal.
@@ -236,7 +239,9 @@ In this course, we will only use dataframes. The major alternative to dataframes
 
 ::::: columns
 ::: {.column width="50%"}
-**Definition**: Continuous (sometimes called numeric) variables have ordered categories with equal intervals between values.
+**Definition**: 
+
+Continuous (sometimes called numeric) variables have ordered categories with equal intervals between values.
 
 -   Data is ordered with meaningful differences.\
 -   Zero may or may not indicate an absence of the measured attribute.
@@ -255,7 +260,9 @@ In this course, we will only use dataframes. The major alternative to dataframes
 
 ::::: columns
 ::: {.column width="50%"}
-**Definition**: Binary (sometimes called Boolean) variables are either 1 or 0 (or TRUE/FALSE)
+**Definition**: 
+
+Binary (sometimes called Boolean) variables are either 1 or 0 (or TRUE/FALSE)
 
 -   Some variables are binary by definition.\
 -   Often, we binarize a variable for analytic convenience.

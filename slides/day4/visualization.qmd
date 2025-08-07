@@ -18,7 +18,6 @@ date: today
 self-contained: true
 ---
 
-## Loading in Data
 ```{r}
 #| echo: false
 #| message: false
@@ -27,23 +26,8 @@ library("tidyverse")
 ## Only output five tibble rows by default
 options(tibble.print_min = 5,
         tibble.max_extra_cols = 3)
-```
-:::::: columns
-::: {.column width="50%"}
-1.  Navigate to your working directory.
-2.  Download the `congress_data.csv` file and put it there
-3.  Set as R's working directory
-    -   Windows: `setwd('C:/path/to/directory')`
-    -   Mac: `setwd('~/path/to/directory')`
-    -   ... or just navigate in RStudio and set it that way
-4.  Check that `congress_data <- read_csv("congress_data.csv")` works
-:::
 
-::: {.column width="5%"}
-:::
 
-::: {.column width="45%"}
-```{r}
 #| echo: false
 options(width = 42)
 library(tidyverse)
@@ -85,12 +69,50 @@ rename(icpsr = ICPSR2)
 congress_data <- left_join(congress_data, clean_election_data, by = c("icpsr", "year"))
 congress_data <- congress_data %>%
 mutate(presidentialvoteshare = ifelse(democrat==1, presidentialvoteshare, 100-presidentialvoteshare))
-print(congress_data)
+```
+
+## Why Do We Visualize Data?
+
+Why is it important that we visualize data?
+
+Data visualization is most important at two stages:
+
+1.  At the start of the research project, when we are trying to get a sense of our data.
+
+2.  At the end of the research project, when we want to convey our findings to an audience.
+
+Above all, think about your audience's cognitive process as they interpret your figure. 
+
+## Why not just show a table?
+
+If we were interested in the distribution of ideology (`dwnom1`) in Congress, why not just summarize?
+
+::::: columns
+::: {.column width="50%"}
+```{r}
+mean(congress_data$dwnom1, na.rm=TRUE)
+
+sd(congress_data$dwnom1, na.rm=TRUE)
+
 ```
 :::
-::::::
+
+::: {.column width="50%"}
+```{r}
+ggplot(congress_data, aes (x = dwnom1)) +
+  geom_histogram(binwidth = 0.05)
+```
+:::
+:::::
+
+::: callout-tip
+## General rule:
+Your figure must convey more information to the audience than a table alone.
+:::
+
 
 ## Histograms
+
 ### Continuous variables: Histogram
 
 ```{r}
@@ -115,12 +137,14 @@ ggplot(congress_data, aes (x = dwnom1)) +
        subtitle = "Some are Liberal, Some are Conservative")
 ```
 
-:::{.callout-warning}
+::: callout-warning
 ## ggplot syntax
+
 ggplot commands are separated by addition `+`, not the pipe `%>%`.
 :::
 
 ## Bar Charts
+
 ### Single Categorical Variable
 
 ```{r}
@@ -137,6 +161,7 @@ ggplot(congress_data, aes (y = gender)) +
 ```
 
 ## Bar Charts
+
 ### Two Categorical Variables
 
 ```{r}
@@ -152,6 +177,7 @@ ggplot(congress_data, aes(y = gender)) +
 ```
 
 ## Bar Charts
+
 ### Two Categorical Variables
 
 ```{r}
@@ -166,12 +192,15 @@ ggplot(congress_data, aes(y = gender)) +
        fill = "Party",
        title = "Members of Congress by Gender and Party")
 ```
-:::{.callout-tip}
+
+::: callout-tip
 ## Changing colors or aesthetics
+
 Use `scale_fill_manual()` to change aesthetics
 :::
 
 ## Scatterplots
+
 ### Two Continuous Variables
 
 ```{r}
@@ -190,6 +219,7 @@ ggplot(congress_data,
 ```
 
 ## Scatterplots
+
 ### Two Continuous Variables
 
 ```{r}
@@ -208,12 +238,15 @@ alpha = 0.5) + # increases transparency
 )+
   coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
 ```
-:::{.callout-tip}
+
+::: callout-tip
 ## What if many observations take the same value?
+
 `jitter()` creates minor perturbations if your data is bunching
 :::
 
 ## Scatterplots
+
 ### Remove unopposed legislators
 
 ```{r}
@@ -234,12 +267,15 @@ alpha = 0.5) + # increases transparency
 )+
   coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
 ```
-:::{.callout-tip}
+
+::: callout-tip
 ## Using `dplyr` with `ggplot`
-You can also manipulate data before going into a ggplot, just remember to use `%>%` instead of `+` 
+
+You can also manipulate data before going into a ggplot, just remember to use `%>%` instead of `+`
 :::
 
 ## Scatterplots
+
 ### facet
 
 ```{r}
@@ -266,7 +302,6 @@ ncol = 5)+
   coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
 ```
 
-
 ## Saving Plots
 
 ```{r}
@@ -284,13 +319,14 @@ ggplot(aes(x = vote_share, y = presidentialvoteshare)) +
 # the \n tells ggplot to include a linebreak
 )+
   facet_wrap(~ election_year,
-ncol = 5)+
+ncol = 3)+
   coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
 ```
 
-
 ## Nationalization Plot
+
 ### Testing
+
 ```{r}
 #| echo: FALSE
 nationalization_plot
