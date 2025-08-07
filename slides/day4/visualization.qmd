@@ -1,0 +1,297 @@
+---
+title: "Data Visualization"
+subtitle: "Statistics for Political Science"
+format: 
+  clean-revealjs:
+    echo: true
+  html-math-method:
+    method: mathjax
+    url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Mason Auten
+    email: mason.auten@vanderbilt.edu
+    affiliations: Vanderbilt University
+  - name: Patrick Buhr
+    email: patrick.buhr@vanderbilt.edu
+    affiliations: Vanderbilt University
+date: today
+self-contained: true
+---
+
+## Loading in Data
+```{r}
+#| echo: false
+#| message: false
+library("tidyverse")
+
+## Only output five tibble rows by default
+options(tibble.print_min = 5,
+        tibble.max_extra_cols = 3)
+```
+:::::: columns
+::: {.column width="50%"}
+1.  Navigate to your working directory.
+2.  Download the `congress_data.csv` file and put it there
+3.  Set as R's working directory
+    -   Windows: `setwd('C:/path/to/directory')`
+    -   Mac: `setwd('~/path/to/directory')`
+    -   ... or just navigate in RStudio and set it that way
+4.  Check that `congress_data <- read_csv("congress_data.csv")` works
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+```{r}
+#| echo: false
+options(width = 42)
+library(tidyverse)
+```
+
+```{r}
+#| echo: FALSE
+congress_data <- read_csv("congress_data.csv")
+
+congress_data <- congress_data %>%
+mutate(age = year - born,
+gender = ifelse(female == 1, "Woman", "Man"),
+party = ifelse(democrat == 1, "Democrat", "Republican"),
+race = case_when(
+latino == 1 ~ "Latino",
+black == 1 ~ "Black",
+aapi == 1 ~ "Asian",
+TRUE ~ "White"
+)) # fix this to include asian
+
+untidy_election_data <- read_csv("untidy_election_data.csv")
+
+long_data <- untidy_election_data %>%
+select(!name) %>%
+pivot_longer(cols = starts_with(c("presidentialvoteshare", "contributions")))
+
+long_data <- separate(long_data,
+col = "name",
+into = c("var", "year"))
+
+clean_election_data <- pivot_wider(long_data,
+names_from = "var",
+values_from = "value")
+clean_election_data$year <- as.numeric(clean_election_data$year)
+clean_election_data <- clean_election_data %>%
+mutate(year = year + 1) %>%
+rename(icpsr = ICPSR2)
+
+congress_data <- left_join(congress_data, clean_election_data, by = c("icpsr", "year"))
+congress_data <- congress_data %>%
+mutate(presidentialvoteshare = ifelse(democrat==1, presidentialvoteshare, 100-presidentialvoteshare))
+print(congress_data)
+```
+:::
+::::::
+
+## Histograms
+### Continuous variables: Histogram
+
+```{r}
+#| echo: false
+
+# Set default theme for plots
+theme_set(theme_bw(base_size = 16))
+```
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes (x = dwnom1)) +
+  geom_histogram(color = "black",
+                 fill = "steelblue",
+                 alpha = 0.5, # increases transparency
+                 binwidth = 0.05) + # changes the number of bins
+  labs(x = "First-Dimension DW-NOMINATE",
+       y = "Number of Members of Congress",
+       title = "Ideological Distribution of Members of Congress",
+       subtitle = "Some are Liberal, Some are Conservative")
+```
+
+:::{.callout-warning}
+## ggplot syntax
+ggplot commands are separated by addition `+`, not the pipe `%>%`.
+:::
+
+## Bar Charts
+### Single Categorical Variable
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes (y = gender)) +
+  geom_bar(color = "black",
+           fill = "steelblue",
+           alpha = 0.7)+
+  labs(x = "Number of Respondents",
+       y = NULL,
+       title = "Members of Congress by Gender")
+```
+
+## Bar Charts
+### Two Categorical Variables
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes(y = gender)) +
+  geom_bar(aes(fill = party), position = "dodge") +
+  labs(x = "Number of Respondents",
+       y = NULL,
+       fill = "Party",
+       title = "Members of Congress by Gender and Party")
+```
+
+## Bar Charts
+### Two Categorical Variables
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes(y = gender)) +
+  geom_bar(aes(fill = party), position = "dodge") +
+  scale_fill_manual(values = c("Democrat" = "dodgerblue", "Republican" = "indianred")) +
+  labs(x = "Number of Respondents",
+       y = NULL,
+       fill = "Party",
+       title = "Members of Congress by Gender and Party")
+```
+:::{.callout-tip}
+## Changing colors or aesthetics
+Use `scale_fill_manual()` to change aesthetics
+:::
+
+## Scatterplots
+### Two Continuous Variables
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data,
+       aes(x = dwnom1, y = presidentialvoteshare)) +
+  geom_point() + # increases transparency
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "More Liberal Legislators Represent More Liberal Districts",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District"
+# the \n tells ggplot to include a linebreak
+)
+```
+
+## Scatterplots
+### Two Continuous Variables
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data,
+       aes(x = vote_share, y = presidentialvoteshare)) +
+  geom_point(position = "jitter",
+alpha = 0.5) + # increases transparency
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "More Liberal Legislators Represent More Liberal Districts",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District"
+# the \n tells ggplot to include a linebreak
+)+
+  coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
+```
+:::{.callout-tip}
+## What if many observations take the same value?
+`jitter()` creates minor perturbations if your data is bunching
+:::
+
+## Scatterplots
+### Remove unopposed legislators
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+
+congress_data %>%
+  filter(vote_share<=95) %>%
+ggplot(aes(x = vote_share, y = presidentialvoteshare)) +
+  geom_point(position = "jitter",
+alpha = 0.5) + # increases transparency
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District"
+# the \n tells ggplot to include a linebreak
+)+
+  coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
+```
+:::{.callout-tip}
+## Using `dplyr` with `ggplot`
+You can also manipulate data before going into a ggplot, just remember to use `%>%` instead of `+` 
+:::
+
+## Scatterplots
+### facet
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+
+congress_data %>%
+  filter(vote_share<=95 & year %in% c(1981, 1985, 1989, 1993, 
+                                      1996, 2001, 2005, 2009, 
+                                      2013, 2017, 2021)) %>%
+  mutate(election_year = year-1) %>%
+ggplot(aes(x = vote_share, y = presidentialvoteshare)) +
+  geom_point(position = "jitter",
+alpha = 0.5) + # increases transparency
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "Elections Have Become More Correlated",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District"
+# the \n tells ggplot to include a linebreak
+)+
+  facet_wrap(~ election_year,
+ncol = 5)+
+  coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
+```
+
+
+## Saving Plots
+
+```{r}
+nationalization_plot <- congress_data %>%
+  filter(vote_share<=95 & year %in% c(1981, 1985, 1989, 1993, 
+                                      1996, 2001, 2005, 2009, 
+                                      2013, 2017, 2021)) %>%
+  mutate(election_year = year-1) %>%
+ggplot(aes(x = vote_share, y = presidentialvoteshare)) +
+  geom_point(alpha = 0.5) + # increases transparency
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "Elections Have Become More Correlated",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District"
+# the \n tells ggplot to include a linebreak
+)+
+  facet_wrap(~ election_year,
+ncol = 5)+
+  coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
+```
+
+
+## Nationalization Plot
+### Testing
+```{r}
+#| echo: FALSE
+nationalization_plot
+```
