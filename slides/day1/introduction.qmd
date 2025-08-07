@@ -28,17 +28,17 @@ self-contained: true
 
 ## Who are we?
 
-::: columns
+:::: {.columns}
 
-::: column
-![](images/professional\ headshot\ \(2\).jpg)
-**Patrick Buhr**  
-Fifth-year Ph.D. Candidate studying Congress and the presidency
+::: {.column width="50%"}
+<img src="images/professional headshot (2).jpg" width="400px" />  
+**Patrick Buhr**  
+Fifth-year Ph.D. Candidate studying U.S. Congress and presidency.
 :::
 
-::: column
-![](images/mason_headshot.JPG)
-**Mason Auten**  
+::: {.column width="50%"}
+<img src="images/mason_headshot.JPG" width="400px" />  
+**Mason Auten**  
 Third-year Ph.D. Student studying historical state formation.
 :::
 
@@ -340,35 +340,25 @@ What would be the best way to operationalize education?
 
 
 
-## Cooperative Congressional Election Survey (CCES)
-
-- The CCES is a large-scale national survey conducted by YouGov and various universities.  
-- It collects data on political opinions, voter behavior, and demographics.  
-- The dataset includes variables such as vote choice, partisanship, ideology, demographics, and issue positions.  
-- Researchers use CCES data to study patterns in political behavior across the United States.
-
-
 
 ## Principles of Programming
 
-::: columns
-::: {.column width="50%"}
+
 
 **Principle One:** "Write code for humans."
 
 - Indent your code according to style conventions in www.style.tidyverse.org. RStudio will typically do this automatically.  
 - Add explanatory comments to everything you do using `#`.  
 - Basic principle: if I got hit by a bus tomorrow, could people figure out what I was trying to do and finish my code?
-::::
 
-::: {.column width="50%"}
+## Principles of Programming
+
+
 **Principle Two:** "Let the computer do the work"
 
 - Copy-and-paste doesn't work: prone to errors, time intensive if you need to make changes, and confusing to read.  
 - Any repetitive task can be done with minimal lines of code.  
 - If someone else has your data and code, they must be able to replicate your same results.
-:::
-:::
 
 
 ## Debugging and Asking for Help
@@ -399,36 +389,5 @@ Solving problems:
 - However, like any tool, it is exceptionally easy to misuse ChatGPT if you don't know what you are doing.
 - Use ChatGPT for learning, to clarify concepts, and to troubleshoot your own code—but do **not** use it to replace your own analytical thinking.
 - Your ability to think clearly and rigorously about the underlying statistics is what will set you apart.
-- **Class Policy:** you may use ChatGPT to help troubleshoot, debug, or clarify your code. If you do so, you must submit the text of your chat as part of your assignment.
-
-
-# Norms and Expectations
-
-## Expectation One: The goal is not to be "good"
-
-- Learning math and statistics takes practice, just like learning a new language or musical instrument.  
-- Mathematical ability is not fixed—growth comes through effort and persistence.  
-- Your goal is not to be "good," it is to improve every day.
-
-**How to get to Carnegie Hall? Practice, practice, practice.**
-
-
-
-## Expectation Two: This program is your job
-
-Graduate education is different than undergrad:
-
-- The minimum expectation is that you will work hard and try your best.  
-- Show up on time, don't get distracted by your phone/computer, be responsive on email or Slack.  
-- Follow directions carefully and be sure to address each part of the question.
-
-Treat this like a job: start work at 9:00AM and work until at least 5:00PM.
-
-
-## Working with us
-
--  Always feel like you can talk to us about whatever is on your mind, whether it is related to stats or not.
--  Mason works in Office 331, anytime his office is open feel free to knock and ask for help. 
-
 
 
