@@ -110,6 +110,13 @@ ggplot(congress_data, aes (x = dwnom1)) +
 Your figure must convey more information to the audience than a table alone.
 :::
 
+## ``ggplot()`
+
+::: callout-warning
+## ggplot syntax
+
+ggplot commands are separated by addition `+`, not the pipe `%>%`.
+:::
 
 ## Histograms
 
@@ -129,19 +136,17 @@ theme_set(theme_bw(base_size = 16))
 ggplot(congress_data, aes (x = dwnom1)) +
   geom_histogram(color = "black",
                  fill = "steelblue",
-                 alpha = 0.5, # increases transparency
                  binwidth = 0.05) + # changes the number of bins
   labs(x = "First-Dimension DW-NOMINATE",
        y = "Number of Members of Congress",
        title = "Ideological Distribution of Members of Congress",
        subtitle = "Some are Liberal, Some are Conservative")
 ```
-
-::: callout-warning
-## ggplot syntax
-
-ggplot commands are separated by addition `+`, not the pipe `%>%`.
+::: callout-tip
+## Bins in Histograms
+`binwidth = 0.1` will create bins of 0.1 units, `bins = 5` will create exactly 5 bins.
 :::
+
 
 ## Bar Charts
 
