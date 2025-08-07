@@ -33,13 +33,13 @@ self-contained: true
 ::: column
 ![](images/professional\ headshot\ \(2\).jpg)
 **Patrick Buhr**  
-Fifth-year Ph.D. Candidate …
+Fifth-year Ph.D. Candidate studying Congress and the presidency
 :::
 
 ::: column
 ![](images/mason_headshot.JPG)
 **Mason Auten**  
-Third-year Ph.D. Student …
+Third-year Ph.D. Student studying historical state formation.
 :::
 
 :::
