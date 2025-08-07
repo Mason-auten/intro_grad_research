@@ -9,8 +9,8 @@ author:
   - name: Mason Auten
     email: mason.auten@vanderbilt.edu
     affiliations: Vanderbilt University
-  - name: Patrick Smith
-    email: patrick.smith@vanderbilt.edu
+  - name: Patrick Buhr
+    email: patrick.buhr@Vanderbilt.Edu
     affiliations: Vanderbilt University
 date: today
 self-contained: true
@@ -62,7 +62,7 @@ You are interested in asking and answering questions about politics.
 - Why is the military a trusted institution in some countries, but feared in others?  
 - Why are some Members of Congress effective at enacting their ideas into law, while others are not?  
 
-::: .fragment[fade-in]
+::: {.fragment .fade-in}
 **Quantitative methods can answer each of these questions.**
 :::
 
@@ -71,34 +71,38 @@ You are interested in asking and answering questions about politics.
 
 ## What is quantitative analysis?
 
-Foundation of quantitative analysis:  
+::: columns
+
+::: {.column width="50%"}
+ Foundation of quantitative analysis:  
+
 - Based on numerical measurements (i.e., what is the *quantity*?)  
 - Used to develop and test theories that are *generalizable*.  
 - Creates measurements and analyses that are *replicable*.  
-
-Quantitative analysis is one of three dominant paradigms in political science research; the other two are qualitative analysis and formal modeling.
-
-No single method is inherently superior, but quantitative methods are currently dominant in political science and offer the best opportunities for academic and private sector employment.
-
-
+:::
+::: {.column width="50%"}
+- Quantitative analysis is one of three dominant paradigms in political science research; the other two are qualitative analysis and formal modeling.
+- No single method is inherently superior, but quantitative methods are currently dominant in political science and offer the best opportunities for academic and private sector employment.
+:::
+:::
 ## Why use quantitative analysis?
 
-**Description**: Summarizing and understanding the characteristics of the data we have.  
+- **Description**: Summarizing and understanding the characteristics of the data we have.  
 
-**Inference**: Making generalizations about a population based on sample data.
+- **Inference**: Making generalizations about a population based on sample data.
 
-**Prediction**: Forecasting future events or behaviors based on existing data patterns.
+- **Prediction**: Forecasting future events or behaviors based on existing data patterns.
 
 
 # Quantifying Concepts
 
 ## Operationalizing Concepts
 
-For quantitative analysis, we need to **operationalize** a concept into a numerical representation.
+- For quantitative analysis, we need to **operationalize** a concept into a numerical representation.
 
-Occasionally a variable will lend itself well to quantification: income, voter turnout, number of bills introduced by a Member of Congress, hours of cable television a person watches.
+- Occasionally a variable will lend itself well to quantification: income, voter turnout, number of bills introduced by a Member of Congress, hours of cable television a person watches.
 
-Other times, quantification is easy but there is dispute over which is the best measure: GDP, GDP per Capita, Human Development Index
+- Other times, quantification is easy but there is dispute over which is the best measure: GDP, GDP per Capita, Human Development Index
 
 ## Example: Political Ideology
 
@@ -115,14 +119,12 @@ Measures both direction (Liberal vs. Conservative) as well as intensity (Somewha
 
 ## Example: Racial Resentment
 
-Can we use the same Likert scale?  
+- Can we use the same Likert scale?  
 
-On a scale of 1 to 5, with 1 being "strongly disagree" and 5 being "strong agree" how much do you agree with the following statements:
-
-- "Irish, Italians, Jewish and many other minorities overcame prejudice and worked their way up. Blacks should do the same without any special favors."  
-- "Generations of slavery and discrimination have created conditions that make it difficult for blacks to work their way out of the lower class."
-
-Scores are averaged to create a composite racial resentment index.
+- On a scale of 1 to 5, with 1 being "strongly disagree" and 5 being "strong agree" how much do you agree with the following statements:
+  - "Irish, Italians, Jewish and many other minorities overcame prejudice and worked their way up. Blacks should do the same without any special favors."  
+  - "Generations of slavery and discrimination have created conditions that make it difficult for blacks to work their way out of the lower class." 
+- Scores are averaged to create a composite racial resentment index.
 
 ## Why does operationalization matter?
 
@@ -150,7 +152,10 @@ Every causal statement has the **counterfactual** of "if $x$ had been different,
 
 ## What is a Variable?
 
-We study **units**.
+::: columns
+
+::: {.column width="50%"}
+  We study **units**.
 
 - Units can be thought of as individuals.  
 - Examples of units: people, countries, congressional committees, states, cities, etc.
@@ -158,22 +163,36 @@ We study **units**.
 Units have **attributes**.
 
 - Characteristics of a unit that distinguish it from other units.
+:::
+
+
+::: {.column width="50%"}
+
 
 **Variables** are logical groupings of mutually exclusive attributes.
 
 - Each variable has a **score**—a numerical value corresponding to the attribute for that specific unit.  
 - Examples: GDP, Population, GDP per capita
-
+:::
+:::
 ## Dataframes
 
 Dataframes are a structured way to organize variables.
 
+:::{.fragment}
 - **Rows** represent units (e.g., individuals, countries).  
+:::
+:::{.fragment}
 - **Columns** represent variables (e.g., age, income, ideology).  
+:::
+:::{.fragment}
 - **Cells** contain scores (the values of variables for each unit).
+:::
 
+
+:::{.fragment}
 In this course, we will only use dataframes. The major alternative to dataframes is lists, which are used primarily in engineering and computer science.
-
+:::
 ## Levels of Measurement
 
 - **Categorical**: Data is in categories, but categories cannot be logically ordered (e.g. political party).  
@@ -183,30 +202,45 @@ In this course, we will only use dataframes. The major alternative to dataframes
 
 ## Categorical Variables
 
+::: columns
+::: {.column width="50%"}
+
 **Definition**: Nominal variables classify data into distinct categories without any inherent order or ranking.
 
 - Categories are mutually exclusive.  
 - No logical order among categories.
+:::
+
+::: {.column width="50%"}
 
 **Examples**:
-
 - **Political Party Affiliation**: Democrat, Republican, Independent, Other  
 - **Country of Origin**: United States, Canada, Mexico  
 - **Race**: Black, White, AAPI, Latino/a
+:::
+:::
 
 ## Ordinal Variables
+
+::: columns
+::: {.column width="50%"}
 
 **Definition**: Ordinal variables have categories that can be ranked in a meaningful order, but the differences between categories are not necessarily equal.
 
 - Data has a clear ranking order.  
 - Differences between ranks are not necessarily equal.
+:::
+
+::: {.column width="50%"}
+
 
 **Examples**:
 
 - **Political Ideology**: Very Liberal, Liberal, Moderate, Conservative, Very Conservative  
 - **Education Level**: No High School, High School, Some College, Bachelor’s Degree, Graduate Degree  
 - **Presidential Approval Ratings**: Strongly Approve, Approve, Neutral, Disapprove, Strongly Disapprove
-
+:::
+:::
 
 ## Continuous Variables
 

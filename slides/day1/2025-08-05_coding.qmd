@@ -10,7 +10,7 @@ author:
     email: mason.auten@vanderbilt.edu
     affiliations: Vanderbilt University
   - name: Patrick Buhr
-    email: patrick.smith@vanderbilt.edu
+    email: patrick.buhr@Vanderbilt.Edu
     affiliations: Vanderbilt University
 date: today
 self-contained: true
