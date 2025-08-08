@@ -24,16 +24,17 @@ Note: This theme uses the Roboto font family, which it imports from Google
   preserving consistent font weights, you may also wish to remove "Roboto"
   from the choice set if the family is installed locally.
 */
-@import url('https://fonts.googleapis.com/css?family=Roboto:200,200i,300,300i,350,350i,400,400i&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://iosevka-webfonts.github.io/iosevka/Iosevka.css');
 
-$font-family-sans-serif: "Roboto", sans-serif !default;
-$presentation-heading-font: "Roboto", sans-serif !default;
+$font-family-sans-serif: "Fira Sans", sans-serif !default;
+$presentation-heading-font: "Fira Sans", sans-serif !default;
 
 $presentation-heading-color: $jet !default;
-$presentation-heading-font-weight: lighter;
+$presentation-heading-font-weight: bolder;
 //$presentation-heading-line-height: 2;
 //$presentation-block-margin: 28px;
-$presentation-font-size-root: 32px;
+$presentation-font-size-root: 30px;
 
 // colors
 //$body-bg: #f0f1eb !default;
@@ -50,7 +51,7 @@ $selection-bg: #26351c !default;
 
 .reveal p {
   // font-weight: 300;
-  font-weight: lighter;
+  font-weight: 300;
   margin-top: 1.25em;
 }
 
@@ -61,16 +62,16 @@ $selection-bg: #26351c !default;
 
   .title {
     color: $body-color;
-    font-size: 1.4em;
-    // font-weight: 350;
-    font-weight: lighter;
+    font-size: 1.6em;
+    font-weight: 800;
   }
 
   .subtitle {
     color: $accent;
     font-style: italic;
     margin-top: 0em;
-    font-weight: lighter;
+    font-weight: normal;
+    // font-weight: lighter;
   }
 
   .institute,
@@ -102,7 +103,7 @@ $selection-bg: #26351c !default;
 
 .reveal h2 {
   // font-weight: 350;
-  font-weight: lighter;
+  font-weight: bolder;
   font-size: 1.4em;
 }
 
@@ -110,7 +111,7 @@ $selection-bg: #26351c !default;
   color: $accent;
   font-style: italic;
   // font-weight: 350;
-  font-weight: lighter;
+  font-weight: normal;
   font-size: 0.95em;
 }
 
@@ -125,6 +126,7 @@ $selection-bg: #26351c !default;
 
 .alert {
   color: $accent2;
+  font-weight: bolder;
 }
 
 .fg {
@@ -144,7 +146,7 @@ $selection-bg: #26351c !default;
 
 .reveal ul {
   // font-weight: 300;
-  font-weight: lighter;
+  font-weight: 300;
   padding-left: 16px;
 
   li::marker {
@@ -169,7 +171,7 @@ $selection-bg: #26351c !default;
 
 .reveal ol {
   // font-weight: 300;
-  font-weight: lighter;
+  font-weight: 300;
   padding-left: 16px;
 
   li::marker {
@@ -193,6 +195,7 @@ $selection-bg: #26351c !default;
   pointer-events: auto;
 }
 
+
 // Same for chalkboard buttons (with an offset)
 
 .reveal .slide-chalkboard-buttons {
@@ -207,26 +210,6 @@ $selection-bg: #26351c !default;
 
 .reveal .slide-chalkboard-buttons > * {
   pointer-events: auto;
-}
-
-// Logo to the bottom-left
-.slide-logo {
-  display: block !important;
-  position: fixed !important;
-  bottom: 0 !important;
-  left: 10px !important;
-  max-width: 150px; // Adjust if necessary
-  max-height: 50px;
-  width: auto !important;
-  color: $body-color !important;
-}
-
-// Also need to enforce slide numbers at bottom-right (if logo is present)
-.slide-number, .reveal.has-logo .slide-number {
-  bottom: 6px !important;
-  right: 10px !important;
-  top: unset !important;
-  color: #777777 !important;
 }
 
 // Beamer-style button link environment
@@ -275,7 +258,7 @@ $selection-bg: #26351c !default;
   border: none; /* Remove internal row lines */
   padding: .23em; /* Adjust padding as needed */
   text-align: left; /* Adjust text alignment as needed */
-  font-weight: lighter; /* Lighter font weight for main table text */
+  font-weight: 300; /* Lighter font weight for main table text */
 }
 
 /* Adds a bottom border to the table header row for distinction */
@@ -316,15 +299,12 @@ $selection-bg: #26351c !default;
   object-fit: contain;
 }
 
-// Change the relative widths of `output-location: column`. 
-// See: https://github.com/grantmcdermott/quarto-revealjs-clean/pull/16
-// Example usage:
+// Change the relative widths of `output-location: column`.  Usage:
 // ```{python}
 // #| echo: true
 // #| output-location: column
 // #| classes: columns3070
-// <code>
-// ```
+
 .reveal .columns3070 > div.column:first-child {
   width: 30%;
 }
@@ -348,4 +328,55 @@ $selection-bg: #26351c !default;
 }
 .reveal .columns6040 div.column:not(:first-child) {
   width: 40%;
-}      
+}
+
+// Code
+.reveal code {
+  font-family: 'Iosevka Web', monospace;
+  font-variant-ligatures: none;
+}
+
+.reveal pre code, .reveal pre.sourceCode code, .cell-output-stdout pre code {
+  font-family: 'Iosevka Web', monospace;
+  font-variant-ligatures: none;
+  font-size: 20px;
+}
+
+.reveal .cell-output.cell-output-stdout pre code {
+  line-height: 25px;
+}
+
+.reveal div.sourceCode.cell-code {
+  margin-top: 1.25em;
+}
+
+.reveal div.cell-output.cell-output-stdout {
+  margin-top: 0.4em;
+}
+
+// Callout blocks
+.reveal div.callout.callout-style-default {
+  font-size: 80% !important;
+  margin-top: 2em;
+}
+
+.reveal div.callout.callout-style-default .callout-title {
+  font-size: 115%;
+}
+
+// Custom block styles
+div.example {
+  font-size: 90%;
+  padding-left: 3ex;
+  padding-right: 3ex;
+  margin-top: -0.75em;
+  color: $accent;
+}
+div.example > p:before {
+  content: $right-arrow;
+  color: $accent;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+  margin-right: 0.5em;
+}
