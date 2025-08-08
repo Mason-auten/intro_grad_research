@@ -1,0 +1,42 @@
+---
+title: Quarto and Typesetting
+subtitle: "Statistics for Political Science"
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Mason Auten
+    email: mason.auten@vanderbilt.edu
+    affiliations: Vanderbilt University
+  - name: Patrick Buhr
+    email: patrick.buhr@Vanderbilt.Edu
+    affiliations: Vanderbilt University
+date: today
+self-contained: true
+bibliography: skills_camp.bib
+---
+
+# Quarto
+
+-   Quarto provides a way to combine code, results and prose all ion one document [@wickham2019Advanced].
+
+-   Quarto
+
+## Yaml
+
+# Latex
+
+## Preamble
+
+# Math Notation
+
+# Bibliography Managment
+
+## CLever title 
+-   Remember, let the computer do the work!
+
+## References 
+
+:::{#refs}
+:::
