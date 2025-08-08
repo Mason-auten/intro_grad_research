@@ -68,7 +68,13 @@ rename(icpsr = ICPSR2)
 
 congress_data <- left_join(congress_data, clean_election_data, by = c("icpsr", "year"))
 congress_data <- congress_data %>%
-mutate(presidentialvoteshare = ifelse(democrat==1, presidentialvoteshare, 100-presidentialvoteshare))
+mutate(presidentialvoteshare_mutate = ifelse(democrat==1, presidentialvoteshare, 100-presidentialvoteshare))
+```
+```{r}
+#| echo: false
+
+# Set default theme for plots
+theme_set(theme_bw(base_size = 16))
 ```
 
 ## Why Do We Visualize Data?
@@ -81,7 +87,7 @@ Data visualization is most important at two stages:
 
 2.  At the end of the research project, when we want to convey our findings to an audience.
 
-Above all, think about your audience's cognitive process as they interpret your figure. 
+Above all, think about your audience's cognitive process as they interpret your figure.
 
 ## Why not just show a table?
 
@@ -107,10 +113,52 @@ ggplot(congress_data, aes (x = dwnom1)) +
 
 ::: callout-tip
 ## General rule:
+
 Your figure must convey more information to the audience than a table alone.
 :::
 
-## ``ggplot()`
+## `ggplot()`
+
+You can create plots in base R, but we recommend using the `ggplot()` command which is part of the `ggplot2` package and included in the `tidyverse`.
+
+ggplot works by stacking layers on top of itself:
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot() 
+```
+
+
+## `ggplot()`
+
+You can create plots in base R, but we recommend using the `ggplot()` command which is part of the `ggplot2` package and included in the `tidyverse`.
+
+ggplot works by stacking layers on top of itself:
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes (x = race))
+```
+
+
+## `ggplot()`
+
+You can create plots in base R, but we recommend using the `ggplot()` command which is part of the `ggplot2` package and included in the `tidyverse`.
+
+ggplot works by stacking layers on top of itself:
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+
+ggplot(congress_data, aes (x = race)) +
+  geom_bar()
+```
 
 ::: callout-warning
 ## ggplot syntax
@@ -120,54 +168,72 @@ ggplot commands are separated by addition `+`, not the pipe `%>%`.
 
 ## Histograms
 
-### Continuous variables: Histogram
+### When to use: single continuous variable
 
-```{r}
-#| echo: false
-
-# Set default theme for plots
-theme_set(theme_bw(base_size = 16))
-```
 
 ```{r}
 #| output-location: column
 #| fig-width: 6.5
 #| fig-height: 4.5
 ggplot(congress_data, aes (x = dwnom1)) +
-  geom_histogram(color = "black",
-                 fill = "steelblue",
-                 binwidth = 0.05) + # changes the number of bins
+  geom_histogram(binwidth = 0.05) + 
   labs(x = "First-Dimension DW-NOMINATE",
        y = "Number of Members of Congress",
        title = "Ideological Distribution of Members of Congress",
        subtitle = "Some are Liberal, Some are Conservative")
 ```
+
 ::: callout-tip
 ## Bins in Histograms
+
 `binwidth = 0.1` will create bins of 0.1 units, `bins = 5` will create exactly 5 bins.
 :::
 
+## Histograms
+
+### When to use: single continuous variable
+
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes (x = dwnom1)) +
+  geom_histogram(binwidth = 0.05,
+                 color = "black",
+                 fill = "steelblue") + 
+  labs(x = "First-Dimension DW-NOMINATE",
+       y = "Number of Members of Congress",
+       title = "Ideological Distribution of Members of Congress",
+       subtitle = "Some are Liberal, Some are Conservative")
+```
+
+::: callout-tip
+`color =` changes the outline of the bar, while `fill =` changes the fill of the bar.
+:::
 
 ## Bar Charts
 
-### Single Categorical Variable
+### When to use: single categorical variable
 
 ```{r}
 #| output-location: column
 #| fig-width: 6.5
 #| fig-height: 4.5
 ggplot(congress_data, aes (y = gender)) +
-  geom_bar(color = "black",
-           fill = "steelblue",
-           alpha = 0.7)+
-  labs(x = "Number of Respondents",
+  geom_bar(fill = "steelblue",
+           color="black")+
+  labs(x = "Number",
        y = NULL,
        title = "Members of Congress by Gender")
 ```
-
+::: callout-tip
+## Flipping the axis
+`y = var` creates a horizontal barchart; `x = var` would create a vertical barchart.
+:::
 ## Bar Charts
 
-### Two Categorical Variables
+### When to use: two categorical variables
 
 ```{r}
 #| output-location: column
@@ -175,7 +241,7 @@ ggplot(congress_data, aes (y = gender)) +
 #| fig-height: 4.5
 ggplot(congress_data, aes(y = gender)) +
   geom_bar(aes(fill = party), position = "dodge") +
-  labs(x = "Number of Respondents",
+  labs(x = "Number",
        y = NULL,
        fill = "Party",
        title = "Members of Congress by Gender and Party")
@@ -183,7 +249,7 @@ ggplot(congress_data, aes(y = gender)) +
 
 ## Bar Charts
 
-### Two Categorical Variables
+### When to use: two categorical variables
 
 ```{r}
 #| output-location: column
@@ -192,7 +258,7 @@ ggplot(congress_data, aes(y = gender)) +
 ggplot(congress_data, aes(y = gender)) +
   geom_bar(aes(fill = party), position = "dodge") +
   scale_fill_manual(values = c("Democrat" = "dodgerblue", "Republican" = "indianred")) +
-  labs(x = "Number of Respondents",
+  labs(x = "Number",
        y = NULL,
        fill = "Party",
        title = "Members of Congress by Gender and Party")
@@ -203,10 +269,43 @@ ggplot(congress_data, aes(y = gender)) +
 
 Use `scale_fill_manual()` to change aesthetics
 :::
+## Bar Charts
+
+### When to use: one categorical and one continuous
+
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes(x = gender, y = contributions)) +
+  geom_bar(stat = "summary", fun = mean) +
+  labs(x = NULL,
+       y = "Campaign Contributions ($)",
+       title = "Members of Congress by Gender")
+```
+## Bar Charts
+
+### When to use: one categorical and one continuous
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes(x = gender, y = contributions, fill = party)) +
+  geom_bar(stat = "summary", fun = mean, position = position_dodge(width = 0.9), color = "black") +
+  scale_fill_manual(values = c("Democrat" = "dodgerblue", "Republican" = "indianred")) +
+  labs(
+    x = NULL,
+    y = "Campaign Contributions ($)",
+    title = "Members of Congress by Party and Gender",
+    fill = "Party"
+  )
+```
 
 ## Scatterplots
 
-### Two Continuous Variables
+### When to use: two Continuous Variables
 
 ```{r}
 #| output-location: column
@@ -216,34 +315,57 @@ ggplot(congress_data,
        aes(x = dwnom1, y = presidentialvoteshare)) +
   geom_point() + # increases transparency
   labs( title = "Ideology and Presidential Vote Share",
-        subtitle = "More Liberal Legislators Represent More Liberal Districts",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
         x = "Ideology (Higher Values = More Conservative)",
         y = "Democratic Presidential Candidate \nVote Share in District"
 # the \n tells ggplot to include a linebreak
 )
 ```
+:::callout-tip
+## Line breaks in labels
+Use `\n` to break long labels into a new line.
+:::
+
+
+
 
 ## Scatterplots
 
-### Two Continuous Variables
+### Aesthetic options
 
 ```{r}
 #| output-location: column
 #| fig-width: 6.5
 #| fig-height: 4.5
-ggplot(congress_data,
-       aes(x = vote_share, y = presidentialvoteshare)) +
-  geom_point(position = "jitter",
-alpha = 0.5) + # increases transparency
+ggplot(congress_data, aes(x = dwnom1, y = presidentialvoteshare)) +
+  geom_point(alpha = 0.5) + 
   labs( title = "Ideology and Presidential Vote Share",
-        subtitle = "More Liberal Legislators Represent More Liberal Districts",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
         x = "Ideology (Higher Values = More Conservative)",
         y = "Democratic Presidential Candidate \nVote Share in District"
-# the \n tells ggplot to include a linebreak
-)+
-  coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
+)
 ```
+:::callout-tip
+## Increasing transparency
+Include `alpha =` within `geom_point()` to increase transparency. 0 is fully transparent while 1 is fully opaque.
+:::
 
+## Scatterplots
+
+### Aesthetic options
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes(x = dwnom1, y = presidentialvoteshare)) +
+  geom_point(position = "jitter",
+             alpha = 0.5) + 
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District")
+```
 ::: callout-tip
 ## What if many observations take the same value?
 
@@ -252,36 +374,31 @@ alpha = 0.5) + # increases transparency
 
 ## Scatterplots
 
-### Remove unopposed legislators
+### Aesthetic options
 
 ```{r}
 #| output-location: column
 #| fig-width: 6.5
 #| fig-height: 4.5
-
-congress_data %>%
-  filter(vote_share<=95) %>%
-ggplot(aes(x = vote_share, y = presidentialvoteshare)) +
+ggplot(congress_data, aes(x = dwnom1, y = presidentialvoteshare)) +
   geom_point(position = "jitter",
-alpha = 0.5) + # increases transparency
+             alpha = 0.5) + 
   labs( title = "Ideology and Presidential Vote Share",
         subtitle = "Liberal Legislators Represent Liberal Districts",
         x = "Ideology (Higher Values = More Conservative)",
-        y = "Democratic Presidential Candidate \nVote Share in District"
-# the \n tells ggplot to include a linebreak
-)+
-  coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
+        y = "Democratic Presidential Candidate \nVote Share in District")+
+  coord_cartesian(ylim = c(0, 100), xlim = c(-1, 1))
 ```
-
 ::: callout-tip
-## Using `dplyr` with `ggplot`
+## Changing axis lengths
 
-You can also manipulate data before going into a ggplot, just remember to use `%>%` instead of `+`
+Use `coord_cartesian()` to change the scope of your plot. This is preferrable to `xlim()` or `ylim()` by itself which will throw out data. 
+
 :::
 
-## Scatterplots
 
-### facet
+## Manipulating data before plotting
+
 
 ```{r}
 #| output-location: column
@@ -289,50 +406,139 @@ You can also manipulate data before going into a ggplot, just remember to use `%
 #| fig-height: 4.5
 
 congress_data %>%
-  filter(vote_share<=95 & year %in% c(1981, 1985, 1989, 1993, 
-                                      1996, 2001, 2005, 2009, 
-                                      2013, 2017, 2021)) %>%
-  mutate(election_year = year-1) %>%
-ggplot(aes(x = vote_share, y = presidentialvoteshare)) +
+  filter(party == "Democrat") %>%
+  ggplot(aes(x = dwnom1, y = presidentialvoteshare)) +
   geom_point(position = "jitter",
-alpha = 0.5) + # increases transparency
+             alpha = 0.5) + 
   labs( title = "Ideology and Presidential Vote Share",
-        subtitle = "Elections Have Become More Correlated",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
         x = "Ideology (Higher Values = More Conservative)",
-        y = "Democratic Presidential Candidate \nVote Share in District"
-# the \n tells ggplot to include a linebreak
-)+
-  facet_wrap(~ election_year,
-ncol = 5)+
-  coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
+        y = "Democratic Presidential Candidate \nVote Share in District")+
+  coord_cartesian(ylim = c(0, 100), xlim = c(-1, 1))
 ```
+::: callout-tip
+## Using `dplyr` within `ggplot`
+
+You can also manipulate your data prior to plotting. Just be sure to use `%>%` for `dplyr` and `+` for `ggplot`. For example, here is just Democratic legislators.
+:::
+
+## Faceting
+### When to use: two continuous variables with one categorical variable
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes(x = dwnom1, y = presidentialvoteshare)) +
+  geom_point(position = "jitter",
+             alpha = 0.5) + 
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District")+
+  coord_cartesian(ylim = c(0, 100), xlim = c(-1, 1))+
+  facet_wrap(~ race, ncol =2)
+```
+::: callout-tip
+## Faceting
+`facet_wrap()` will divide your plot based on unique values of a variable. Use `ncol` to set the number of columns. For example, here is our same plot for legislators of different races. 
+:::
+
+## Faceting
+
+### Reordering facets
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes(x = dwnom1, y = presidentialvoteshare)) +
+  geom_point(position = "jitter",
+             alpha = 0.5) + 
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District")+
+  coord_cartesian(ylim = c(0, 100), xlim = c(-1, 1))+
+  facet_wrap(~ fct_relevel(race,
+                           "White",
+                           "Black",
+                           "Latino",
+                           "Asian"),
+                           scales = "free",
+                           ncol =2)
+```
+::: callout-tip
+## Reordering facets
+`R` will default to alphabetical ordering. Use `fct_relevel()` within `facet_wrap()` to reorder categories.
+:::
+
+
+## Faceting
+
+### Changing colors
+
+```{r}
+#| output-location: column
+#| fig-width: 6.5
+#| fig-height: 4.5
+ggplot(congress_data, aes(x = dwnom1, y = presidentialvoteshare, color = party)) +
+  scale_color_manual(values = c("Democrat" = "dodgerblue", "Republican" = "indianred")) +
+  geom_point(position = "jitter",
+             alpha = 0.5) + 
+  labs( title = "Ideology and Presidential Vote Share",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
+        x = "Ideology (Higher Values = More Conservative)",
+        y = "Democratic Presidential Candidate \nVote Share in District",
+        color="Party")+
+  coord_cartesian(ylim = c(0, 100), xlim = c(-1, 1))+
+  facet_wrap(~ fct_relevel(race,
+                           "White",
+                           "Black",
+                           "Latino",
+                           "Asian"),
+                           scales = "free",
+                           ncol =2)
+```
+::: callout-tip
+You can also set colors manually using the `scale_color_manual()` function. Remember to now add `color = ` to your `aes()` and to your `labs()`
+:::
 
 ## Saving Plots
 
+
 ```{r}
-nationalization_plot <- congress_data %>%
-  filter(vote_share<=95 & year %in% c(1981, 1985, 1989, 1993, 
-                                      1996, 2001, 2005, 2009, 
-                                      2013, 2017, 2021)) %>%
-  mutate(election_year = year-1) %>%
-ggplot(aes(x = vote_share, y = presidentialvoteshare)) +
-  geom_point(alpha = 0.5) + # increases transparency
+#| eval: false
+plot_to_save <- ggplot(congress_data, aes(x = dwnom1, y = presidentialvoteshare, color = party)) +
+  scale_color_manual(values = c("Democrat" = "dodgerblue", "Republican" = "indianred")) +
+  geom_point(position = "jitter",
+             alpha = 0.5) + 
   labs( title = "Ideology and Presidential Vote Share",
-        subtitle = "Elections Have Become More Correlated",
+        subtitle = "Liberal Legislators Represent Liberal Districts",
         x = "Ideology (Higher Values = More Conservative)",
-        y = "Democratic Presidential Candidate \nVote Share in District"
-# the \n tells ggplot to include a linebreak
-)+
-  facet_wrap(~ election_year,
-ncol = 3)+
-  coord_cartesian(ylim = c(25, 100), xlim = c(45, 99))
+        y = "Democratic Presidential Candidate \nVote Share in District",
+        color="Party")+
+  coord_cartesian(ylim = c(0, 100), xlim = c(-1, 1))+
+  facet_wrap(~ fct_relevel(race,
+                           "White",
+                           "Black",
+                           "Latino",
+                           "Asian"),
+                           scales = "free",
+                           ncol =2)
+ggsave("our_plot.png", plot = plot_to_save, width = 10, height = 5, units = "in")
 ```
+::: callout-tip
+## Saving plots without creating objects
+You can also use `plot = last_plot()` to default to the last plot displayed
+:::
 
-## Nationalization Plot
+## General tips
 
-### Testing
+The best way to advance your skills in `ggplot` is through practice. 
 
-```{r}
-#| echo: FALSE
-nationalization_plot
-```
+Most major political science journals now ask authors to post replication code. If you see a nice figure in a paper, pull up their replication code and see how they created the figure. 
+
+ChatGPT is exceptionally good at iterating on a figure.
+
+More is not always better
