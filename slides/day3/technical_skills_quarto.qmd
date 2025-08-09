@@ -1,0 +1,222 @@
+---
+title: Quarto and Typesetting
+subtitle: "Statistics for Political Science"
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Mason Auten
+    email: mason.auten@vanderbilt.edu
+    affiliations: Vanderbilt University
+  - name: Patrick Buhr
+    email: patrick.buhr@Vanderbilt.Edu
+    affiliations: Vanderbilt University
+date: today
+self-contained: true
+bibliography: skills_camp.bib
+---
+
+# Introduction and Roadmap
+
+## Introduction
+
+:::::: columns
+::: column
+-   In Political Science, people tend to use one of two programs:
+    1.  LaTeX
+    2.  Quarto
+-   These tools are optional, but they will significantly improve your workflow and marketability.
+-   Our advice: Pick one and learn it. Which one you pick is up to you.
+:::
+
+:::: column
+**Why Can't I just Use Word?**
+
+::: incremental
+-   They are more flexible and can be automated more than programs like Word.
+-   They are much easier to write math with.
+-   They are a signaling device.
+-   To quote one anonymous professor, "Academics are tiny, insignificant little people who will judge you for not having the accepted format of slides."
+:::
+::::
+::::::
+
+## Roadmap
+
+1.  Quarto
+2.  LaTex
+3.  Math notation
+4.  Bibliography Tools
+
+# Quarto
+
+## What is Quarto?
+
+-   Quarto provides a way to combine code, results and prose all in one document [@wickham2019Advanced].
+
+-   Quarto uses a markdown syntax. If you've used Rmarkdown or Obsidian, you're already familiar with this syntax.
+
+    -   It's designed to be readable and easy to use.
+
+-   You can use R, Python, Julia, and more types of code all in the same document.
+
+-   You then render it to PDF, HTML, or a Word format.
+
+-   You can make manuscripts, websites, presentations or more!
+
+## Setting Up Quarto
+
+-   If you're still traumatized from trying to set up Git, rest assured this process is much easier.
+
+    1.  [Download Quarto](https://quarto.org/docs/get-started/).
+    2.  Choose your interface: RStudio, Positron, VS Code ect.
+
+-   That's it!
+
+## Basics
+
+-   A Quarto file is a plain text file that ends in .qmd.
+-   It is composed of three parts [@wickham2019Advanced]:
+    1.  YAML: Which tells the document how to behave and look.
+    2.  Code that you use throughout from LaTex to Python that is usable in the paper.
+    3.  Text
+
+## Example
+
+```{r}
+#| label: tbl-dv
+#| echo: false
+#| output: false
+#| tbl-cap: "Summary of Duration"
+head(mtcars) |> knitr::kable()
+```
+
+````         
+```r
+#| echo: true
+#| eval: false
+#| label: tbl-dv
+#| tbl-cap: "Summary of Duration"
+#| fig-pos: "h"
+
+missing_dv <- dat %>%
+  select(duration_months) %>%
+  miss_var_summary() 
+
+## combine with summary data from skimr
+dv_table <- dat %>%
+  select(duration_months) %>%
+  skim_without_charts() %>%
+  select(skim_variable, numeric.mean, numeric.sd, numeric.p0, numeric.p50,numeric.p100) %>%
+  left_join(missing_dv , by = c("skim_variable" = "variable")) %>%
+  mutate(
+    Variable = case_when(
+      Variable == "duration_months" ~ "duration_months",
+      TRUE ~ Variable
+    )
+  ) %>%
+  select(Variable, `Missing %`, Mean, SD, Min, Median, Max)
+
+
+
+# show table in output
+dv_table%>%
+  knitr::kable()
+```
+````
+
+@tbl-dv shows the descriptive statistics of the dependent variable.
+
+## Using Quarto
+
+-   Papers are written pretty much as normal.
+-   Here are a few simple codes you'll use:
+    -   `#` for different heading levels
+    -   `*word*` to italicize something.
+    -   And insert a reference with `[@ref-key].`
+    -   Use Markdown tables and forget that LaTex tables exist.
+
+## Using Quarto Cont.
+
+-   Insert code with Cmd + Option + I / Ctrl + Alt + I or type ```` ```{r} ``` ```` [@wickham2019Advanced].
+
+-   When using code cells, there are multiple commands that you'll want to use
+
+## Cheat Sheet
+
+-   Here is a useful cheatsheet you might use
+
+````         
+```r
+# Quarto chunk options — copy this chunk and edit.
+# Lines starting with `#|` are options; trailing comments explain them.
+
+#| label: demo-cheatsheet         # name for cross-refs (use @demo-cheatsheet)
+#| echo: true                     # show code in the output
+#| eval: false                    # don't run code 
+#| warning: false                 # suppress R warnings
+#| message: false                 # suppress error messages
+#| error: true                    # allow errors without 
+#| cache: true                    # reuse results if inputs unchanged (speed up)
+#| output: true                  #  show slide output
+#| fig-cap: "A figure caption"    # caption (enables figure numbering)
+#| fig-width: 6                   # figure size in inches
+#| fig-height: 4
+#| fig-align: center              # left/center/right
+#| out-width: "70%"               # scale displayed figure
+#| tbl-cap: "A table caption"     # caption for tables (numbering + cross-refs)
+
+# Example code 
+plot(conflict_data)          
+
+```
+````
+
+## Yaml
+
+-   YAML just tells your document what it is supposed to be.
+
+``` yaml
+---
+title: Quarto and Typesetting
+subtitle: "Statistics for Political Science"
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+author:
+  - name: Mason Auten
+    email: mason.auten@vanderbilt.edu
+    affiliations: Vanderbilt University
+  - name: Patrick Buhr
+    email: patrick.buhr@Vanderbilt.Edu
+    affiliations: Vanderbilt University
+date: today
+self-contained: true
+bibliography: skills_camp.bib
+---
+```
+
+## Slides
+
+-   You can make Beamer or revealjs slides in Quarto. These slides are revealjs.
+-   Simply use `##` to make a new slide.
+-   Use the code above to tell it what code you want to run and how.
+-   Present
+
+# LaTex
+
+## Preamble
+
+# Math Notation
+
+# Bibliography Managment
+
+## Clever Title
+
+-   Remember, let the computer do the work!
+
+## References
+
+::: {#refs}
+:::
