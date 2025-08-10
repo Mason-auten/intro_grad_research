@@ -1,6 +1,6 @@
 ---
 title: Introduction
-subtitle: "Statistics for Political Science"
+subtitle: "Introduction to Graduate Research"
 format: clean-revealjs
 html-math-method:
   method: mathjax
@@ -320,57 +320,3 @@ What would be the best way to operationalize education?
 
 # 10 Minute Break
 
-# Programming
-
-## Why Use R for Statistics?
-
--   R is a powerful and widely used programming language for statistical analysis.
-
--   It is free, open-source, and widely supported by researchers and data analysts.
-
--   R provides extensive libraries for data visualization, regression modeling, and machine learning.
-
--   Learning R enhances your ability to conduct independent research and analyze real-world data.
-
-## Principles of Programming
-
-**Principle One:** "Write code for humans."
-
--   Indent your code according to style conventions in www.style.tidyverse.org. RStudio will typically do this automatically.\
--   Add explanatory comments to everything you do using `#`.\
--   Basic principle: if I got hit by a bus tomorrow, could people figure out what I was trying to do and finish my code?
-
-## Principles of Programming
-
-**Principle Two:** "Let the computer do the work"
-
--   Copy-and-paste doesn't work: prone to errors, time intensive if you need to make changes, and confusing to read.\
--   Any repetitive task can be done with minimal lines of code.\
--   If someone else has your data and code, they must be able to replicate your same results.
-
-## Debugging and Asking for Help
-
-::::: columns
-::: {.column width="50%"}
-Types of problems:
-
--   Errors: the R script stops because it cannot execute your command.\
--   Warnings: the R script was able to execute your command (and produce output) but thinks you need to check the output.\
--   Unexpected output: your script executed without warnings, but the output isn't what you expected (e.g. output is NA).
-:::
-
-::: {.column width="50%"}
-Solving problems:
-
-1.  Find the exact line of code causing the problem.\
-2.  Look on StackOverflow/ChatGPT.\
-3.  Come to us in office hours.
-:::
-:::::
-
-## Statement on ChatGPT
-
--   ChatGPT and other LLMs are **tools**. Being able to use them well will be an essential part of your workflow in the future.
--   However, like any tool, it is exceptionally easy to misuse ChatGPT if you don't know what you are doing.
--   Use ChatGPT for learning, to clarify concepts, and to troubleshoot your own code—but do **not** use it to replace your own analytical thinking.
--   Your ability to think clearly and rigorously about the underlying statistics is what will set you apart.

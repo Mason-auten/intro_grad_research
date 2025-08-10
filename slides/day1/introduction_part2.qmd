@@ -1,0 +1,1162 @@
+---
+title: Introduction Continued 
+subtitle: "Introduction to Graduate Research"
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Mason Auten
+    email: mason.auten@vanderbilt.edu
+    affiliations: Vanderbilt University
+  - name: Patrick Buhr
+    email: patrick.buhr@Vanderbilt.Edu
+    affiliations: Vanderbilt University
+date: today
+self-contained: true
+bibliography: skills_camp.bib
+---
+
+```{r}
+#| echo: false
+#| eval: true
+#| output: false
+
+pacman::p_load(tidyverse)
+```
+
+# Programming
+
+## Why Use R for Statistics?
+
+-   R is a powerful and widely used programming language for statistical analysis.
+
+-   It is free, open-source, and widely supported by researchers and data analysts.
+
+-   R provides extensive libraries for data visualization, regression modeling, and machine learning.
+
+-   Learning R enhances your ability to conduct independent research and analyze real-world data.
+
+## Principles of Programming
+
+**Principle One:** "Write code for humans."
+
+-   Indent your code according to style conventions in www.style.tidyverse.org. RStudio will typically do this automatically.\
+-   Add explanatory comments to everything you do using `#`.\
+-   Basic principle: if I got hit by a bus tomorrow, could people figure out what I was trying to do and finish my code?
+
+## Principles of Programming
+
+**Principle Two:** "Let the computer do the work"
+
+-   Copy-and-paste doesn't work: prone to errors, time intensive if you need to make changes, and confusing to read.\
+-   Any repetitive task can be done with minimal lines of code.\
+-   If someone else has your data and code, they must be able to replicate your same results.
+
+## Debugging and Asking for Help
+
+::::: columns
+::: {.column width="50%"}
+Types of problems:
+
+-   Errors: the R script stops because it cannot execute your command.\
+-   Warnings: the R script was able to execute your command (and produce output) but thinks you need to check the output.\
+-   Unexpected output: your script executed without warnings, but the output isn't what you expected (e.g. output is NA).
+:::
+
+::: {.column width="50%"}
+Solving problems:
+
+1.  Find the exact line of code causing the problem.\
+2.  Look on StackOverflow/ChatGPT.\
+3.  Come to us in office hours.
+:::
+:::::
+
+## Statement on ChatGPT
+
+-   ChatGPT and other LLMs are **tools**. Being able to use them well will be an essential part of your workflow in the future.
+-   However, like any tool, it is exceptionally easy to misuse ChatGPT if you don't know what you are doing.
+-   Use ChatGPT for learning, to clarify concepts, and to troubleshoot your own code—but do **not** use it to replace your own analytical thinking.
+-   Your ability to think clearly and rigorously about the underlying statistics is what will set you apart.
+
+# Getting Started with R
+
+## Work Space
+
+When you open RStudio, you will see four different windows:
+
+*  **Console**: where you will enter code, and where the outputs appear. You can type into it directly and press Enter to see the result.
+*  **R Script**: Your script is where you keep a record of your work. As a general rule, you should always write your code here first before executing it in the console
+*   **Environment and History:** The environment tab shows all of the objects that you currently have loaded into your workspace. The history tab shows a list of commands used so far.
+*   **Files, plots, packages, help, viewer and presentation:** The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs.
+
+
+## Working Directories
+
+The first thing to do is to set a working directory. Two broad ways to do this:
+
+
+1. Manually
+2. Project: Based
+
+## Working Directories: Manually
+
+- First, we want to check where the working directory is. There are two different commands that capture the same objective.
+
+```{r}
+#| echo: true
+#| eval: true
+
+getwd()
+
+here::here()
+
+```
+
+* Next, we want to set that working directory 
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+setwd("C:/Users/patri/OneDrive/Documents/MathCamp")
+```
+
+## Working Directories: Project Based
+
+Working from a project allows you to set your working directory automatically.
+
+::: {.incremental}
+
+1. Click the project button
+2. Select a new directory, then new project
+3. Create the folder
+
+:::
+
+## Loading Packages
+
+* The strength of R is in the community. 
+* You'll frequently be loading packages that extend the baseline functions of R. 
+* Installation only needs to be done once
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages("tidyverse")
+
+```
+
+* However, we need to load packages before each use
+  
+
+```{r}
+#| eval: false
+#| echo: true
+library(tidyverse)
+
+```
+- Every R script should start by loading your packages
+
+## Executing Code
+
+*  All scripts have active and inactive lines. Active lines are executable.
+ *  On Mac, press COMMAND+RETURN
+ *  On PC, press CTRL+RETURN
+
+
+```{r}
+#| eval: true
+#| echo: true
+2+2
+
+```
+
+* While R is flexible and powerful, it can also do simple calculations
+
+```{r}
+#| eval: true
+#| echo: true
+2+2
+6-2
+250*5
+
+```
+
+## Executing Code Cont. 
+* Commenting out code will cause it to be skipped
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+## Commenting out lines means that R won't try to run that line
+## Notice how R skips over this line? 
+3^2
+```
+
+* Comment. Your. Code. 
+ * It saves future you and future reviewers headaches
+
+## Objects and Functions 
+
+* R is a vector-based language. 
+* We can store values as "objects"
+
+```{r}
+#| eval: false
+#| echo: true
+
+NAME <- VALUE
+```
+
+* Any of the previous calculations could be stored as objects
+
+```{r}
+#| eval: true
+#| echo: true
+
+add_obj <- 4+4 
+mult_obj <- 250*5
+```
+
+* Names of objects are case sensitive
+ * Where a space would go, try using `.` or ` _` instead. 
+
+## Objects and Functions Cont. {.scrollable}
+
+* To print the values of the objects, we simply list them 
+
+```{r}
+#| eval: true
+#| echo: true
+
+add_obj 
+mult_obj 
+```
+
+* For large vectors, we can also specify how many of the results are printed
+
+```{r}
+#| eval: true
+#| echo: true
+
+# With large objects, it helps to tell it how many values you want printed
+
+mult_obj  %>% 
+head(10)
+```
+
+## Objects and Functions Cont. {.scrollable}
+* To see all objects in your working environment: 
+
+```{r}
+#| eval: true
+#| echo: true
+
+ls()
+
+```
+
+* To remove a specific object 
+
+```{r}
+#| eval: true
+#| echo: true
+rm(add_obj)
+
+# Or remove all objects with rm(list=ls())
+```
+
+* Objects in R are separated into "classes"
+ * Classes include: character, numeric, vector, factor, matrix, list, dataframe, and so on. 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+class(mult_obj)
+```
+
+## Objects and Functions Cont. {.scrollable}
+
+* Again, R is a vector-based language
+ * We work with an $n \times 1$ collection of elements
+* Here is one way to create vectors
+
+```{r}
+#| eval: true
+#| echo: true
+
+ranking <- c(1,2,3,4,5)
+ranking
+class(ranking)
+
+```
+
+- We can create character-based objects and add information to it ex post
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+our_school <- "Vanderbilt"
+
+class(our_school)
+
+sec_schools <- c(our_school, "University of Florida", "UT Austin", "Georgia", "Texas A&M")
+sec_schools
+class(sec_schools)
+
+```
+
+## Objects and Functions Cont. {.scrollable}
+- We can then check the length of this particular vector 
+
+```{r}
+#| eval: true
+#| echo: true
+length(ranking)
+
+length(sec_schools)
+```
+
+## Objects and Functions Cont. {.scrollable}
+- Each element of a vector must be of the same class
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+class(ranking)
+
+class(sec_schools)
+
+mixed_vector <- c(ranking, sec_schools)
+
+mixed_vector
+
+class(mixed_vector)
+```
+
+## Data Frames{.scrollable}
+
+- Most functions we use in R utilize dataframes
+- Dataframes do not have to be of the same class
+ - But each element in a column should be of the same column 
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+sec_rankings <- cbind.data.frame(ranking, sec_schools)
+
+class(sec_rankings)
+
+sec_rankings
+
+```
+
+## Data Frames Cont. {.scrollable}
+- The dataframe is treated as a type of matrix, and we can access specific elements like so 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+sec_rankings[2,2]
+
+# Another way to do it
+sec_rankings[2,"sec_schools"]
+```
+
+- Access a specific column like so 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+sec_rankings$sec_schools
+```
+
+## Functions 
+
+- R functions are analogous to mathematical functions. They are a mapping from one set of values to another
+- Functions are made of three components [@wickham2019Advanced] 
+ 1. The arguments you use
+ 2. The body of code inside the function
+ 3. The structure of the data 
+- Calling a function `function(input)`
+
+
+```{r}
+#| eval: false
+#| echo: true
+
+
+?function()
+
+```
+
+
+## Mathematical Operators 
+
+- Let's go over some basic mathematical operators you'll use
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Square Root
+sqrt(144)
+
+
+# Natural Log
+log(10)
+
+# Exponent
+exp(3)
+
+```
+
+## Mathematical Operators Cont. 
+
+```{r}
+#| eval: true
+#| echo: true
+
+# sequence of numbers
+seq(from = 1, to = 5, by = 0.5)
+
+# R also has a shortcut for sequences of integers
+1:5
+
+# Repeating the same input many times
+rep(x = c(1, 2, 3), times = 3)
+
+
+```
+
+* We can store data as an object and use it in operations as well 
+
+```{r}
+#| eval: true
+#| echo: true
+numbers <- 1:5
+sum(numbers)
+```
+
+## Logical Statements
+
+- To write more advanced code, you'll want to get familiar with the way that R handles logical statements. 
+- Logical statements are used in settings where you want to use a TRUE/FALSE logic. 
+- `==` means "is exactly true." 
+
+```{r}
+#| eval: true
+#| echo: true
+
+2 == 2
+
+2 == 3
+
+2 == "Joe Biden"
+
+```
+
+## Logical Statements Cont. 
+- To say that a particular object is not equal to another, we use `!=`
+
+```{r}
+#| eval: true
+#| echo: true
+
+# it is FALSE that 2 is not equal to 2
+2 != 2
+
+# it is TRUE that 2 is not equal to 3
+2 != 3
+```
+
+## Logical Statements Cont. 
+- We can also use strict inequalities and weak inequalities 
+- Here are some examples of strict inequalities: 
+
+```{r}
+#| eval: true
+#| echo: true
+
+# 3 is greater than 2
+3 > 2
+
+# 3 is not less than 2
+3 < 2
+
+# 2 is less than 3
+2 < 3
+
+```
+
+## Logical Statements Cont.
+```{r}
+#| eval: true
+#| echo: true
+
+# 3 is greater than 2
+3 > 2
+
+# 3 is not less than 2
+3 < 2
+
+# 2 is less than 3
+2 < 3
+
+```
+
+
+## Logical Statements Cont. 
+
+- We can use weak inequalities by adding a `=` in front of or behind `>`
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+# it is FALSE that 3 is greater than 3
+3 > 3
+
+# but it is TRUE that 3 is greater than or equal to 3
+3 >= 3
+```
+
+- Adding a `!` before your logical statement creates a negation, turning TRUE into FALSE and vice versa. 
+
+```{r}
+#| eval: true
+#| echo: true
+
+# it is FALSE that 2 is greater than 3
+2 > 3
+
+# but it is TRUE that 2 is NOT greater than 3
+!(2 > 3)
+
+
+```
+
+## Logical Statements Cont. 
+
+- We can combine these operators to create compound logical statements. 
+- R returns true if and only if every condition is true
+- Specify multiple conditions using the `&` symbol.
+
+## Logical Statements Cont. 
+- Example:
+```{r}
+#| eval: true
+#| echo: true
+
+# creating an object called "number" that takes the value of 5
+number <- 5
+
+# it is TRUE that number is not equal to 3
+number != 3
+
+# it is FALSE that number is greater than 7
+number > 7
+
+# it is FALSE that number is not equal to 3 AND that number is greater than 7
+number !=3 & number > 7
+
+# however, it is TRUE that number is not equal to 3 and
+# that number is greater than 4
+number !=3 & number > 4
+```
+
+## Logical Statements Cont. 
+- `|` means "OR" in R. Use it to return true if one of the conditions specified in the or statement is true. 
+
+```{r}
+#| eval: true
+#| echo: true
+# it is TRUE that 5 is not equal to 3
+5 != 3
+
+# it is FALSE that 5 is greater than 7
+5 > 7
+
+# even though 5 is not greater than 7, 5 is not equal to 3. 
+# therefore, it is 
+```
+
+
+
+
+## References
+
+::: {#refs}
+:::
+subtitle: "Statistics for Political Science"
+format: clean-revealjs
+html-math-method:
+  method: mathjax
+  url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+author:
+  - name: Mason Auten
+    email: mason.auten@vanderbilt.edu
+    affiliations: Vanderbilt University
+  - name: Patrick Buhr
+    email: patrick.buhr@Vanderbilt.Edu
+    affiliations: Vanderbilt University
+date: today
+self-contained: true
+bibliography: skills_camp.bib
+---
+
+```{r}
+#| echo: false
+#| eval: true
+#| output: false
+
+pacman::p_load(tidyverse)
+```
+
+
+# Getting Started with R
+
+## Work Space
+
+When you open RStudio, you will see four different windows:
+
+*  **Console**: where you will enter code, and where the outputs appear. You can type into it directly and press Enter to see the result.
+*  **R Script**: Your script is where you keep a record of your work. As a general rule, you should always write your code here first before executing it in the console
+*   **Environment and History:** The environment tab shows all of the objects that you currently have loaded into your workspace. The history tab shows a list of commands used so far.
+*   **Files, plots, packages, help, viewer and presentation:** The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs.
+
+
+## Working Directories
+
+The first thing to do is to set a working directory. Two broad ways to do this:
+
+
+1. Manually
+2. Project: Based
+
+## Working Directories: Manually
+
+- First, we want to check where the working directory is. There are two different commands that capture the same objective.
+
+```{r}
+#| echo: true
+#| eval: true
+
+getwd()
+
+here::here()
+
+```
+
+* Next, we want to set that working directory 
+
+
+```{r}
+#| echo: true
+#| eval: false
+
+setwd("C:/Users/patri/OneDrive/Documents/MathCamp")
+```
+
+## Working Directories: Project Based
+
+Working from a project allows you to set your working directory automatically.
+
+::: {.incremental}
+
+1. Click the project button
+2. Select a new directory, then new project
+3. Create the folder
+
+:::
+
+## Loading Packages
+
+* The strength of R is in the community. 
+* You'll frequently be loading packages that extend the baseline functions of R. 
+* Installation only needs to be done once
+
+```{r}
+#| eval: false
+#| echo: true
+install.packages("tidyverse")
+
+```
+
+* However, we need to load packages before each use
+  
+
+```{r}
+#| eval: false
+#| echo: true
+library(tidyverse)
+
+```
+- Every R script should start by loading your packages
+
+## Executing Code
+
+*  All scripts have active and inactive lines. Active lines are executable.
+ *  On Mac, press COMMAND+RETURN
+ *  On PC, press CTRL+RETURN
+
+
+```{r}
+#| eval: true
+#| echo: true
+2+2
+
+```
+
+* While R is flexible and powerful, it can also do simple calculations
+
+```{r}
+#| eval: true
+#| echo: true
+2+2
+6-2
+250*5
+
+```
+
+## Executing Code Cont. 
+* Commenting out code will cause it to be skipped
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+## Commenting out lines means that R won't try to run that line
+## Notice how R skips over this line? 
+3^2
+```
+
+* Comment. Your. Code. 
+ * It saves future you and future reviewers headaches
+
+## Objects and Functions 
+
+* R is a vector-based language. 
+* We can store values as "objects"
+
+```{r}
+#| eval: false
+#| echo: true
+
+NAME <- VALUE
+```
+
+* Any of the previous calculations could be stored as objects
+
+```{r}
+#| eval: true
+#| echo: true
+
+add_obj <- 4+4 
+mult_obj <- 250*5
+```
+
+* Names of objects are case sensitive
+ * Where a space would go, try using `.` or ` _` instead. 
+
+## Objects and Functions Cont. {.scrollable}
+
+* To print the values of the objects, we simply list them 
+
+```{r}
+#| eval: true
+#| echo: true
+
+add_obj 
+mult_obj 
+```
+
+* For large vectors, we can also specify how many of the results are printed
+
+```{r}
+#| eval: true
+#| echo: true
+
+# With large objects, it helps to tell it how many values you want printed
+
+mult_obj  %>% 
+head(10)
+```
+
+## Objects and Functions Cont. {.scrollable}
+* To see all objects in your working environment: 
+
+```{r}
+#| eval: true
+#| echo: true
+
+ls()
+
+```
+
+* To remove a specific object 
+
+```{r}
+#| eval: true
+#| echo: true
+rm(add_obj)
+
+# Or remove all objects with rm(list=ls())
+```
+
+* Objects in R are separated into "classes"
+ * Classes include: character, numeric, vector, factor, matrix, list, dataframe, and so on. 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+class(mult_obj)
+```
+
+## Objects and Functions Cont. {.scrollable}
+
+* Again, R is a vector-based language
+ * We work with an $n \times 1$ collection of elements
+* Here is one way to create vectors
+
+```{r}
+#| eval: true
+#| echo: true
+
+ranking <- c(1,2,3,4,5)
+ranking
+class(ranking)
+
+```
+
+- We can create character-based objects and add information to it ex post
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+our_school <- "Vanderbilt"
+
+class(our_school)
+
+sec_schools <- c(our_school, "University of Florida", "UT Austin", "Georgia", "Texas A&M")
+sec_schools
+class(sec_schools)
+
+```
+
+## Objects and Functions Cont. {.scrollable}
+- We can then check the length of this particular vector 
+
+```{r}
+#| eval: true
+#| echo: true
+length(ranking)
+
+length(sec_schools)
+```
+
+## Objects and Functions Cont. {.scrollable}
+- Each element of a vector must be of the same class
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+class(ranking)
+
+class(sec_schools)
+
+mixed_vector <- c(ranking, sec_schools)
+
+mixed_vector
+
+class(mixed_vector)
+```
+
+## Data Frames{.scrollable}
+
+- Most functions we use in R utilize dataframes
+- Dataframes do not have to be of the same class
+ - But each element in a column should be of the same column 
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+sec_rankings <- cbind.data.frame(ranking, sec_schools)
+
+class(sec_rankings)
+
+sec_rankings
+
+```
+
+## Data Frames Cont. {.scrollable}
+- The dataframe is treated as a type of matrix, and we can access specific elements like so 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+sec_rankings[2,2]
+
+# Another way to do it
+sec_rankings[2,"sec_schools"]
+```
+
+- Access a specific column like so 
+
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+sec_rankings$sec_schools
+```
+
+## Functions 
+
+- R functions are analogous to mathematical functions. They are a mapping from one set of values to another
+- Functions are made of three components [@wickham2019Advanced] 
+ 1. The arguments you use
+ 2. The body of code inside the function
+ 3. The structure of the data 
+- Calling a function `function(input)`
+
+
+```{r}
+#| eval: false
+#| echo: true
+
+
+?function()
+
+```
+
+
+## Mathematical Operators 
+
+- Let's go over some basic mathematical operators you'll use
+
+```{r}
+#| eval: true
+#| echo: true
+
+# Square Root
+sqrt(144)
+
+
+# Natural Log
+log(10)
+
+# Exponent
+exp(3)
+
+```
+
+## Mathematical Operators Cont. 
+
+```{r}
+#| eval: true
+#| echo: true
+
+# sequence of numbers
+seq(from = 1, to = 5, by = 0.5)
+
+# R also has a shortcut for sequences of integers
+1:5
+
+# Repeating the same input many times
+rep(x = c(1, 2, 3), times = 3)
+
+
+```
+
+* We can store data as an object and use it in operations as well 
+
+```{r}
+#| eval: true
+#| echo: true
+numbers <- 1:5
+sum(numbers)
+```
+
+## Logical Statements
+
+- To write more advanced code, you'll want to get familiar with the way that R handles logical statements. 
+- Logical statements are used in settings where you want to use a TRUE/FALSE logic. 
+- `==` means "is exactly true." 
+
+```{r}
+#| eval: true
+#| echo: true
+
+2 == 2
+
+2 == 3
+
+2 == "Joe Biden"
+
+```
+
+## Logical Statements Cont. 
+- To say that a particular object is not equal to another, we use `!=`
+
+```{r}
+#| eval: true
+#| echo: true
+
+# it is FALSE that 2 is not equal to 2
+2 != 2
+
+# it is TRUE that 2 is not equal to 3
+2 != 3
+```
+
+## Logical Statements Cont. 
+- We can also use strict inequalities and weak inequalities 
+- Here are some examples of strict inequalities: 
+
+```{r}
+#| eval: true
+#| echo: true
+
+# 3 is greater than 2
+3 > 2
+
+# 3 is not less than 2
+3 < 2
+
+# 2 is less than 3
+2 < 3
+
+```
+
+## Logical Statements Cont.
+```{r}
+#| eval: true
+#| echo: true
+
+# 3 is greater than 2
+3 > 2
+
+# 3 is not less than 2
+3 < 2
+
+# 2 is less than 3
+2 < 3
+
+```
+
+
+## Logical Statements Cont. 
+
+- We can use weak inequalities by adding a `=` in front of or behind `>`
+
+```{r}
+#| eval: true
+#| echo: true
+
+
+# it is FALSE that 3 is greater than 3
+3 > 3
+
+# but it is TRUE that 3 is greater than or equal to 3
+3 >= 3
+```
+
+- Adding a `!` before your logical statement creates a negation, turning TRUE into FALSE and vice versa. 
+
+```{r}
+#| eval: true
+#| echo: true
+
+# it is FALSE that 2 is greater than 3
+2 > 3
+
+# but it is TRUE that 2 is NOT greater than 3
+!(2 > 3)
+
+
+```
+
+## Logical Statements Cont. 
+
+- We can combine these operators to create compound logical statements. 
+- R returns true if and only if every condition is true
+- Specify multiple conditions using the `&` symbol.
+
+## Logical Statements Cont. 
+- Example:
+```{r}
+#| eval: true
+#| echo: true
+
+# creating an object called "number" that takes the value of 5
+number <- 5
+
+# it is TRUE that number is not equal to 3
+number != 3
+
+# it is FALSE that number is greater than 7
+number > 7
+
+# it is FALSE that number is not equal to 3 AND that number is greater than 7
+number !=3 & number > 7
+
+# however, it is TRUE that number is not equal to 3 and
+# that number is greater than 4
+number !=3 & number > 4
+```
+
+## Logical Statements Cont. 
+- `|` means "OR" in R. Use it to return true if one of the conditions specified in the or statement is true. 
+
+```{r}
+#| eval: true
+#| echo: true
+# it is TRUE that 5 is not equal to 3
+5 != 3
+
+# it is FALSE that 5 is greater than 7
+5 > 7
+
+# even though 5 is not greater than 7, 5 is not equal to 3. 
+# therefore, it is 
+```
+
+
+
+
+## References
+
+::: {#refs}
+:::
