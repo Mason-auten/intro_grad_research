@@ -270,7 +270,7 @@ head(untidy_election_data)
 ## Data Structure
 
 ::: callout-important
--   In wide data, each row is an observation and each variable is a column. Observations should not be repeated.\
+-   In wide data, each row is an observation, and each variable is a column. Observations should not be repeated.\
 -   In long data, values often repeat across rows, and data is stored in a more compact, stacked format. One column identifies the unit (e.g., `state`), another specifies the variable name (e.g., `variable`), and a third holds the corresponding value.
 :::
 
@@ -283,14 +283,14 @@ head(untidy_election_data)
 ```{r}
 
 long_data <- untidy_election_data %>%
-  select(!name) %>%
-  pivot_longer(cols = starts_with(c("presidentialvoteshare", "contributions")))
+ select(!name) %>%
+ pivot_longer(cols = starts_with(c("presidentialvoteshare", "contributions")))
 long_data
 ```
 :::
 
 ::: column
--   Then, we'll seperate out the names of the colums into variable.
+-   Then, we'll separate out the names of the columns into a variable.
 
 ```{r}
 long_data <- separate(long_data,
@@ -301,4 +301,99 @@ long_data
 :::
 :::::
 
+## `pivot_wide()`
+
+-   Here, we do the opposite and take a key column, a value column and make each key a column of its own
+
+```{r}
+clean_election_data <- pivot_wider(long_data,
+                                   names_from = "var",
+                                   values_from = "value")
+clean_election_data
+```
+
 # Merging Data
+
+## Matching Keys
+
+-   When we merge data, we want the keys to match and for R to treat values appropriately
+
+```{r}
+
+clean_election_data$year <- as.numeric(clean_election_data$year) # Tell R to treat year as a numeric variable.
+clean_election_data <- clean_election_data %>%
+ mutate(year = year + 1) %>%
+ rename(icpsr = ICPSR2) # Make sure the names match. 
+
+```
+
+## Example
+
+-   We use the dyplr function `join` to merge the data now
+
+```{r}
+congress_data <- left_join(congress_data, clean_election_data, by = c("icpsr", "year"))
+```
+
+## Principles of Merging
+
+-   There are two types of joins:
+ 1.  Mutating joins, which create new variables based on matching rows or observations.
+ 2.  Filtering joins that filter out data.
+
+::: callout-tip
+There are several different types of joins that all have their uses. When using filtering joins, we highly recommend using `left_join()`. You have the data you are starting with on the left-hand side, and you are adding columns to it from another data set on the right-hand side.
+:::
+
+## Messy Example
+
+-   Let's take a messy example and walk through it together
+-   Suppose we want to answer a question about the relationship between intrastate conflict and economics, and we have one dataset for each variable.
+
+```{r}
+#| output: false
+
+library(pacman)
+
+## A useful function for loading and updating packages. 
+pacman::p_load(
+ tidyverse,
+ peacesciencer, ## IR friends...you will love this package
+ lubridate ## needed for fixing dates
+)
+```
+
+## Create Data
+
+-   We'll use the package we loaded to create data
+
+```{r}
+war <- create_stateyears(system = "cow") %>% 
+ add_cow_wars(type = "intra", intratype = "all")
+ ## always inspect the name of your variables
+
+#colnames(war)
+
+
+econ <- create_stateyears(system = "cow") %>% 
+ add_sim_gdp_pop()
+
+#colnames(econ) 
+```
+
+## Merge Data
+
+-   After examining the column names, we join them together and examine the data
+-   Our dependent variable is on the left-hand side, and we add economic data to it.
+-   Because the key variables are named the same, I did not need to specify the join keys.
+    -   Rename before you join!
+
+```{r}
+data <- left_join(war, econ)
+
+## Always look at your data, here we select the variables we want and filter out where there was no intrastate war
+data %>% 
+  filter(!is.na(wartype)) %>% 
+ select(cw_name, year, wartype,sd_pwtrgdp) %>% 
+  head(10)
+```
