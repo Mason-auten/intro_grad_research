@@ -1,6 +1,6 @@
 ---
 title: "Introduction"
-subtitle: "Statistics for Political Science"
+subtitle: "Introduction to Graduate Research"
 format: 
   clean-revealjs:
     echo: true
@@ -247,3 +247,25 @@ If you overwrite your original dataset, `summarize()` will reduce the dimensions
 # 10 Minute Break
 
 ## Tidying Data
+
+- Let's go over how to tidy data that isn't immediately ready to use. 
+
+
+```{r}
+untidy_election_data <- read_csv("untidy_election_data.csv")
+
+head(untidy_election_data)
+```
+
+- Each row or observation of `untidy_election_data` is a Member of Congress. 
+
+## `pivot()`
+
+- We can take data and pivot it either wider or longer 
+
+
+::: {.callout-important}
+- In wide data, each row is an observation and each variable is a column. Observations should not be repeated.  
+- In long data, values often repeat across rows, and data is stored in a more compact, stacked format. One column identifies the unit (e.g., `state`), another specifies the variable name (e.g., `variable`), and a third holds the corresponding value. 
+:::
+

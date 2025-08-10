@@ -1,6 +1,6 @@
 ---
 title: Typesetting
-subtitle: "Quarto, LaTeX, and Notation"
+subtitle: "Introduction to Graduate Research"
 format: clean-revealjs
 html-math-method:
   method: mathjax
