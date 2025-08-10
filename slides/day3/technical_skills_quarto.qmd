@@ -210,11 +210,128 @@ bibliography: skills_camp.bib
 
 # Math Notation
 
-# Bibliography Managment
+## Introduction
 
-## Clever Title
+- Whether you use LaTeX or Quarto, they both use the same LaTeX math notation. 
+- You'll need to know this notation for problem sets and specifying the equations you use in research papers. 
+- In general, surround any math object with `$x$` to have it render correctly. 
+- Use `$$x$$` to have the mathematical object show on its own line. 
+- We can also wrap equations in specific LaTeX formats to have them display nicely. 
 
--   Remember, let the computer do the work!
+
+## Example: Code
+
+```latex
+$$
+\begin{aligned}
+A + B = C \\
+A - C = B
+\end{aligned}
+$$
+```
+
+## Example: Rendered 
+
+$$
+\begin{aligned}
+A + B = C \\
+A - C = B
+\end{aligned}
+$$
+
+## Example: Code
+- Moving to more useful examples 
+
+```latex
+$$
+\begin{aligned}
+E[X] &= \sum_{i=1}^n x_i p_i \\
+\mathrm{Var}(X) &= E\big[(X - E[X])^2\big] \\
+P(A \cap B) &= P(A) \cdot P(B) \\
+\hat{\beta} &= (X^T X)^{-1} \cdot X^T Y
+\end{aligned}
+$$
+```
+
+## Example Display
+
+$$
+\begin{aligned}
+E[X] &= \sum_{i=1}^n x_i p_i \\
+\mathrm{Var}(X) &= E\big[(X - E[X])^2\big] \\
+P(A \cap B) &= P(A) \cdot P(B) \\
+\hat{\beta} &= (X^T X)^{-1} \cdot X^T Y
+\end{aligned}
+$$
+
+## Notation References {#sec-note .scrollable}
+
+<details>
+<summary><strong>Mathematical Notation Reference</strong></summary>
+| Name            | Command                | Example                   | Result        |
+|-----------------|------------------------|---------------------------|---------------|
+| Superscript     | `^{}`                  | `x^{2}`                    | $x^{2}$       |
+| Subscript       | `_{}`                  | `x_{i}`                    | $x_{i}$       |
+| Hat             | `\hat{}`               | `\hat{x}`                  | $\hat{x}$     |
+| Bar             | `\bar{}`               | `\bar{x}`                  | $\bar{x}$     |
+| Fraction        | `\frac{}{}`            | `\frac{1}{2}`               | $\frac{1}{2}$ |
+| ×               | `\times`               | `2 \times 3 = 6`            | $2 \times 3 = 6$ |
+| ÷               | `\div`                 | `6 \div 3 = 2`              | $6 \div 3 = 2$ |
+| ≠               | `\neq`                 | `1+1 \neq 3`                | $1+1 \neq 3$  |
+| ≤               | `\leq`                 | `x \leq 5`                  | $x \leq 5$    |
+| ≥               | `\geq`                 | `y \geq 10`                 | $y \geq 10$   |
+| ±               | `\pm`                  | `1 \pm 0.5`                 | $1 \pm 0.5$   |
+| →               | `\rightarrow`          | `n \rightarrow \infty`      | $n \rightarrow \infty$ |
+| ⟂               | `\perp`                 | `A \perp B`                  | $A \perp B$   |
+| Square Root     | `\sqrt{}`               | `\sqrt{16}`                  | $\sqrt{16}$   |
+| Summation       | `\sum`                  | `\sum_{i=1}^{n} x_i`         | $\sum_{i=1}^{n} x_i$ |
+| Product         | `\prod`                 | `\prod_{i=1}^{n} x_i`        | $\prod_{i=1}^{n} x_i$ |
+| ∞               | `\infty`                | `\lim_{x \to \infty} f(x)`   | $\lim_{x \to \infty} f(x)$ |
+| α               | `\alpha`                | `\alpha + \beta`             | $\alpha + \beta$ |
+| β               | `\beta`                 | `\beta_1 x`                  | $\beta_1 x$  |
+| χ               | `\chi`                  | `\chi^2`                     | $\chi^2$     |
+| ε               | `\epsilon`              | `\epsilon > 0`               | $\epsilon > 0$ |
+| λ               | `\lambda`               | `\lambda_{max}`              | $\lambda_{max}$ |
+| μ               | `\mu`                   | `\mu = 0`                    | $\mu = 0$    |
+| ω               | `\omega`                | `\omega t`                   | $\omega t$   |
+| π               | `\pi`                   | `\pi r^2`                    | $\pi r^2$    |
+| σ               | `\sigma`                | `\sigma^2`                   | $\sigma^2$  |
+| τ               | `\tau`                  | `\tau = 1`                   | $\tau = 1$  |
+| Δ               | `\Delta`                | `\Delta y`                   | $\Delta y$  |
+| 𝒩               | `\mathcal{N}`           | `\mathcal{N}(\mu, \sigma^2)` | $\mathcal{N}(\mu, \sigma^2)$ |
+
+
+
+</details>
+
+<details>
+<summary><strong>LaTeX Fonts</strong></summary>
+
+| Name           | Command     | Example                  | Result  |
+|----------------|-------------|--------------------------|---------|
+| Bold           | `\mathbf{}` | `\mathbf{x^{2}}` | $\mathbf{x^{2}}$ |
+| Blackboard Bold| `\mathbb{}` | `\mathbb{E}` | $\mathbb{E}$ |
+
+</details>
+
+
+<!-- 
+# Bibliography Management
+
+## Principle 2: Let the Computer Do the Work -->
+
+<!-- 
+-  Why use software to manage your references? 
+ -  Let the computer do the work! -->
+
+## Takeaways
+
+- You'll need a little of both LaTeX and Quarto for upcoming problem sets. 
+ - Mason tends to use Quarto with LaTeX math and packages. 
+ - Patrick and many others in the department use primarily LaTeX for its flexibility while using Quarto for slides or other uses. 
+- The primary tool of use is up to you, but picking one and getting familiar with it will significantly help future you. 
+- Regardless, learning LaTeX math will make typing equations much easier. 
+- Consult the references folder on GitHub for templates of both types of documents. 
 
 ## References
 
