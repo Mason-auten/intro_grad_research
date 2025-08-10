@@ -1,6 +1,6 @@
 ---
 title: Git and Version Control
-subtitle: "Statistics for Political Science"
+subtitle: "Introduction to Graduate Research"
 format: clean-revealjs
 html-math-method:
   method: mathjax
