@@ -1,6 +1,6 @@
 ---
-title: Quarto and Typesetting
-subtitle: "Statistics for Political Science"
+title: Typesetting
+subtitle: "Quarto, LaTeX, and Notation"
 format: clean-revealjs
 html-math-method:
   method: mathjax
@@ -19,19 +19,25 @@ bibliography: skills_camp.bib
 
 # Introduction and Roadmap
 
+## Useful Resources
+- These slides are designed for you to come back to if you need help with some commands. 
+ - While not definitive, they should still be useful in the long run. 
+- [[Cheat Sheet]{.button}](#sec-cheat)
+- [[Notation Reference]{.button}](#sec-note)
+
 ## Introduction
 
 :::::: columns
 ::: column
 -   In Political Science, people tend to use one of two programs:
-    1.  LaTeX
-    2.  Quarto
+ 1. LaTeX
+ 2. Quarto
 -   These tools are optional, but they will significantly improve your workflow and marketability.
--   Our advice: Pick one and learn it. Which one you pick is up to you.
+-   Our advice: Pick one and learn it. Which one you pick is up to you. However, you'll need to know a little of both for upcoming problem sets. 
 :::
 
 :::: column
-**Why Can't I just Use Word?**
+**Why Can't I Use Word?**
 
 ::: incremental
 -   They are more flexible and can be automated more than programs like Word.
@@ -44,33 +50,34 @@ bibliography: skills_camp.bib
 
 ## Roadmap
 
-1.  Quarto
-2.  LaTex
-3.  Math notation
-4.  Bibliography Tools
+1. Quarto
+2. LaTeX
+3. Math notation
 
 # Quarto
 
 ## What is Quarto?
 
--   Quarto provides a way to combine code, results and prose all in one document [@wickham2019Advanced].
+-   Quarto provides a way to combine code, results, and prose all in one document [@wickham2019Advanced].
 
--   Quarto uses a markdown syntax. If you've used Rmarkdown or Obsidian, you're already familiar with this syntax.
+-   Quarto uses a Markdown syntax. If you've used Rmarkdown or Obsidian, you're already familiar with this syntax.
 
-    -   It's designed to be readable and easy to use.
+ -   It's designed to be readable and easy to use.
 
 -   You can use R, Python, Julia, and more types of code all in the same document.
 
 -   You then render it to PDF, HTML, or a Word format.
 
--   You can make manuscripts, websites, presentations or more!
+-   You can make manuscripts, websites, presentations, or more!
+
+-   You're also going to have to use it for homework...
 
 ## Setting Up Quarto
 
--   If you're still traumatized from trying to set up Git, rest assured this process is much easier.
+-   If you're still traumatized from trying to set up Git, rest assured, this process is much easier.
 
-    1.  [Download Quarto](https://quarto.org/docs/get-started/).
-    2.  Choose your interface: RStudio, Positron, VS Code ect.
+ 1. [Download Quarto](https://quarto.org/docs/get-started/).
+ 2. Choose your interface: RStudio, Positron, VS Code, etc.
 
 -   That's it!
 
@@ -78,9 +85,9 @@ bibliography: skills_camp.bib
 
 -   A Quarto file is a plain text file that ends in .qmd.
 -   It is composed of three parts [@wickham2019Advanced]:
-    1.  YAML: Which tells the document how to behave and look.
-    2.  Code that you use throughout from LaTex to Python that is usable in the paper.
-    3.  Text
+ 1. YAML: Which tells the document how to behave and look.
+ 2. Code that you use throughout, from LaTeX to Python, that is usable in the paper.
+ 3. Text
 
 ## Example
 
@@ -101,28 +108,28 @@ head(mtcars) |> knitr::kable()
 #| fig-pos: "h"
 
 missing_dv <- dat %>%
-  select(duration_months) %>%
-  miss_var_summary() 
+ select(duration_months) %>%
+ miss_var_summary() 
 
 ## combine with summary data from skimr
 dv_table <- dat %>%
-  select(duration_months) %>%
-  skim_without_charts() %>%
-  select(skim_variable, numeric.mean, numeric.sd, numeric.p0, numeric.p50,numeric.p100) %>%
-  left_join(missing_dv , by = c("skim_variable" = "variable")) %>%
-  mutate(
-    Variable = case_when(
-      Variable == "duration_months" ~ "duration_months",
-      TRUE ~ Variable
-    )
-  ) %>%
-  select(Variable, `Missing %`, Mean, SD, Min, Median, Max)
+ select(duration_months) %>%
+ skim_without_charts() %>%
+ select(skim_variable, numeric.mean, numeric.sd, numeric.p0, numeric.p50,numeric.p100) %>%
+ left_join(missing_dv , by = c("skim_variable" = "variable")) %>%
+ mutate(
+ Variable = case_when(
+ Variable == "duration_months" ~ "duration_months",
+ TRUE ~ Variable
+ )
+ ) %>%
+ select(Variable, `Missing %`, Mean, SD, Min, Median, Max)
 
 
 
 # show table in output
 dv_table%>%
-  knitr::kable()
+ knitr::kable()
 ```
 ````
 
@@ -130,12 +137,12 @@ dv_table%>%
 
 ## Using Quarto
 
--   Papers are written pretty much as normal.
+-   Papers are written as normal.
 -   Here are a few simple codes you'll use:
-    -   `#` for different heading levels
-    -   `*word*` to italicize something.
-    -   And insert a reference with `[@ref-key].`
-    -   Use Markdown tables and forget that LaTex tables exist.
+ -   `#` for different heading levels
+ -   `*word*` to italicize something.
+ -   And insert a reference with `[@ref-key].`
+ -   Use Markdown tables and forget that LaTeX tables exist.
 
 ## Using Quarto Cont.
 
@@ -143,21 +150,20 @@ dv_table%>%
 
 -   When using code cells, there are multiple commands that you'll want to use
 
-## Cheat Sheet
+## Cheat Sheet {#sec-cheat}
 
--   Here is a useful cheatsheet you might use
+-   Here is a useful cheat sheet that should help you with some of those cell commands you'll need when making presentations for Stats I and Stats II.
 
-````         
-```r
-# Quarto chunk options — copy this chunk and edit.
+::: {#tip-cheat .callout-tip title="Cheat Sheet"}
+```         
+
 # Lines starting with `#|` are options; trailing comments explain them.
 
-#| label: demo-cheatsheet         # name for cross-refs (use @demo-cheatsheet)
+#| label: demo-cheatsheet         # name for cross-refs
 #| echo: true                     # show code in the output
 #| eval: false                    # don't run code 
 #| warning: false                 # suppress R warnings
 #| message: false                 # suppress error messages
-#| error: true                    # allow errors without 
 #| cache: true                    # reuse results if inputs unchanged (speed up)
 #| output: true                  #  show slide output
 #| fig-cap: "A figure caption"    # caption (enables figure numbering)
@@ -166,16 +172,12 @@ dv_table%>%
 #| fig-align: center              # left/center/right
 #| out-width: "70%"               # scale displayed figure
 #| tbl-cap: "A table caption"     # caption for tables (numbering + cross-refs)
-
-# Example code 
-plot(conflict_data)          
-
 ```
-````
+:::
 
 ## Yaml
 
--   YAML just tells your document what it is supposed to be.
+-   YAML tells your document what it is supposed to be.
 
 ``` yaml
 ---
@@ -199,14 +201,80 @@ bibliography: skills_camp.bib
 
 ## Slides
 
--   You can make Beamer or revealjs slides in Quarto. These slides are revealjs.
--   Simply use `##` to make a new slide.
--   Use the code above to tell it what code you want to run and how.
--   Present
+-   You can make Beamer or revealjs slides in Quarto. These slides are reveal.js.
+- Use `##` to make a new slide.
+-   Use the code in @sec-cheat to tell it what code you want to run and how.
+-   Present!
 
-# LaTex
+## Tips for Presenting Data in Quarto
+
+-   Make sure output is readable and well-formatted.
+
+-   For regression results, present a single table with columns per regression instead of multiple single-column tables.
+
+-   Avoid printing the entire dataset in slides or problem sets. Print off a section of your results. Use:
+
+    ``` r
+    head(data)
+    tail(data)
+    dplyr::sample_n(data, size = 10)
+    ```
+
+# LaTeX
+
+## Introduction
+
+-   Quarto may feel like coding, but LaTeX is much closer to coding.
+-   It uses a language to produce nice, stylized PDFs.
+-   LaTeX has been around for a long time and is the standard in Political Science.
+-   You have more control over your document and can create tables, figures, and reference pages that are much more customizable than Word.
+-   Like Quarto, you can create slides, articles, or books with LaTeX. 
+-   Most of what follows is a distilled version of [Nick Bednar's great introduction to LaTeX](https://nbednar.com/wp-content/uploads/2021/08/latex_lesson.pdf). If you continue with LaTeX, I recommend you take a look at it.
+
+## Editors
+
+There are several different editors that use LaTeX.
+
+-   Overleaf is the most popular and allows you to collaborate on documents together.
+-   TeXworks is also fairly popular.
+-   LyX has spell check and is more intuitive for some people.
+-   VS Code has an extension that allows you to edit LaTeX documents in it.
+
 
 ## Preamble
+
+
+- The preamble is everything before `\begin{document}` in a LaTeX file.
+- It tells LaTeX how to format your document and which packages to load.
+- Packages are add-ons that give LaTeX extra features (e.g., handling images, math, page layout, game trees, and so on).
+
+## Example
+
+```latex
+\documentclass[12pt]{article} % Type of document, font size
+
+\usepackage[utf8]{inputenc}   % Handle special characters
+\usepackage{graphicx}         % Include images
+\usepackage{amsmath}          % Better math formatting
+
+\title{My First LaTeX Document}
+\author{Your Name}
+\date{\today}
+\begin{document}
+ % your content like 
+\section{State Building and Conflict}
+The most influential theory on the formation of the state is the bellicist theory 
+\parencite{tilly1990}. 
+
+\end{document}
+
+```
+
+## General Overview Continued
+
+- LaTeX has many options and is highly customizable. There's too much to put into a few slides and teach you all of it. 
+- Like Quarto, you can attach a .bib file and have LaTeX compile your reference page for you automatically. 
+- You'll want to know some LaTeX commands regardless, as they are used for typing equations in both LaTeX and Quarto. 
 
 # Math Notation
 
