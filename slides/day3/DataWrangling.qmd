@@ -4,6 +4,7 @@ subtitle: "Introduction to Graduate Research"
 format: 
   clean-revealjs:
     echo: true
+    scrollable: true
   html-math-method:
     method: mathjax
     url: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
@@ -19,6 +20,7 @@ self-contained: true
 ---
 
 ## Loading in Data
+
 ```{r}
 #| echo: false
 #| message: false
@@ -28,6 +30,7 @@ library("tidyverse")
 options(tibble.print_min = 5,
         tibble.max_extra_cols = 3)
 ```
+
 :::::: columns
 ::: {.column width="50%"}
 1.  Navigate to your working directory.
@@ -51,7 +54,7 @@ library(tidyverse)
 
 ```{r}
 #| echo: TRUE
-congress_data <- read_csv("congress_data.csv")
+congress_data <- read_csv(here::here("inst", "congress_data.csv"))
 
 print(congress_data)
 ```
@@ -148,11 +151,12 @@ You may also see the pipe written as `|>` for R's build-in function. Both are es
 
 ## `mutate()`
 
-We can change or create new variables using the `mutate()` function. 
+We can change or create new variables using the `mutate()` function.
 
 We can create new variables that are transformations of existing variables.
 
 For example, we can create a variable for a legislator's age as the difference between their birth year and the current year:
+
 ```{r}
 congress_data <- congress_data %>%
   mutate(age = year - born)
@@ -162,11 +166,12 @@ congress_data %>% select(born, year, age)
 
 ## `mutate()`
 
-We can change or create new variables using the `mutate()` function. 
+We can change or create new variables using the `mutate()` function.
 
-We can create new variables using an `ifelse()` statement. 
+We can create new variables using an `ifelse()` statement.
 
-For example, maybe we want to create a new categorical variable for gender. 
+For example, maybe we want to create a new categorical variable for gender.
+
 ```{r}
 congress_data <- congress_data %>%
   mutate(gender_binary = if_else(female == 1, "Female", "Male"))
@@ -178,7 +183,8 @@ congress_data %>% select(female, gender_binary)
 
 If you have more than one category, `ifelse()` can become unwieldy. This is a great use for the `case_when()` function.
 
-For example, maybe we want to create a new categorical variable for race. 
+For example, maybe we want to create a new categorical variable for race.
+
 ```{r}
 congress_data <- congress_data %>%
   mutate(race = case_when(
@@ -189,8 +195,9 @@ TRUE ~ "White"
 ))
 ```
 
-:::{.callout-warning}
+::: callout-warning
 ## Dangers of `ifelse()` and `case_when()`
+
 Who else gets coded as "White" here?
 :::
 
@@ -215,11 +222,13 @@ congress_data %>% select(age, gender_binary, race)
 ## Summaries by group
 
 You can create summaries of different variables using the `summarize()` function.
+
 ```{r}
 congress_data %>% summarize(average_effectiveness = mean(les, na.rm=T))
 ```
 
 Summaries are most useful when combined with `group_by()` which divides the sample into different groups and then performs subgroup analysis.
+
 ```{r}
 congress_data %>%
   group_by(majority) %>%
@@ -238,34 +247,58 @@ congress_data %>%
             average_effectiveness = mean(les, na.rm=T))
 ```
 
-
-:::{.callout-warning}
+::: callout-warning
 ## Summaries
-If you overwrite your original dataset, `summarize()` will reduce the dimensions of your dataset to only what you include.  
+
+If you overwrite your original dataset, `summarize()` will reduce the dimensions of your dataset to only what you include.
 :::
 
 # 10 Minute Break
 
 ## Tidying Data
 
-- Let's go over how to tidy data that isn't immediately ready to use. 
-
+-   Let's go over how to tidy data that isn't immediately ready to use.
 
 ```{r}
-untidy_election_data <- read_csv("untidy_election_data.csv")
+untidy_election_data <- read_csv(here::here("inst", "untidy_election_data.csv"))
 
 head(untidy_election_data)
 ```
 
-- Each row or observation of `untidy_election_data` is a Member of Congress. 
+-   Each row or observation of `untidy_election_data` is a Member of Congress.
 
-## `pivot()`
+## Data Structure
 
-- We can take data and pivot it either wider or longer 
-
-
-::: {.callout-important}
-- In wide data, each row is an observation and each variable is a column. Observations should not be repeated.  
-- In long data, values often repeat across rows, and data is stored in a more compact, stacked format. One column identifies the unit (e.g., `state`), another specifies the variable name (e.g., `variable`), and a third holds the corresponding value. 
+::: callout-important
+-   In wide data, each row is an observation and each variable is a column. Observations should not be repeated.\
+-   In long data, values often repeat across rows, and data is stored in a more compact, stacked format. One column identifies the unit (e.g., `state`), another specifies the variable name (e.g., `variable`), and a third holds the corresponding value.
 :::
 
+## `pivot_long()`
+
+::::: columns
+::: column
+-   Let's take that data and pivot it longer.
+
+```{r}
+
+long_data <- untidy_election_data %>%
+  select(!name) %>%
+  pivot_longer(cols = starts_with(c("presidentialvoteshare", "contributions")))
+long_data
+```
+:::
+
+::: column
+-   Then, we'll seperate out the names of the colums into variable.
+
+```{r}
+long_data <- separate(long_data,
+                      col = "name",
+                      into = c("var", "year"))
+long_data
+```
+:::
+:::::
+
+# Merging Data
