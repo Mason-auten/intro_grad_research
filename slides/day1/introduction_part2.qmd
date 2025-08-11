@@ -15,6 +15,7 @@ author:
 date: today
 self-contained: true
 bibliography: skills_camp.bib
+scrollable: true
 ---
 
 ```{r}
@@ -390,10 +391,12 @@ sec_rankings$sec_schools
 -   Functions are made of three components [@wickham2019Advanced]
 
 1.  The arguments you use
+
 2.  The body of code inside the function
+
 3.  The structure of the data
 
--   Calling a function `function(input)`
+    Calling a function `function(input)`
 
 ```{r}
 #| eval: false

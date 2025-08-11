@@ -133,6 +133,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -281,7 +282,7 @@ Patrick Buhr
 <li>If someone else has your data and code, they must be able to replicate your same results.</li>
 </ul>
 </section>
-<section id="debugging-and-asking-for-help" class="slide level2">
+<section id="debugging-and-asking-for-help" class="slide level2 scrollable">
 <h2>Debugging and Asking for Help</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -328,7 +329,7 @@ Patrick Buhr
 <li><strong>Files, plots, packages, help, viewer and presentation:</strong> The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs.</li>
 </ul>
 </section>
-<section id="working-directories" class="slide level2">
+<section id="working-directories" class="slide level2 scrollable">
 <h2>Working Directories</h2>
 <p>The first thing to do is to set a working directory. Two broad ways to do this:</p>
 <ol type="1">
@@ -358,7 +359,7 @@ Patrick Buhr
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/patri/OneDrive/Documents/MathCamp"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="working-directories-project-based" class="slide level2">
+<section id="working-directories-project-based" class="slide level2 scrollable">
 <h2>Working Directories: Project Based</h2>
 <p>Working from a project allows you to set your working directory automatically.</p>
 <ol type="1">
@@ -652,20 +653,18 @@ Patrick Buhr
 </div>
 </div>
 </section>
-<section id="functions" class="slide level2">
+<section id="functions" class="slide level2 scrollable">
 <h2>Functions</h2>
 <ul>
 <li>R functions are analogous to mathematical functions. They are a mapping from one set of values to another</li>
 <li>Functions are made of three components <span class="citation" data-cites="wickham2019Advanced">(<a href="#/references" role="doc-biblioref" onclick="">Wickham 2019</a>)</span></li>
 </ul>
 <ol type="1">
-<li>The arguments you use</li>
-<li>The body of code inside the function</li>
-<li>The structure of the data</li>
+<li><p>The arguments you use</p></li>
+<li><p>The body of code inside the function</p></li>
+<li><p>The structure of the data</p>
+<p>Calling a function <code>function(input)</code></p></li>
 </ol>
-<ul>
-<li>Calling a function <code>function(input)</code></li>
-</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="" aria-hidden="true" tabindex="-1"></a>?<span class="cf">function</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
