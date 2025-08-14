@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: "Data Wrangling"
 subtitle: "Introduction to Graduate Research"
 format: 
   clean-revealjs:
