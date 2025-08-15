@@ -16,30 +16,93 @@ author:
     affiliations: Vanderbilt University
 date: today
 self-contained: true
+bibliography: skills_camp.bib
 ---
 
 # Crash Course on Prompting
 
-- Think about how a LLM works. 
-- It tries to predict the next word in the sentence. 
-- We can think about it as a chain of conditional probabilities
-  - $P(w_n| w_1, w_2, .... w_{n - 1})$
-    - What is the probability that I should have word $w$ GIVEN proceeding words $w_{n-1}$. 
+## How It Works
+
+- Think about how an LLM works.
+- It tries to predict the next word in the sentence.
+- We can think about it as a chain of conditional probabilities:
+  - $P(w_n \mid w_1, w_2, \dots, w_{n-1})$
+    - What is the probability that the $n$-th word is $w_n$ **given** the preceding words $w_1, \dots, w_{n-1}$?
 
 ## Conditional Probabilities
 
-- LLMs are just a sequence of probabilities, which can always be expressed like this
+- LLMs are essentially sequences of probabilities, which can be expressed like a joint probability:
 
 $$
 \begin{aligned}
-P(w_1, w_2, \dots, w_n)= \\
-P(w_1) \, P(w_2 \mid w_1) \, P(w_3 \mid w_1, w_2) \cdots P(w_n \mid w_1, \dots, w_{n-1})\\
-= P(w_1) \prod_{k=2}^{n} P(w_k \mid w_1, \dots, w_{k-1})
+P(w_1, w_2, \dots, w_n)
+&= P(w_1)\,P(w_2 \mid w_1)\,P(w_3 \mid w_1, w_2)\cdots P(w_n \mid w_1, \dots, w_{n-1}) \\
+&= P(w_1)\prod_{k=2}^{n} P(w_k \mid w_1, \dots, w_{k-1})
 \end{aligned}
 $$
 
+## General Advice
+
+- Use AI as a complement, not a substitute, for learning.  
+- You are responsible for anything you turn in.  
+- If Chat gets it wrong, you get it wrong.
+- AI produces bullshit [@hicks2024ChatGPTBullshit].
+
+
 ## Practical Advice
 
-- We want to be specific when prompting Chat. 
-- Instead of "fix this code"
-- Try "I'm doing a data analysis project in political science. My dependent variable is war and my indepdent variable is economic activity. I want to graph the relationship between GDP and civil war occurence. Help me create a scatterplot that shows..."
+- Be specific when prompting Chat.
+- Instead of “fix this code,” try:
+  > I’m doing a data analysis project in political science. My dependent variable is war and my independent variable is economic activity. I want to graph the relationship between GDP and civil war occurrence. Help me create a scatter plot that shows...
+
+## Principles
+
+- Give it context.
+- Be precise ..avoid vague instructions.
+- Tell it to act as the role you need.
+- Break tasks into smaller steps.
+
+## Principles Cont.
+- Repeat and iterate.
+- Give Chat a better base to work from.
+- Try prompt chaining.
+
+## Chain Prompting
+
+- **What it is:** Breaking a complex request into smaller, logically ordered prompts, each building on the output of the last.
+- **Why it works:**  
+  - Forces the model to focus on one subtask at a time.  
+  - Reduces confusion and error propagation.  
+  - Lets you correct or refine before moving forward.
+
+## Chain Prompting Cont. 
+- **Example:**
+  1. "Summarize this article in three bullet points."
+  2. "Now, rewrite those bullet points in plain language for a public audience."
+  3. "Suggest three related research questions based on that summary."
+- **Tip:** Keep a consistent thread. Copy the relevant part of the last answer into the next prompt.
+
+
+
+## Chat Experiences {.incremental}
+
+::::: columns
+::: column
+**What’s it good at?**
+
+- Writing code
+- Answering questions about code
+:::
+
+::: column
+**What’s it not so good at?**
+
+- Critiquing your writing
+- Writing itself
+- Coming up with research topics
+- Being your therapist
+:::
+:::::
+
+## References 
+
