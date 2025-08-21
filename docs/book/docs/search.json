@@ -1,0 +1,102 @@
+[
+  {
+    "objectID": "getting_started.html",
+    "href": "getting_started.html",
+    "title": "1  Getting Started",
+    "section": "",
+    "text": "1.1 The R Workspace\nR is a programming language widely used in statistical analysis. Learning R can come with a steep learning curve, but once you get the hang of it there’s a nearly endless number of exciting things you can use it for. Time invested in deepening your R skills will never be time wasted.\nCode in R, and any other programming language, is a series of instructions to the computer. Usually, you will begin by either loading or creating objects, for example by importing a dataset you downloaded or defining a new variable. You’ll then do various things to or with those objects, for example removing a row from a matrix, running a regression using your dataset, or making a graph. This is done using functions; a huge number of functions are built into R, many more are available through thousands of packages, and you will also write your own functions.\nWhen you open RStudio, you will see four different windows:\nIf you don’t have a file set to open when you first open RStudio, you will likely only see three of these windows when RStudio first launches (Console, Environment and History, and Files, plots, packages, help, and viewer). Once you open a code file, the R Script window will also appear.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#the-r-workspace",
+    "href": "getting_started.html#the-r-workspace",
+    "title": "1  Getting Started",
+    "section": "",
+    "text": "Console: where you will enter code, and where the outputs appear. You can type into it directly and press enter to see the result.\nR Script: your script is where you keep a record of your work. As a general rule, you should always write your code here first before executing it in the console. Try to write your code as clean and well-structured as possible. You want yourself and other scholars to understand your code and be able to replicate it at a different point in time.\nEnvironment and History: The environment tab shows all of the objects that you currently have loaded into your workspace. The history tab shows a list of commands used so far.\nFiles, plots, packages, help, viewer and presentation: The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs. The packages tab will list a series of packages or add-ons needed to run certain processes. It shows you which packages you have currently installed and loaded. For additional info on a specific command, refer to the help tab.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "getting_started.html#setting-a-working-directory",
+    "href": "getting_started.html#setting-a-working-directory",
+    "title": "1  Getting Started",
+    "section": "1.2 Setting a Working Directory",
+    "text": "1.2 Setting a Working Directory",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Getting Started</span>"
+    ]
+  },
+  {
+    "objectID": "objects_functions.html",
+    "href": "objects_functions.html",
+    "title": "2  Objects and Functions",
+    "section": "",
+    "text": "2.1 Object Classes\nOne of the main virtues of R (and a clear advantage over STATA) is its efficient and clear method of storing pieces of information that we generate during data analysis. These storage units are known as ‘objects’ and they take many forms, or ‘classes’. The general format for assigning the value of an object is NAME &lt;- VALUE. The &lt;- symbols is known as “gets” because of the operation it performs: The object on the left hand side “gets” the value you place on the right hand side. For example, we could have stored the numeric results we just computed as follows:\nNames of R objects are case sensitive and cannot begin with numbers. They can include . and/or _ to separate words. It is good coding practice to name objects with intuitive labels to avoid confusion.\nYou may notice that the output displayed did not include the numeric results themselves. This is because R computed these operations “quietly” and simply stored them. If we need them, they are there, but they need not clutter up our screen. To access them, we simply execute the names we assigned as follows:\nIf we create a new object that has the same name as an existing object, R overwrites the old with the new:\nBehind the scenes, R keeps track of all the objects we create, and saves them into your workspace. To display all objects in your environment, use the ls() function:\nYou can delete any objects you’ve created from the workspace using the rm() function, or even delete all the objects saved there at once. Be careful using this function! Some objects take a long time to create, but rm() will remove them in a blink.\nYou can also delete all objects that you’ve created using the rm(list=ls()) command.\nThere are many classes of objects in R, each with their own properties. Knowing the class of an object lets us know the range of things we can do with that object. It’s important to keep track of the classes of your objects, since many functions will only take objects of a certain class as their argument or will result in a different output depending on the class of its arguments. We can use the class() function to find out which class an object belongs to. For example, let’s try it with our multi.obj which, as we remember, is the number 1250.\nclass(multi.obj)\n\n[1] \"numeric\"\nOur class for multi.obj is numeric. Numeric objects are any kind of number. We can do mathematical calculations with objects of this class.\nR does most of its work through vectors, which mean the same thing as in matrix algebra: a \\(n \\times 1\\) ordered collection of elements. You can create an empty vector with the vector() command, or can create your own vectors using the c() command, with each element separated by a comma.\nranking &lt;- c(1,2,3,4,5)\nranking\n\n[1] 1 2 3 4 5\n\nclass(ranking)\n\n[1] \"numeric\"\nour_school &lt;- \"Vanderbilt\"\n\nclass(our_school)\n\n[1] \"character\"\nOur object our_school is a character variable, which can be any string of characters, including numbers. There are many functions specifically designed to be used with character data.\nWe can also create vectors of character variables.\nsec_schools &lt;- c(our_school, \"University of Florida\", \"UT Austin\", \"Georgia\", \"Texas A&M\")\nsec_schools\n\n[1] \"Vanderbilt\"            \"University of Florida\" \"UT Austin\"            \n[4] \"Georgia\"               \"Texas A&M\"            \n\nclass(sec_schools)\n\n[1] \"character\"\nNotice that we can add existing objects to other objects. We can check the length of a vector using the length() functions\nlength(ranking)\n\n[1] 5\n\nlength(sec_schools)\n\n[1] 5\nVectors are homogeneous: each element must be of the same type. Recall that our object ranking was numeric, but sec_schools is character. If we mix these two vectors, R will treat the numbers in ranking as text.\nclass(ranking)\n\n[1] \"numeric\"\n\nclass(sec_schools)\n\n[1] \"character\"\n\nmixed_vector &lt;- c(ranking, sec_schools)\n\nmixed_vector\n\n [1] \"1\"                     \"2\"                     \"3\"                    \n [4] \"4\"                     \"5\"                     \"Vanderbilt\"           \n [7] \"University of Florida\" \"UT Austin\"             \"Georgia\"              \n[10] \"Texas A&M\"            \n\nclass(mixed_vector)\n\n[1] \"character\"",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objects and Functions</span>"
+    ]
+  },
+  {
+    "objectID": "objects_functions.html#data-frames",
+    "href": "objects_functions.html#data-frames",
+    "title": "2  Objects and Functions",
+    "section": "2.2 Data Frames",
+    "text": "2.2 Data Frames\nFor most functions we use to model data (e.g. regression or plotting), R requires that we use a dataframe. In contrast to vectors, dataframes do not have to be homogenous: each column of a dataframe can contain a different type of element, although the elements within each column must be of the same type. For example, in a dataset of survey responses, we may have one column that contains participants’ age (numeric) and another with their name (character).\nCreating dataframes is straightforward.\n\nsec_rankings &lt;- cbind.data.frame(ranking, sec_schools)\n\nclass(sec_rankings)\n\n[1] \"data.frame\"\n\nsec_rankings\n\n  ranking           sec_schools\n1       1            Vanderbilt\n2       2 University of Florida\n3       3             UT Austin\n4       4               Georgia\n5       5             Texas A&M\n\n\nYou can access the elements of a dataframe by calling the specific row and column:\n\nsec_rankings[2,2]\n\n[1] \"University of Florida\"\n\n\nOr, equivalently, by calling the name of the column:\n\nsec_rankings[2,\"sec_schools\"]\n\n[1] \"University of Florida\"\n\n\nYou can access a single column—usually corresponding to a specific variable—using the $ operator followed by the name of the column:\n\nsec_rankings$sec_schools\n\n[1] \"Vanderbilt\"            \"University of Florida\" \"UT Austin\"            \n[4] \"Georgia\"               \"Texas A&M\"",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objects and Functions</span>"
+    ]
+  },
+  {
+    "objectID": "objects_functions.html#functions",
+    "href": "objects_functions.html#functions",
+    "title": "2  Objects and Functions",
+    "section": "2.3 Functions",
+    "text": "2.3 Functions\nFunctions in R perform analogously to functions in mathematics: they take an input, perform some prespecified operation, and produce an output. There are many functions that come with base R; others will need to be downloaded in supplemental packages. You can also write your own functions to perform specialized tasks.\nYou always call a function with its name followed by parentheses, and the input we give the function inside the parentheses. For example, if our function was called function and our input was called input, then we would call our function as function(input). These inputs are called arguments. Some functions have one argument, while others have many. Some arguments are required, while others are optional. Often, arguments have to be of a particular class. The help file for a function will tell us the arguments that a function takes. You can access a function’s help file by placing a ? in front of the function name with empty parentheses, which will bring up the help file in the help tab.\n\n?function()\n\nTo get you familiar with using functions, we’re going to run through some examples together. These are all functions you’ll end up using again and again, and you’ll and you soon have them all memorized. Take some time to play around with these, perhaps looking up their help file or changing the inputs to see what happens.\n\n2.3.1 Mathematical Operators\nWe’ve already looked at R’s ability to do some math with simple symbols (e.g. multiplication). For many other operations, there are simple functions we can use. These often only need one or two (numeric) arguments, so they’re easy to use. Here’s a few:\n\n# Square Root\nsqrt(144)\n\n[1] 12\n\n# Natural Log\nlog(10)\n\n[1] 2.302585\n\n# Exponent\nexp(3)\n\n[1] 20.08554\n\n# sequence of numbers\nseq(from = 1, to = 5, by = 0.5)\n\n[1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0\n\n# R also has a shortcut for sequences of integers\n1:5\n\n[1] 1 2 3 4 5\n\n# Repeating the same input many times\nrep(x = c(1, 2, 3), times = 3)\n\n[1] 1 2 3 1 2 3 1 2 3\n\n# sum\nnumbers &lt;- 1:5\nsum(numbers)\n\n[1] 15\n\n\n\n\n2.3.2 Logical Statements\nR has a variety of logic statements that can be used in if-else statements or any other setting where you need to employ a TRUE/FALSE logic. You use the double equal == operator to mean “is this exactly true”. For example:\n\n2 == 2\n\n[1] TRUE\n\n2 == 3\n\n[1] FALSE\n\n2 == \"Joe Biden\"\n\n[1] FALSE\n\n\nYou can also use the != operator to mean “not equal to”. For example:\n\n# it is FALSE that 2 is not equal to 2\n2 != 2\n\n[1] FALSE\n\n# it is TRUE that 2 is not equal to 3\n2 != 3\n\n[1] TRUE\n\n\nAnother logical operator, that is especially useful for filtering or creating new variables, is to include inequalities. For example, we use the key &gt; to mean “greater than” and &lt; to mean “less than”. The order of the inputs into the inequality matter: “A is greater than B” (A&gt;B) is equivalent to “B is less than A” (B&lt;A).\n\n# 3 is greater than 2\n3 &gt; 2\n\n[1] TRUE\n\n# 3 is not less than 2\n3 &lt; 2\n\n[1] FALSE\n\n# 2 is less than 3\n2 &lt; 3\n\n[1] TRUE\n\n\nYou can also include weak inequalities by adding a = to your inequality: for example, you would write “greater than or equal to” as &gt;=.\n\n# it is FALSE that 3 is greater than 3\n3 &gt; 3\n\n[1] FALSE\n\n# but it is TRUE that 3 is greater than or equal to 3\n3 &gt;= 3\n\n[1] TRUE\n\n\nAdding a ! before your logical statement creates a negation, turning TRUE into FALSE and vice versa. This may seem useless, but is important if you want to add a condition to your code that is “filter out every observation where this condition is true”. For example:\n\n# it is FALSE that 2 is greater than 3\n2 &gt; 3\n\n[1] FALSE\n\n# but it is TRUE that 2 is NOT greater than 3\n!(2 &gt; 3)\n\n[1] TRUE\n\n\nWe can also create compound logical statements using two or more conditions. R will only return TRUE if every condition is TRUE, and FALSE otherwise. Specify multiple conditions using the & symbol. For example:\n\n# creating an object called \"number\" that takes the value of 5\nnumber &lt;- 5\n\n# it is TRUE that number is not equal to 3\nnumber != 3\n\n[1] TRUE\n\n# it is FALSE that number is greater than 7\nnumber &gt; 7\n\n[1] FALSE\n\n# it is FALSE that number is not equal to 3 AND that number is greater than 7\nnumber !=3 & number &gt; 7\n\n[1] FALSE\n\n# however, it is TRUE that number is not equal to 3 and\n# that number is greater than 4\nnumber !=3 & number &gt; 4\n\n[1] TRUE\n\n\nUse the | symbol to mean “OR”. This returns TRUE if either of the conditions is TRUE.\n\n# it is TRUE that 5 is not equal to 3\n5 != 3\n\n[1] TRUE\n\n# it is FALSE that 5 is greater than 7\n5 &gt; 7\n\n[1] FALSE\n\n# even though 5 is not greater than 7, 5 is not equal to 3. \n# therefore, it is TRUE that 5 is not equal to 3 OR that 5 is greater than 7\n5 !=3 | 5 &gt; 7\n\n[1] TRUE",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Objects and Functions</span>"
+    ]
+  },
+  {
+    "objectID": "loading_data.html",
+    "href": "loading_data.html",
+    "title": "3  Loading Data",
+    "section": "",
+    "text": "Creating objects is useful, but often you will want to import a dataset that you have downloaded or created to perform your analyses on. Luckily, R has a wide range of ways to interact with all kinds of files on your computer.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Loading Data</span>"
+    ]
+  },
+  {
+    "objectID": "visualizing_data.html",
+    "href": "visualizing_data.html",
+    "title": "5  Visualizing Data",
+    "section": "",
+    "text": "5.1 Histograms",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Visualizing Data</span>"
+    ]
+  },
+  {
+    "objectID": "writing_functions.html",
+    "href": "writing_functions.html",
+    "title": "6  Writing Functions and Loops",
+    "section": "",
+    "text": "There may be instances in which an existing function does not exist for what you want to do. You may have some repetitive task you need to perform over and over throughout a data analysis. Rather than copy-and-pasting a single operation multiple times—which clutters up your code and makes it more likely that you will make an error—you can write a function that does the task and use it throughout your code. When writing a function, there are three main components: the function name, the arguments, and the body of the function. The body of the function is where you specify what you want the function to do with the arguments.\nTo write a function in R, use the function() function. This follows four steps:\n\nPick a name for your function and assign it to be a function.\nSpecify the inputs that your function is going to need, and pass these as arguments into the function() function.\nUse curly braces { } and within them specify all the operations the function should perform on the inputs.\nFinally, using return(), specify what the function will put back into R’s broader environment.\n\nHere is the general anatomy of a function:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Writing Functions and Loops</span>"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Programming in R",
+    "section": "",
+    "text": "Preface\nThis is a preface….good way to acknowledge the folks we took inspiration from.",
+    "crumbs": [
+      "Preface"
+    ]
+  }
+]
