@@ -1,0 +1,15 @@
+# Writing Functions and Loops
+
+There may be instances in which an existing function does not exist for what you want to do. You may have some repetitive task you need to perform over and over throughout a data analysis. Rather than copy-and-pasting a single operation multiple times---which clutters up your code and makes it more likely that you will make an error---you can write a function that does the task and use it throughout your code. When writing a function, there are three main components: the function name, the arguments, and the body of the function. The body of the function is where you specify what you want the function to do with the arguments.
+
+To write a function in R, use the `function()` function. This follows four steps:
+
+1.  Pick a name for your function and assign it to be a function.
+
+2.  Specify the inputs that your function is going to need, and pass these as arguments into the `function()` function.
+
+3.  Use curly braces `{ }` and within them specify all the operations the function should perform on the inputs.
+
+4.  Finally, using `return()`, specify what the function will put back into R's broader environment.
+
+Here is the general anatomy of a function:

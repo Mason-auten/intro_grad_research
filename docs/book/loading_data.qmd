@@ -1,0 +1,3 @@
+# Loading Data
+
+Creating objects is useful, but often you will want to import a dataset that you have downloaded or created to perform your analyses on. Luckily, R has a wide range of ways to interact with all kinds of files on your computer.

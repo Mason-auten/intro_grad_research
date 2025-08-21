@@ -1,0 +1,21 @@
+# Getting Started
+
+R is a programming language widely used in statistical analysis. Learning R can come with a steep learning curve, but once you get the hang of it there's a nearly endless number of exciting things you can use it for. Time invested in deepening your R skills will never be time wasted.
+
+Code in R, and any other programming language, is a series of instructions to the computer. Usually, you will begin by either loading or creating objects, for example by importing a dataset you downloaded or defining a new variable. You'll then do various things to or with those objects, for example removing a row from a matrix, running a regression using your dataset, or making a graph. This is done using functions; a huge number of functions are built into R, many more are available through thousands of packages, and you will also write your own functions.
+
+## The R Workspace
+
+When you open RStudio, you will see four different windows:
+
+-   **Console**: where you will enter code, and where the outputs appear. You can type into it directly and press enter to see the result.
+
+-   **R Script**: your script is where you keep a record of your work. As a general rule, you should always write your code here first before executing it in the console. Try to write your code as clean and well-structured as possible. You want yourself and other scholars to understand your code and be able to replicate it at a different point in time.
+
+-   **Environment and History:** The environment tab shows all of the objects that you currently have loaded into your workspace. The history tab shows a list of commands used so far.
+
+-   **Files, plots, packages, help, viewer and presentation:** The files tab shows all the files and folders in your default workspace as if you were on a PC/Mac window. The plots tab will show all your graphs. The packages tab will list a series of packages or add-ons needed to run certain processes. It shows you which packages you have currently installed and loaded. For additional info on a specific command, refer to the help tab.
+
+If you don't have a file set to open when you first open RStudio, you will likely only see three of these windows when RStudio first launches (Console, Environment and History, and Files, plots, packages, help, and viewer). Once you open a code file, the R Script window will also appear.
+
+## Setting a Working Directory

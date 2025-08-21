@@ -1,0 +1,263 @@
+# Objects and Functions
+
+One of the main virtues of R (and a clear advantage over STATA) is its efficient and clear method of storing pieces of information that we generate during data analysis. These storage units are known as 'objects' and they take many forms, or 'classes'. The general format for assigning the value of an object is `NAME <- VALUE`. The `<-` symbols is known as "gets" because of the operation it performs: The object on the left hand side "gets" the value you place on the right hand side. For example, we could have stored the numeric results we just computed as follows:
+
+```{r}
+add.obj <- 4+4 
+multi.obj <- 250*5
+```
+
+Names of R objects are case sensitive and cannot begin with numbers. They can include `.` and/or `_` to separate words. It is good coding practice to name objects with intuitive labels to avoid confusion.
+
+You may notice that the output displayed did not include the numeric results themselves. This is because R computed these operations "quietly" and simply stored them. If we need them, they are there, but they need not clutter up our screen. To access them, we simply execute the names we assigned as follows:
+
+```{r}
+add.obj 
+multi.obj 
+```
+
+If we create a new object that has the same name as an existing object, R overwrites the old with the new:
+
+```{r}
+add.obj 
+add.obj <- 4+8 
+add.obj 
+```
+
+Behind the scenes, R keeps track of all the objects we create, and saves them into your workspace. To display all objects in your environment, use the `ls()` function:
+
+```{r}
+ ls()
+```
+
+You can delete any objects you've created from the workspace using the `rm()` function, or even delete all the objects saved there at once. Be careful using this function! Some objects take a long time to create, but `rm()` will remove them in a blink.
+
+```{r}
+rm(add.obj)
+```
+
+You can also delete all objects that you've created using the `rm(list=ls())` command.
+
+## Object Classes
+
+There are many classes of objects in R, each with their own properties. Knowing the class of an object lets us know the range of things we can do with that object. It's important to keep track of the classes of your objects, since many functions will only take objects of a certain class as their argument or will result in a different output depending on the class of its arguments. We can use the `class()` function to find out which class an object belongs to. For example, let's try it with our `multi.obj` which, as we remember, is the number `1250`.
+
+```{r}
+class(multi.obj)
+```
+
+Our class for `multi.obj` is numeric. Numeric objects are any kind of number. We can do mathematical calculations with objects of this class.
+
+R does most of its work through vectors, which mean the same thing as in matrix algebra: a $n \times 1$ ordered collection of elements. You can create an empty vector with the `vector()` command, or can create your own vectors using the `c()` command, with each element separated by a comma.
+
+```{r}
+ranking <- c(1,2,3,4,5)
+ranking
+class(ranking)
+```
+
+```{r}
+our_school <- "Vanderbilt"
+
+class(our_school)
+```
+
+Our object `our_school` is a character variable, which can be any string of characters, including numbers. There are many functions specifically designed to be used with character data.
+
+We can also create vectors of character variables.
+
+```{r}
+sec_schools <- c(our_school, "University of Florida", "UT Austin", "Georgia", "Texas A&M")
+sec_schools
+class(sec_schools)
+```
+
+Notice that we can add existing objects to other objects. We can check the length of a vector using the `length()` functions
+
+```{r}
+length(ranking)
+
+length(sec_schools)
+```
+
+Vectors are homogeneous: each element must be of the same type. Recall that our object `ranking` was numeric, but `sec_schools` is character. If we mix these two vectors, R will treat the numbers in `ranking` as text.
+
+```{r}
+class(ranking)
+
+class(sec_schools)
+
+mixed_vector <- c(ranking, sec_schools)
+
+mixed_vector
+
+class(mixed_vector)
+```
+
+## Data Frames
+
+For most functions we use to model data (e.g. regression or plotting), R requires that we use a dataframe. In contrast to vectors, dataframes do not have to be homogenous: each column of a dataframe can contain a different type of element, although the elements within each column must be of the same type. For example, in a dataset of survey responses, we may have one column that contains participants' age (numeric) and another with their name (character).
+
+Creating dataframes is straightforward.
+
+```{r}
+sec_rankings <- cbind.data.frame(ranking, sec_schools)
+
+class(sec_rankings)
+
+sec_rankings
+
+```
+
+You can access the elements of a dataframe by calling the specific row and column:
+
+```{r}
+sec_rankings[2,2]
+```
+
+Or, equivalently, by calling the name of the column:
+
+```{r}
+sec_rankings[2,"sec_schools"]
+```
+
+You can access a single column—usually corresponding to a specific variable—using the `$` operator followed by the name of the column:
+
+```{r}
+sec_rankings$sec_schools
+```
+
+## Functions
+
+Functions in R perform analogously to functions in mathematics: they take an input, perform some prespecified operation, and produce an output. There are many functions that come with base R; others will need to be downloaded in supplemental packages. You can also write your own functions to perform specialized tasks.
+
+You always call a function with its name followed by parentheses, and the input we give the function inside the parentheses. For example, if our function was called `function` and our input was called `input`, then we would call our function as `function(input)`. These inputs are called arguments. Some functions have one argument, while others have many. Some arguments are required, while others are optional. Often, arguments have to be of a particular class. The help file for a function will tell us the arguments that a function takes. You can access a function's help file by placing a `?` in front of the function name with empty parentheses, which will bring up the help file in the help tab.
+
+```{r}
+#| eval: false
+#| echo: true
+?function()
+```
+
+To get you familiar with using functions, we're going to run through some examples together. These are all functions you'll end up using again and again, and you'll and you soon have them all memorized. Take some time to play around with these, perhaps looking up their help file or changing the inputs to see what happens. 
+
+### Mathematical Operators
+
+We've already looked at R's ability to do some math with simple symbols (e.g. multiplication). For many other operations, there are simple functions we can use. These often only need one or two (numeric) arguments, so they're easy to use. Here's a few:
+
+```{r}
+# Square Root
+sqrt(144)
+
+# Natural Log
+log(10)
+
+# Exponent
+exp(3)
+
+# sequence of numbers
+seq(from = 1, to = 5, by = 0.5)
+
+# R also has a shortcut for sequences of integers
+1:5
+
+# Repeating the same input many times
+rep(x = c(1, 2, 3), times = 3)
+
+# sum
+numbers <- 1:5
+sum(numbers)
+```
+
+### Logical Statements
+
+R has a variety of logic statements that can be used in if-else statements or any other setting where you need to employ a TRUE/FALSE logic. You use the double equal `==` operator to mean "is this exactly true". For example:
+
+```{r}
+2 == 2
+
+2 == 3
+
+2 == "Joe Biden"
+
+```
+
+You can also use the `!=` operator to mean "not equal to". For example:
+
+```{r}
+# it is FALSE that 2 is not equal to 2
+2 != 2
+
+# it is TRUE that 2 is not equal to 3
+2 != 3
+```
+
+Another logical operator, that is especially useful for filtering or creating new variables, is to include inequalities. For example, we use the key `>` to mean "greater than" and `<` to mean "less than". The order of the inputs into the inequality matter: "A is greater than B" (`A>B`) is equivalent to "B is less than A" (`B<A`).
+
+```{r}
+# 3 is greater than 2
+3 > 2
+
+# 3 is not less than 2
+3 < 2
+
+# 2 is less than 3
+2 < 3
+```
+
+You can also include weak inequalities by adding a `=` to your inequality: for example, you would write "greater than or equal to" as `>=`.
+
+```{r}
+# it is FALSE that 3 is greater than 3
+3 > 3
+
+# but it is TRUE that 3 is greater than or equal to 3
+3 >= 3
+```
+
+Adding a `!` before your logical statement creates a negation, turning TRUE into FALSE and vice versa. This may seem useless, but is important if you want to add a condition to your code that is "filter out every observation where this condition is true". For example:
+
+```{r}
+# it is FALSE that 2 is greater than 3
+2 > 3
+
+# but it is TRUE that 2 is NOT greater than 3
+!(2 > 3)
+
+```
+
+We can also create compound logical statements using two or more conditions. R will only return TRUE if *every* condition is TRUE, and FALSE otherwise. Specify multiple conditions using the `&` symbol. For example:
+
+```{r}
+# creating an object called "number" that takes the value of 5
+number <- 5
+
+# it is TRUE that number is not equal to 3
+number != 3
+
+# it is FALSE that number is greater than 7
+number > 7
+
+# it is FALSE that number is not equal to 3 AND that number is greater than 7
+number !=3 & number > 7
+
+# however, it is TRUE that number is not equal to 3 and
+# that number is greater than 4
+number !=3 & number > 4
+
+```
+
+Use the `|` symbol to mean "OR". This returns TRUE if either of the conditions is TRUE.
+
+```{r}
+
+# it is TRUE that 5 is not equal to 3
+5 != 3
+
+# it is FALSE that 5 is greater than 7
+5 > 7
+
+# even though 5 is not greater than 7, 5 is not equal to 3. 
+# therefore, it is TRUE that 5 is not equal to 3 OR that 5 is greater than 7
+5 !=3 | 5 > 7
+```
