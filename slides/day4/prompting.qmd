@@ -53,12 +53,14 @@ $$
 
 - Be specific when prompting Chat.
 - Instead of “fix this code,” try:
+
+
   > I’m doing a data analysis project in political science. My dependent variable is war and my independent variable is economic activity. I want to graph the relationship between GDP and civil war occurrence. Help me create a scatter plot that shows...
 
 ## Principles
 
 - Give it context.
-- Be precise ..avoid vague instructions.
+- Be precise ... avoid vague instructions.
 - Tell it to act as the role you need.
 - Break tasks into smaller steps.
 
@@ -81,8 +83,6 @@ $$
   2. "Now, rewrite those bullet points in plain language for a public audience."
   3. "Suggest three related research questions based on that summary."
 - **Tip:** Keep a consistent thread. Copy the relevant part of the last answer into the next prompt.
-
-
 
 ## Chat Experiences {.incremental}
 
