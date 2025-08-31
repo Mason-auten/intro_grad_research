@@ -1,3 +1,180 @@
 # Loading Data
 
 Creating objects is useful, but often you will want to import a dataset that you have downloaded or created to perform your analyses on. Luckily, R has a wide range of ways to interact with all kinds of files on your computer.
+
+
+## Reading in Data
+
+Most datasets will be saved as a CSV (comma-separated-values), which you can load in using the command `read_csv`.
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+```{r}
+#| output: false
+#| echo: true
+congress_data <- read_csv("data/congress_data.csv")
+```
+
+You will often also find data in the `.dta` format if it was created using Stata. You can read this in using the `read_dta` function from the package `haven`.
+
+```{r}
+#| eval: false
+#| echo: true
+
+
+library(haven)
+congress_data <- read_dta("congres_data.dta")
+```
+
+You can also read data in directly from a URL:
+
+```{r}
+#| eval: false
+#| echo: true
+
+congress_data <- read_dta("www.thelawmakers.org/uploads/congress_data.dta")
+```
+
+In general, however, we encourage you to download and save the raw data. You cannot read data from a URL if it is behind a login, such as a course on Brightspace, within a zipped directory, or in a file that has been emailed to you. More broadly, what is stored at a URL might change or disappear, leaving you without your data and making it impossible to replicate your analysis.
+
+You'll notice that your data is read in as a dataframe:
+
+```{r}
+class(congress_data)
+```
+
+We can list the name of all the variables using the `ls()` function, with our dataframe inside the parentheses:
+
+```{r}
+ls(congress_data)
+```
+
+As before, we can use the `$` function to extract a single column:
+
+```{r}
+#| eval: false
+#| echo: true
+
+congress_data$seniority
+```
+
+```{r}
+#| echo: false
+head(congress_data$seniority, 20)
+```
+
+Use square brackets `[]` to extract individual values:
+
+```{r}
+congress_data$seniority[5]
+```
+
+And use `:` within the brackets to extract a range:
+
+```{r}
+congress_data$seniority[1:10]
+```
+
+We can perform quick data summaries on our variables. We need to include `na.rm=T` if our data has NAs. For example, the average Member of Congress in our dataset has served 5.275 terms.
+
+```{r}
+mean(congress_data$seniority, na.rm=T)
+```
+
+While the median Member of Congress has served 4 terms.
+
+```{r}
+median(congress_data$seniority, na.rm=T)
+```
+
+There's a standard deviation of 4.15 terms.
+
+```{r}
+sd(congress_data$seniority, na.rm=T)
+```
+
+We can do a quick glance at all of this information using the `summary()` function:
+
+```{r}
+summary(congress_data$seniority)
+```
+
+For categorical variables, we can use the `table()` function. For example, we can use `st_name` which tells us which state a Member of Congress represents:
+
+```{r}
+table(congress_data$state)
+```
+
+## Manipulating Data
+
+We can reduce our data by filtering out rows that meet a certain criteria using the `filter()` command. For example, suppose we were only interested in Members of Congress born on or after 1987 (which we would write as greater than`>` or equal `=` in the form `>=1987`).
+
+```{r}
+filter(congress_data, born >= 1987)
+```
+
+You can also subset to only certain columns using the `select()` command. For example, let's only keep a Member of Congress's name, birthyear, and first-dimension DW-NOMINATE score (which is a commonly used measure of their general ideology).
+
+```{r}
+select(congress_data, name, born, dwnom1)
+```
+
+We can chain together commands using the pipe `%>%` from the `tidyverse` package. You may also see the pipe written as `|>` for R's built-in function; both are equivalent. For example, we can write the above code as:
+
+```{r}
+congress_data %>%
+  filter(born >= 1987) %>%
+  select(name, born, dwnom1)
+```
+
+### `mutate()`
+We can also change or mutate variables using the `mutate()` function:
+
+```{r}
+congress_data %>% 
+  mutate(gender_binary = if_else(female == 1, "Female", "Male"),
+         age = year - born,
+         race = case_when(
+           black == 1 ~ "Black",
+           latino == 1 ~ "Latino",
+           aapi == 1 ~ "Asian",
+           TRUE ~ "White"
+         )) %>%
+  select(gender_binary, female, year, born, age, race)
+```
+
+We can also create summaries using the `group_by()` function. The `group_by()` function is one of the most versatile and powerful tools in R.
+
+```{r}
+congress_data %>%
+  group_by(majority) %>%
+  summarize(number_of_respondents = n(),
+            average_effectiveness = mean(les, na.rm=T))
+```
+
+We can also create summaries with multiple groups:
+
+```{r}
+congress_data %>%
+  group_by(majority, female) %>%
+  summarize(number_of_respondents = n(),
+            average_effectiveness = mean(les, na.rm=T))
+```
+
+Your data will only stick if you use the `<-` function.
+
+```{r}
+congress_data <- congress_data %>%
+  mutate(age = year - born,
+         gender = ifelse(female == 1, "Woman", "Man"),
+         party = ifelse(democrat == 1, "Democrat", "Republican"),
+         race = case_when(
+           latino == 1 ~ "Latino",
+           black == 1 ~ "Black",
+           aapi == 1 ~ "Asian",
+           TRUE ~ "White"
+         )) 
+```
