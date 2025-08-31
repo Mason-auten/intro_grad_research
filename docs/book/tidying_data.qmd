@@ -1,1 +1,110 @@
 # Tidying Data
+
+```{r}
+#| echo: false
+#| output: false
+
+library("tidyverse")
+congress_data <- read_csv("data/congress_data.csv")
+```
+
+Each row of `untidy_election_data` is Member of Congress. In observational studies in American politics, the most commonly used unit of observation is legislator-congress
+```{r}
+#| output: false
+
+untidy_election_data <- read_csv("data/untidy_election_data.csv")
+```
+
+```{r}
+head(untidy_election_data)
+```
+```{r}
+
+long_data <- untidy_election_data %>%
+  select(!name) %>%
+  pivot_longer(cols = starts_with(c("presidentialvoteshare", "contributions")))
+long_data
+```
+
+Next, we can separate out the name into variables.
+
+```{r}
+long_data <- separate(long_data,
+                      col = "name",
+                      into = c("var", "year"))
+long_data
+```
+
+Finally, we use the `pivot_wider` function, which is like the inverse of `pivot_longer`. `pivot_wider` takes a key column and a value column, and turns each key into a column of its own.
+
+```{r}
+clean_election_data <- pivot_wider(long_data,
+                                   names_from = "var",
+                                   values_from = "value")
+clean_election_data
+```
+
+## Merging Data
+
+We'll now want to merge in the data.
+
+```{r}
+clean_election_data$year <- as.numeric(clean_election_data$year)
+clean_election_data <- clean_election_data %>%
+  mutate(year = year + 1) %>%
+  rename(icpsr = ICPSR2)
+
+```
+
+Now we can merg with our previous congress data. 
+
+```{r}
+congress_data <- left_join(congress_data, clean_election_data, by = c("icpsr", "year"))
+```
+
+Sometimes, data is not so clean, and merging can become particularly tiresome in such scenarios. Frequently, we need to merge multiple datasets. In such scenarios, the dyplr function `join` is remarkably helpful. There are two separate types of joins, mutating joins and filtering joins. Mutating joins create new variables based on matching rows or observations. In effect, we add columns from one data set to another, filtering joins. Filtering joins eliminate, or filter out, data from one data set based on information in another. To keep things easy, we'll stick to mutating joins for now.
+
+There are several things to remember when utilizing joins. First, we use "keys" to connect observations together; these are specific variables that match observations. There are multiple types of joins. When using filtering joins, we recommend sticking to the `left_join()` function. This is easiest to visualize. You have the data you are starting with on the left-hand side, and you are adding columns to it from another data set on the right-hand side. 
+
+Let's start with a basic example of how you might clean and merge data while examining it in one flow. 
+
+```{r}
+
+# Clear workspace (always a good idea at the start of a script)
+rm(list = ls())
+
+## A useful function for loading and updating packages. 
+pacman::p_load(
+    tidyverse,
+    peacesciencer, ## IR friends...you will love this package
+    lubridate ## needed for fixing dates
+)
+
+# In this step, we create a dataset of country years with war data
+
+war <- create_stateyears(system = "cow") %>% 
+  add_cow_wars(type = "intra", intratype = "all")
+
+## always inspect the name of your variables
+colnames(war)
+
+## Suppose we have another dataset of economic data as well 
+
+econ <- create_stateyears(system = "cow") %>% 
+  add_sim_gdp_pop()
+
+colnames(econ)
+
+## We are interested in the relationship between intrastate conflict and economic performance. So we take our main dataset, war, and add to it economic data via a left join.
+
+## Note that because the key variables are named the same, I did not need to specify the join keys
+data <- left_join(war, econ)
+
+## Always look at your data, here we select the variables we want and filter out where there was no intrastate war
+data %>% 
+  filter(!is.na(wartype)) %>% 
+  select(cw_name, year, wartype,sd_pwtrgdp) %>% 
+  head(10)
+
+
+```
