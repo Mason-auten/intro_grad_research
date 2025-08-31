@@ -19,3 +19,81 @@ When you open RStudio, you will see four different windows:
 If you don't have a file set to open when you first open RStudio, you will likely only see three of these windows when RStudio first launches (Console, Environment and History, and Files, plots, packages, help, and viewer). Once you open a code file, the R Script window will also appear.
 
 ## Setting a Working Directory
+The first thing you'll want to do when working in R is to set a working directory. This is the folder on your computer that R will default to for saving and loading files (unless told otherwise). In other words, this is where R will look for files you call and is where R will save files you create. You can check where your working directory currently is using `getwd()`
+
+```{r} 
+#| echo: true
+
+getwd()
+```
+
+To change this, we use the `setwd()` function. Below is the line of code I am using to set my working directory. Yours will be unique to your file organization. If you don't want to memorize the file path to set your working directory, you can search for one. To do this, select Session from the top menu, then Set Working Directory, then Choose Directory. Now you can choose which folder you would like to use as your working directory, which R will update automatically. It is a good idea to copy and paste the command that sets your working directory directly into your R script.
+
+```{r}
+#| eval: false
+#| echo: true
+setwd("C:/Users/patri/OneDrive/Documents/MathCamp")}
+```
+
+You'll notice that the `setwd()` command contains a specific file path on my personal laptop. This is not ideal for a script that I want a collaborator to be able to use. If the folder is in a shared directory like Dropbox, you can write a more universal command which would work for anyone who had access to this folder.
+
+## Loading Packages
+
+R has a number of functions built in, but you will often find yourself needing a function that is not included in base R. You access these functions by downloading and loading packages. You only need to download packages once. To install a package, use the `install.packages()` command, with the package name in quotation marks. For most of our work today, and most of your work in general, we'll be using the `tidyverse` suite of packages. `tidyverse` is convenient because it allows you to download many commonly used packages at once.
+
+```{r}
+#| eval: false 
+#| echo: true
+install.packages("tidyverse")
+```
+
+You only need to install packages once, but will need to load packages from your library every time you use them. Note that you do not need to use quotations when loading packages.
+
+```{r}
+#| eval: false 
+#| echo: true
+library(tidyverse)
+```
+
+Start every script by first setting your working directory and then loading in all packages that you are going to use.
+
+## Executing Code
+
+Scripts of code have active and inactive lines. Active lines are executable. To execute a section of code, select the entire section, and then press COMMAND+RETURN on a Mac, or CTRL+RETURN on a PC. Pressing these keys without selecting something will execute the line where your cursor is. Alternatively, you can select the portion of code you want to execute and hit "Run" in the top right corner of the code window. You can also execute all of the code in a .R file by pressing the "Source" button.
+
+```{r}
+2+2
+
+```
+
+Notice the features of the output R produces. First we see `[1]`. This indicates that whatever follows is the first element of the output. Sometimes output will have multiple elements, but here there is just one. Then we see the contents of that output: the number 4. If something has gone wrong in executing the code, R will print an error message instead of the output, which you can use to figure out what the problem is.
+
+We can perform other arithmetic operations using R, such as subtraction...
+
+```{r}
+6-2
+```
+
+...division...
+
+```{r}
+60/10
+```
+
+...or multiplication
+
+```{r}
+250*5
+```
+
+Inactive or "commented" lines of code begin with a hashtag (or pound) mark, #, and R will skip over them if you tell it to execute your script. Commenting using the `#` mark is useful for annotating a script file and making notes with collaborators. Once you type a `#` symbol, R will comment out (disregard) all subsequent characters until you hit return and start a new line.
+
+```{r}
+# <- notice that I have included a hashtag
+# R will ignore any text with a proceeding hashtags
+# commenting allows you to explain code and guide the reader
+# my next line of code calculates 3 squared
+3^2
+```
+
+Comments are crucial to writing good code. Keeping clean and annotated script files is important for many reasons. It helps avoid errors, it ensures your work is replicable, and it enables both your colleagues and your future self to understand what the code is doing. Get into the habit of always providing comments explaining your code.
